@@ -1,22 +1,18 @@
 {
- "name": "SpiritSwap",
- "short_name": "SpiritSwap",
- "start_url": "/",
- "display": "standalone",
- "background_color": "#FFFFFF",
- "theme_color": "#FFFFFF",
- "icons": [
-  {
-   "src": "static/icon-192.png",
-   "sizes": "192x192",
-   "type": "image/png",
-   "purpose": "any maskable"
-  },
-  {
-   "src": "static/icon-512.png",
-   "sizes": "512x512",
-   "type": "image/png",
-   "purpose": "any maskable"
-  }
- ]
+  "name": "SpiritSwap",
+  "short_name": "SpiritSwap",
+  "description": "SpiritSwap swaps tokens and farms yield on the Fantom network from your own wallet.",
+  "start_url": "https://spiritswap-app.github.io/",
+  "scope": "https://spiritswap-app.github.io/",
+  "display": "standalone",
+  "background_color": "#F7F4EF",
+  "theme_color": "#F7F4EF",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }
